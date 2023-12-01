@@ -1,0 +1,230 @@
+.registercar {
+    width: 94%;
+    height: auto;
+    padding: 50px 30px 35px;
+    border-radius: 10px;
+    background-color: var(--banmuonchothuexe-color);
+    margin:0 auto 75px;
+}
+
+.registercar__container {
+    display: flex;
+    width: 100%;
+}
+
+.registercar__container-list {
+    width: 50%;
+    margin: 90px 30px 0 0;
+    text-align: center;
+}
+
+.registercar__container-list-name {
+    font-size: 4.5rem;
+}
+
+.registercar__container-list-text {
+    font-size: 1.8rem;
+    margin: 30px 0 50px;
+}
+
+.registercar__container-list-button {
+    display: flex;
+    text-align: center;
+    transform: scale(0.9);
+}
+
+.registercar__container-list-button-firt {
+    margin-right: 20px;
+    background-color: var(--banmuonchothuexe-color);
+}
+.registercar__container-list-button-last {
+    border: none;
+    background-color: var( --dangkythuexebutton-color);
+}
+.registercar__container-list-button-firt p{
+    font-size: 1.8rem;
+    color: var(--text-color);
+    font-weight: 550;
+}
+
+.registercar__container-list-button-last p{
+    font-size: 1.8rem;
+    color: var(--white-color);
+    font-weight: 550;
+}
+
+.registercar__container-img {
+    width: 45%;
+}
+
+/* Reponsive */
+/* Mobile 0-750px */
+@media (max-width: 46.875em) {
+    .registercar {
+        width: 95%;
+        height: auto;
+        padding: 50px 20px 35px;
+    }
+    
+    .registercar__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .registercar__container-list {
+        width: 100%;
+        margin: 20px 0 0;
+        text-align: center;
+    }
+    
+    .registercar__container-list-name {
+        font-size: 3rem;
+    }
+    
+    .registercar__container-list-text {
+        font-size: 1.3rem;
+        margin: 30px 0 50px;
+    }
+    
+    .registercar__container-list-button {
+        display: block;
+        transform: scale(0.8);
+        width: 100%;
+    }
+    .registercar__container-list-button-firt p{
+        font-size: 1.5rem;
+        color: var(--text-color);
+        font-weight: 550;
+    }
+    
+    .registercar__container-list-button-last p{
+        font-size: 1.5rem;
+        color: var(--white-color);
+        font-weight: 550;
+    }
+    
+    .registercar__container-img {
+        width: 100%;
+        transform: scale(0.9);
+    }
+}
+/* Mobile 0-526px */
+@media (max-width: 542px) {
+ .registercar__container-list-button {
+  display: flex;
+}
+}
+
+/* Mobile 0-500px */
+@media (max-width: 31.25em) {
+    .registercar {
+        width: 95%;
+        height: auto;
+        padding: 30px 10px 20px;
+    }
+    
+    .registercar__container-list {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .registercar__container-list-name {
+        font-size: 2.5rem;
+    }
+    
+    .registercar__container-list-text {
+        font-size: 1.2rem;
+        margin: 30px 0 20px;
+    }
+    
+    .registercar__container-list-button {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        transform: scale(0.7);
+    }
+    .registercar__container-list-button-firt p{
+        font-size: 1.6rem;
+        color: var(--text-color);
+        font-weight: 550;
+    }
+    .registercar__container-list-button-last {
+        margin:20px 15px 0 0;
+    }
+    .registercar__container-list-button-last p{
+        font-size: 1.6rem;
+        color: var(--white-color);
+        font-weight: 550;
+    }
+    
+    .registercar__container-img {
+        width: 100%;
+        transform: scale(0.9);
+    }
+}
+
+@media (max-width: 23.75em) {
+    .registercar__container-list-button {
+        display: flex;
+        width: 100%;
+        transform: scale(0.7);
+    }
+}
+/* Tablet 751px - 990px */
+@media(min-width: 46.9375em) and (max-width: 61.875em) {
+    .registercar {
+        width: 95%;
+        height: auto;
+        padding: 20px 20px 25px;
+    }
+    
+    .registercar__container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .registercar__container-list {
+        width: 100%;
+        /* text-align: center; */
+    }
+    
+    .registercar__container-list-name {
+        font-size: 4rem;
+    }
+    
+    .registercar__container-list-text {
+        font-size: 1.6rem;
+        margin: 20px 0 40px;
+    }
+    
+    .registercar__container-list-button {
+        display: block;
+        width: 100%;
+        transform: scale(0.9);
+        margin: 0 auto;
+    }
+    .registercar__container-list-button-firt p{
+        font-size: 1.7rem;
+        color: var(--text-color);
+        font-weight: 550;
+    }
+    
+    .registercar__container-list-button-last p{
+        font-size: 1.7rem;
+        color: var(--white-color);
+        font-weight: 550;
+    }
+    
+    .registercar__container-img {
+        width: 100%;
+        margin-top: 20px;
+        transform: scale(0.85);
+    }
+}
+
+/* PC >=991 */
+@media (min-width: 61.9375em) {
+    
+}

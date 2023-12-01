@@ -1,0 +1,342 @@
+.post {
+    background-color: var(--white-color);
+    width: 100%;
+    height: auto;
+    padding: 50px 40px 0;
+    border-radius: 10px;
+}
+
+.post__name {
+    padding-top: 80px;
+    text-align: center;
+}
+
+.post__name-main {
+    font-size: 4.5rem;
+}
+
+.post__name-child {
+    font-size: 2rem;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.post__container {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.post__container-main {
+    display: flex;
+    flex-direction: column;
+    width: 28%;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.post__container-main-img {
+    width: auto;
+    height: 200px;
+}
+
+.post__container-main-text {
+    width: auto;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.post__container-main-text-title {
+    font-size: 3rem;
+}
+
+.post__container-main-text-child {
+    font-size: 1.4rem;
+    margin-top: 10px;
+}
+
+/* Reponsive */
+/* Mobile 0-750px */
+@media (max-width: 46.875em) {
+    .post {
+        padding: 40px 30px 0;
+    }
+    
+    .post__name {
+        padding-top: 40px;
+        text-align: center;
+    }
+    
+    .post__name-main {
+        font-size: 3.8rem;
+    }
+    
+    .post__name-child {
+        font-size: 1.7rem;
+        line-height:25px;
+    }
+    
+    .post__container {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .post__container-main {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .post__container-main-img {
+        width: 96%;
+        height: 180px;
+        margin-bottom: 15px;
+        transform: scale(0.9);
+    }
+    
+    .post__container-main-text {
+        width: auto;
+        text-align: center;
+        margin-top: 60px;
+    }
+    
+    .post__container-main-text-title {
+        font-size: 2.4rem;
+    }
+    
+    .post__container-main-text-child {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+}
+
+/* Mobile < 550px*/
+@media (max-width: 34.375em) {
+    .post {
+        padding: 30px 5px 0;
+    }
+    
+    .post__name {
+        padding-top: 30px;
+        text-align: center;
+    }
+    
+    .post__name-main {
+        font-size: 3rem;
+    }
+    
+    .post__name-child {
+        font-size: 1.5rem;
+        line-height: 20px;
+    }
+    
+    .post__container {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .post__container-main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 160px;
+    }
+    
+    .post__container-main-img {
+        width: 35%;
+        height: 180px;
+        margin:0 30px 0 -30px ;
+        transform: scale(0.5);
+    }
+    
+    .post__container-main-text {
+        width: 65%;
+        text-align: center;
+    }
+    
+    .post__container-main-text-title {
+        font-size: 2rem;
+    }
+    
+    .post__container-main-text-child {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+}
+
+/* Mobile < 350px*/
+@media (max-width: 21.875em) {
+    .post {
+        padding: 30px 5px 0;
+    }
+    
+    .post__name {
+        padding-top: 30px;
+        text-align: center;
+    }
+    
+    .post__name-main {
+        font-size: 2.5rem;
+    }
+    
+    .post__name-child {
+        font-size: 1.3rem;
+        line-height: 20px;
+    }
+    
+    .post__container {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    
+    .post__container-main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 130px;
+    }
+    
+    .post__container-main-img {
+        width: 35%;
+        height: 180px;
+        margin:0 30px 0 -30px ;
+        transform: scale(0.4);
+    }
+    
+    .post__container-main-text {
+        width: 65%;
+        text-align: center;
+    }
+    
+    .post__container-main-text-title {
+        font-size: 1.8rem;
+    }
+    
+    .post__container-main-text-child {
+        font-size: 0.8rem;
+        margin-top: 10px;
+    }
+}
+
+/* Tablet 751px - 990px */
+@media(min-width: 46.9375em) and (max-width: 61.875em) {
+    .post {
+        padding: 40px 30px 0;
+    }
+    
+    .post__name {
+        padding-top: 60px;
+        text-align: center;
+    }
+    
+    .post__name-main {
+        font-size: 4rem;
+    }
+    
+    .post__name-child {
+        font-size: 1.8rem;
+        line-height:25px;
+    }
+    
+    .post__container {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .post__container-main {
+        display: flex;
+        flex-direction: column;
+        width: 28%;
+        height: 420px;
+        margin: 0 auto;
+    }
+    
+    .post__container-main-img {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .post__container-main-text {
+        width: auto;
+        text-align: center;
+        margin-top: 60px;
+    }
+    
+    .post__container-main-text-title {
+        font-size: 2.8rem;
+    }
+    
+    .post__container-main-text-child {
+        font-size: 1.3rem;
+        margin-top: 10px;
+    }
+}
+
+/* Tablet 751px - 850px */
+@media(min-width: 46.9375em) and (max-width: 53.125em) {
+    .post {
+        padding: 40px 20px 0;
+    }
+    
+    .post__name {
+        padding-top: 50px;
+        text-align: center;
+    }
+    
+    .post__name-main {
+        font-size: 3.8rem;
+    }
+    
+    .post__name-child {
+        font-size: 1.7rem;
+        line-height:25px;
+    }
+    
+    .post__container {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .post__container-main {
+        display: flex;
+        flex-direction: column;
+        width: 26%;
+        height: 400px;
+        margin: 0 auto;
+    }
+    
+    .post__container-main-img {
+        width: 100%;
+        height: 180px;
+        transform: scale(0.8);
+    }
+    
+    .post__container-main-text {
+        width: auto;
+        text-align: center;
+        margin-top: 60px;
+    }
+    
+    .post__container-main-text-title {
+        font-size: 2.4rem;
+    }
+    
+    .post__container-main-text-child {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+}
+
+/* PC >=991 */
+@media (min-width: 61.9375em) {
+    
+}

@@ -1,0 +1,190 @@
+.Paylive-container{
+    max-width: 70%;
+    display: flex;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f5f2f2;
+    gap: 20px;
+}
+.Paylive-content {
+    width: 40%;
+    border: 1px solid #d1cfcf;
+
+}
+.Paylive-content-title {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    text-transform: uppercase;
+}
+.Paylive-content-atm{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+}
+.Paylive-content-atm h6{
+
+    font-size: 15px;
+}
+.text-color-green {
+    color: rgb(28, 136, 28);
+    font-weight: 600;
+    font-size: 15px;
+}
+.Pay-form-atm{
+    width: 100%;
+    padding: 10px 0;
+}
+.Pay-form-atm>input{
+    width: 100%;
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid rgb(180, 178, 178);
+    margin: 10px 0;
+}
+.Pay-form-atm>button {
+width: 100%;
+padding: 7px;
+border-radius: 6px;
+background-color: green;
+color: white;
+border: none;
+cursor: pointer;
+}
+
+.Pay-form-atm>p {
+    color: #868686 !important;
+    font-size: 14px !important;
+}
+.Paylive-content-atm p {
+    font-size: 15px;
+    color: rgb(18, 17, 17);
+}
+.Paylive-text{
+    width: 50%;
+    border: 1px solid #d1cfcf;
+    
+    
+}
+.Paylive-text-title {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    text-transform: uppercase;
+}
+.Paylive-text-content{
+    padding: 10px;
+    font-size: 15px;
+    color: rgb(147, 12, 12);
+}
+.Paylive-text-content-color{
+    color: green;
+}
+@media (max-width:991px) {
+    .Paylive-container{
+        flex-direction: column;
+        width: 100%;
+    }
+.Paylive-content {
+    width: 100%;
+}
+.Paylive-text{
+    width: 100%;
+}
+}
+.Vnpay-container {
+    max-width: 70%;
+    background-color: rgb(243, 239, 239);
+    margin: 20px auto;
+    gap: 20px;
+    padding: 20px;
+    display: flex;
+}
+.Vnpay-content{
+    width: 40%;
+    border: 1px solid rgb(220, 219, 219);
+
+  
+}
+.Vnpay-content-title {
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.Vnpay-content-atm {
+  padding: 20px;
+  
+}
+.form-Vnpay-content-atm {
+
+    display: flex; 
+    flex-direction: column;
+    gap: 10px;
+}
+.form-Vnpay-content-atm>input{
+    padding: 8px;
+}
+.form-Vnpay-content-atm>p{
+    color: red;
+    font-size: 14px;
+}
+.form-Vnpay-content-atm>button{
+    padding: 8px;
+    background-color: rgb(55, 54, 54);
+    border: 1px solid white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 7px;
+    color: white;
+}
+.form-Vnpay-content-atm .button-vnpay-top{
+    background-color:rgb(55, 219, 55);
+    cursor: pointer;
+    border-radius: 7px;
+}
+ .VNPAY-colorred{
+color: rgba(248, 13, 13, 0.693);
+font-weight: 800;
+font-size: 18px;
+
+}
+ .VNPAY-colorblue{
+    color: blue;
+    font-weight: 800;
+font-size: 18px;
+}
+.power-vnpay-text{
+    color: gray !important;
+    font-size: 12px !important;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.Vnpay-text {
+    width: 55%;
+  
+    border: 1px solid rgb(200, 195, 195);
+  
+}
+.Vnpay-text-title {
+    border-bottom: 1px solid rgb(133, 131, 131);
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+.Vnpay-text>p{
+    color: rgb(234, 25, 25);
+    padding: 20px;
+    font-weight: 600;
+}
+@media (max-width:991px) {
+   .Vnpay-container{
+        flex-direction: column;
+        width: 100%;
+    }
+.Vnpay-content {
+    width: 100%;
+}
+.Vnpay-text {
+    width: 100%;
+}
+}

@@ -1,0 +1,148 @@
+.Login-container {
+  scroll-behavior: smooth;
+  position: relative;
+  /* top: 150px; */
+  left: 0;
+  bottom: 0;
+  right: 0;
+  max-width: 461px;
+  margin:20px auto;
+
+}
+
+.login-content{
+  position: relative;
+  background-color: rgb(244, 243, 243);
+  border-radius: 8px;
+  padding: 10px 24px 32px;
+}
+.login-header h2 {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 2rem;
+}
+
+.login-input-body {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+  gap: 10px;
+}
+.custom-input-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 6px;
+  gap: 6px;
+}
+.custom-input-login .wrap-info-login .title-status-login p {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #767676;
+}
+.custom-input-login .wrap-input-login {
+  display: flex;
+  align-items: center;
+  grid-gap: 10px;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #d8dae5;
+  background: #fff;
+  border-radius: 10px;
+}
+.wrap-text-login {
+  width: 100%;
+}
+.wrap-input-login input {
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
+.login-wrap-test {
+  width: 100%;
+}
+.login-wrap-test p {
+float: right;
+color: #07ae1b;
+font-size: 1.4rem;
+cursor: pointer;
+}
+
+.wrap-btn-login{
+  width: 100%;
+  padding-top: 10px;
+}
+.wrap-btn-login button{
+  width: 100%;
+  padding: 20px 0;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #07ae1b;
+
+}
+.wrap-btn-login a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+.register-now {
+  width: 100%;
+  text-align: center;
+}
+.register-now p{
+  font-size: 1.4rem;
+}
+.register-now p span{
+ color: #079c2a;
+ padding: 0 3px;
+
+}
+.register-now p a{
+text-decoration: none;
+ 
+ }
+.login-wrap-btn-icon {
+  display: flex;
+  grid-gap: 5px ;
+  gap: 5px;
+
+}
+
+.login-wrap-btn-icon__facebook {
+  width: 50%;
+  border: 1px solid #079c2a;
+  padding: 15px  ;
+  text-align: center;
+  border-radius: 10px
+  ;
+  display: flex;
+  justify-content: center;
+}
+.login-wrap-btn-google{
+ 
+  width: 50%;
+  border: 1px solid #079c2a;
+  padding: 15px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+.login-wrap-btn-icon__facebook  span{
+  font-size: 1rem;
+  padding: 0 3px;
+}
+.login-wrap-btn-google span{
+  font-size: 1rem;
+  padding: 0 3px;
+}
+.login-icon__face{
+font-size: 1.2rem !important;
+
+}
+.login-icon-Google{
+  font-size: 1.2rem !important;
+}

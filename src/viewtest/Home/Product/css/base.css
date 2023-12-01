@@ -1,0 +1,81 @@
+/* Css dùng chung cho tất cả trang home */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Wix+Madefor+Display&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+  /* font-family: 'Wix Madefor Display', sans-serif; */
+}
+
+:root {
+  --white-color: #ffffff;
+  --main-color: #f6f6f6;
+  --button-color: #5fcf86;
+  --text-color: #000000;
+  --sale-color: #f26a2b;
+  --star-color: #ffc634;
+  --autonumber-color: #eef7ff;
+  --location-car-color: #fce0d3;
+  --bietthemvemioto-color: #effaf3;
+  --banmuonchothuexe-color: #eef7ff;
+  --dangkythuexebutton-color: #5cb3ff;
+}
+
+html {
+  /* font mặc định 62.5 = 10px */
+  font-size: 62.5%;
+  padding: 20px 0;
+  background-color: var(--white-color);
+}
+
+/* nút đặt xe nhanh  */
+.btn__electronic {
+  width: 100px;
+  height: 25px;
+  background-color: rgba(108, 109, 109, 0.8);
+  border-radius: 20px;
+  text-align: center;
+  line-height: 25px;
+}
+/* số xe tự động */
+.btn__freetax {
+  width: 100px;
+  height: 25px;
+  background-color: rgba(82, 243, 155, 0.5);
+  border-radius: 20px;
+  text-align: center;
+  line-height: 25px;
+}
+.btn__auto {
+  width: 75px;
+  height: 25px;
+  background-color: var(--autonumber-color);
+  border-radius: 10px;
+  text-align: center;
+  line-height: 25px;
+}
+
+.btn__large {
+  width: 220px;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btn__large:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateX(-100%);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}

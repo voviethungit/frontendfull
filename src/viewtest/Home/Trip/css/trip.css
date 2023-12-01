@@ -1,0 +1,112 @@
+.modal-insurance {
+    width: 100%;
+     padding: 16px 24px 32px;
+  
+ }
+ .insurance-content {
+     position: relative;
+     background-color: rgb(210, 212, 213);
+     width: 60%;
+     margin: 0 auto;
+     border-radius: 10px;
+     padding: 16px 24px 32px;
+ }
+ .insurance-content-header {
+  padding: 20px;
+ }
+ .insurance-content-body {
+ 
+ }
+ .insurance-content-body-text{
+     display: flex;
+     flex-direction: column;
+     grid-gap: 16px;
+     gap: 20px;
+ }
+ 
+ .ins-landing-inner{
+     background-color: green;
+     padding: 40px 16px;
+     background-color: #5fcf86;
+     /* -webkit-clip-path: polygon(78% 0,100% 46%,100% 100%,0 100%,0 0); */
+     clip-path: polygon(78% 0,100% 46%,100% 100%,0 100%,0 0);
+     border-radius: 8px;
+ }
+ .ins-landing-inner h5{
+     font-size: 4rem;
+     padding: 10px 0;
+     font-weight: 500;
+     color: white;
+ }
+ .ins-landing-inner p{
+     color: white;
+     font-size: 1.6rem;
+    
+ }
+ .insurance-content-block {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+ .insurance-content-block .insurance-title{
+ font-weight: 800;
+ font-size: 2rem;
+ }
+ .insurance-content-block p{
+    font-weight: 800;
+    font-size: 1.2rem;
+    }
+ .insurance-content-block>p>span{
+     font-weight: 700;
+ }
+ table {
+     border-collapse: collapse;
+     border-spacing: 0;
+ }
+ table>tbody>tr>td{
+     width: 33.3333%;
+     border: 1px solid #e0e0e0;
+     padding: 8px;
+     text-align: center;
+ }
+ 
+ .disc-ul{
+     padding-left: 28px;
+ }
+ .disc-ul li {
+    font-size: 1.4rem;
+ }
+ .insurance-title-note {
+     font-size: 1.4rem;
+     color: #767676;
+ }
+ .number-ul{
+     padding-left: 16px;
+     display: flex;
+     grid-gap: 8px;
+     gap: 8px;
+     flex-direction: column;
+ }
+ 
+ .number-ul li {
+     list-style: decimal;
+     font-size: 1.4rem;
+ }
+ @media(min-width:48.1875em) and (max-width: 61.875em){
+     .insurance-content {
+         width: 100%;
+     }
+ }
+ @media (max-width:48.187em){ 
+     .insurance-content {
+         width: 100%;
+     }
+ }
+ 
+ 
+ @media (max-width:36em){
+      .number-ul {
+     
+      }
+ 
+     }

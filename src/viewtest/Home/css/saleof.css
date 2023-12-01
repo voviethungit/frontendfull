@@ -1,0 +1,75 @@
+/* Tùy chỉnh nút trái */
+/* .slick-prev {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  margin-left: -7px;
+  background-color: var(--main-color)!important;
+  color: var(--text-color) !important;
+} */
+
+/* Tùy chỉnh nút phải */
+/* .slick-next {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  margin-left: -7px;
+  background-color: var(--main-color)!important;
+  color: var(--text-color) !important;
+} */
+.saleof {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
+.card {
+  border: 1px solid #fff;
+  background: black;
+  border-radius: 8px;
+  overflow: hidden;
+
+  height: 400px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card-top h1 {
+  font-size: 0.9rem;
+  margin: 20px;
+}
+
+.card-top > img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: black;
+}
+
+.card-bottom {
+  margin: 10px 20px;
+}
+
+.category {
+  position: relative;
+}
+.category::before {
+  content: '';
+  background: rgb(255, 61, 61);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  height: 2px;
+}

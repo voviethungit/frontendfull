@@ -1,0 +1,591 @@
+.content {
+  width: 100%;
+  height: auto;
+  padding: 90px 20px 50px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--main-color);
+}
+
+.content__text {
+  font-size: 6rem;
+  color: var(--text-color);
+  margin-bottom: 40px;
+  text-align: center;
+}
+.content__search {
+  width: 80%;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  margin: 0 auto 40px;
+  cursor: pointer;
+}
+.content__search-form {
+  width: 70%;
+}
+.content__search-form-input {
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+  padding-left: 10px;
+}
+.content__search-form-input:focus {
+  outline: none;
+}
+.content__search-button {
+  width: 50px;
+  background-color: var(--button-color);
+  color: var(--white-color);
+  font-size: 1.6rem;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.content__search-button:hover {
+  cursor: pointer;
+}
+.content__search-button-icon {
+
+}
+.content__list {
+  display: block;
+}
+
+.content__list-child {
+  width: 32%;
+  height: 460px;
+  background-color: var(--white-color);
+  border-radius: 20px;
+  padding: 15px;
+  margin: 5px;
+  text-decoration: none;
+  color: var(--text-color);
+  border:solid 0.1px #e3e3e3;
+}
+
+.content__list-child nav {
+  position: relative;
+}
+
+.content__list-child-img {
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-bottom: 30px;
+}
+
+.content__list-child-img-flash {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.content__list-child-img-tax {
+  position: absolute;
+  top: 5px;
+  left: 110px;
+}
+
+.content__list-child-img-flash-text {
+  color: var(--white-color);
+}
+
+.content__list-child-img-tax-text {
+  color: var(--white-color);
+}
+
+.content__list-child-auto {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+/* cái này để đặt vị trí thôi */
+/* .content__list-child-auto-car {
+} */
+.content__list-child-auto-car-text {
+  font-size: 1.1rem;
+}
+
+.content__list-child-name {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.content__list-child-name i {
+  margin-left: 10px;
+  font-size: 2rem;
+  color: var(--button-color);
+}
+
+.content__list-child-name-main {
+  font-size: 2rem;
+}
+
+.content__list-child-location {
+  display: flex;
+}
+
+.content__list-child-location i {
+  font-size: 1.5rem;
+}
+
+.content__list-child-location-text {
+  margin-left: 5px;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.content__list-child-underlined {
+  width: 80%;
+  height: 1px;
+  background-color: var(--text-color);
+  opacity: 0.5;
+  margin: 10px auto;
+}
+
+.content__list-child-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.content__list-child-detail-evaluate {
+  display: flex;
+}
+
+.content__list-child-detail-evaluate-star {
+  display: flex;
+  margin-right: 10px;
+
+}
+
+.content__list-child-detail-evaluate-star i {
+  color: var(--star-color);
+  font-size: 1.2rem;
+}
+
+.content__list-child-detail-evaluate-star-text {
+  margin-left: 5px;
+}
+
+.content__list-child-detail-evaluate-usage {
+  display: flex;
+}
+
+.content__list-child-detail-evaluate-usage i {
+  color: var(--button-color);
+  font-size: 1.2rem;
+}
+
+.content__list-child-detail-evaluate-usage-text {
+  margin-left: 5px;
+}
+
+.content__list-child-detail-buy {
+  line-height: 18px;
+  font-size: 1.5rem;
+}
+
+.content__list-child-detail-buy-sale {
+  color: var(--button-color);
+  margin-left: 70px;
+}
+
+.content__list-child-detail-buy-day span {
+  opacity: 0.6;
+}
+
+
+/* Phần mobile mới hiển thị slide hình ảnh nhé */
+
+/* Tùy chỉnh nút trái */
+/* .slick-prev {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  margin-left: -7px;
+  background-color: var(--main-color)!important;
+  color: var(--text-color) !important;
+} */
+
+/* Tùy chỉnh nút phải */
+/* .slick-next {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  margin-left: -7px;
+  background-color: var(--main-color)!important;
+  color: var(--text-color) !important;
+} */
+/* Tùy chỉnh nút con phía dưới */
+.slick-dots {
+  position: absolute;
+  bottom: -40px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.slick-dots li button:before {
+  font-family: 'slick';
+  font-size: 8px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: '•';
+  text-align: center;
+  opacity: .25;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.content__mobile {
+  width: 100%;
+  height: auto;
+  padding: 90px 20px 50px;
+  margin: 10px auto;
+  /* text-align: center; */
+  background-color: var(--main-color);
+   display: none;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
+.content__mobile-child {
+  /* đặt chiều rộng không có ý nghĩa lắm vì mình có thể điều chỉnh slider */
+  /* width: 450px;  */
+  height: auto;
+  padding: 15px;
+  margin: 5px;
+  border:solid 0.1px #e3e3e3;
+  background: var(--white-color);
+  border-radius: 20px;
+  text-decoration: none;
+  overflow: hidden;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.content__mobile-child-top {
+  position: relative;
+}
+.content__mobile-child-top img {
+  width: 100%;
+  height: 250px;
+  border-radius: 20px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-bottom: 30px;
+  /* position: relative; */
+}
+.child__absolute {
+  display: flex;
+  width: 95%;
+  /* justify-content: space-between; */
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  flex-wrap: wrap;
+}
+.content__mobile-child-img-tax {
+  margin:0 5px 5px 0;
+}
+.content__mobile-child-img-tax-text,
+.content__mobile-child-img-flash-text {
+  color: var(--white-color);
+}
+/* .content__mobile-child-img-tax {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+}
+.content__mobile-child-img-tax-text,
+.content__mobile-child-img-flash-text {
+  color: var(--white-color);
+  z-index: 5;
+}
+.content__mobile-child-img-flash {
+  position: absolute;
+  top: 2%;
+  left: 33%;
+} */
+.content__mobile-child-auto {
+  width: 100%;
+}
+.content__mobile-child-auto-car {
+  margin: -10px 0 10px;
+}
+.content__mobile-child-auto-car-text {
+  font-size: 1.1rem;
+}
+.content__mobile-child-name {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.content__mobile-child-name i {
+  margin: 5px 0 0 10px;
+  font-size: 2rem;
+  color: var(--button-color);
+}
+
+.content__mobile-child-name-main {
+  font-size: 2rem;
+}
+.content__mobile-child-location {
+display: flex;
+}
+
+.content__mobile-child-location i {
+font-size: 1.5rem;
+}
+
+.content__mobile-child-location-text {
+margin-left: 5px;
+font-size: 1.2rem;
+opacity: 0.8;
+}
+.content__mobile-child-underlined {
+  width: 80%;
+  height: 1px;
+  background-color: var(--text-color);
+  opacity: 0.5;
+  margin: 10px auto;
+}
+.content__mobile-child-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.content__mobile-child-detail-evaluate {
+  display: flex;
+}
+.content__mobile-child-detail-evaluate-star {
+  display: flex;
+  margin-right: 10px;
+
+}
+
+.content__mobile-child-detail-evaluate-star i {
+  color: var(--star-color);
+  font-size: 1.2rem;
+}
+
+.content__mobile-child-detail-evaluate-star-text {
+  margin-left: 5px;
+}
+
+.content__mobile-child-detail-evaluate-usage {
+  display: flex;
+}
+
+.content__mobile-child-detail-evaluate-usage i {
+  color: var(--button-color);
+  font-size: 1.2rem;
+}
+
+.content__mobile-child-detail-evaluate-usage-text {
+  margin-left: 5px;
+}
+.content__mobile-child-detail-buy {
+ font-size: 1.5rem;
+}
+.content__mobile-child-detail-buy-sale {
+  color: var(--button-color);
+  /* margin-left: 70px; */ 
+}
+
+/* Reponsive */
+
+/* Mobile 0-750px */
+@media (max-width: 46.875em) {
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 60px 5px 50px;
+  }
+
+  .content__text {
+    font-size: 3.8rem;
+    margin-bottom: 40px;
+  }
+  .content__search {
+    margin-bottom: -10px;
+  }
+
+  .content__list-child-name-main {
+    font-size: 1.6rem;
+  }
+
+  .content__list-child {
+    display: none;
+  }
+  .content__mobile {
+    display: block;
+    width: 100%;
+  }
+  .content__mobile-child-name-main {
+    font-size: 1.45rem;
+  }
+  
+}
+
+/* Mobile 0-600px */
+@media (max-width: 37.5em) {
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 50px 10px 50px;
+  }
+
+  .content__text {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+  }
+
+   /* Ẩn các thuộc tính cũ */
+  .content__list {
+    /* display: none; */
+    margin-top: 30px;
+  }
+
+  /* Thể hiện slide cho mobile */
+  .content__mobile {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 60px auto 0;
+    /* text-align: center; */
+    background-color: var(--main-color);
+     display: block;
+  }
+.content__mobile-child-name-main {
+  font-size: 1.4rem;
+}
+ 
+}
+
+/* Mobile 0-550px */
+@media (max-width: 34.375em) {
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 50px 10px 50px;
+  }
+
+  .content__text {
+    font-size: 3rem;
+  }
+  .content__list {
+    /* display: none; */
+  }
+  .content__mobile {
+    width: 80%;
+    height: auto;
+    padding: 0;
+    margin: 60px auto 0;
+    /* text-align: center; */
+    background-color: var(--main-color);
+     display: block;
+  }
+.content__mobile-child-name-main {
+  font-size: 1.4rem;
+}
+}
+
+/* Mobile 0-400px */
+@media (max-width: 25em) {
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 50px 10px 50px;
+  }
+
+  .content__text {
+    font-size: 3rem;
+  }
+  .content__list {
+    /* display: none; */
+  }
+  .content__mobile {
+    width: 98%;
+    height: auto;
+    padding: 0;
+    margin: 60px auto 0;
+    /* text-align: center; */
+    background-color: var(--main-color);
+     display: block;
+  }
+.content__mobile-child-name-main {
+  font-size: 1.4rem;
+}
+}
+
+/* Tablet 751px - 990px */
+@media(min-width: 46.9375em) and (max-width: 61.875em) {
+  .content__text {
+    font-size: 5rem;
+  }
+
+  .content__list-child-name-main {
+    font-size: 1.8rem;
+  }
+
+  .content__list-child {
+    width: 48%;
+    height: auto;
+    background-color: var(--white-color);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 5px;
+  }
+
+  .content__list-child-img {
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-bottom: 30px;
+  }
+}
+
+/* PC > 991px */
+@media (min-width: 61.9375em) {
+  .content__list-child-name-main {
+    font-size: 2rem;
+  }
+}
+
+/* PC (991-1050) */
+@media (min-width: 61.9375em) and (max-width: 65.625em) {
+  .content__text {
+    font-size: 5.5rem;
+  }
+
+  .content__list-child-name-main {
+    font-size: 1.9rem;
+  }
+}

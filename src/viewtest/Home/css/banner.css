@@ -1,0 +1,429 @@
+.banner {
+    width: 94%;
+    height: auto;
+    background-image: url('https://wallpapers.com/images/hd/attack-on-titans-4k-titan-fight-7q7m9wixi74nyeua.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 10px;
+    margin: 0 auto 70px;
+    padding: 220px;
+    position: relative;
+}
+
+.banner__main {
+    color: var(--white-color);
+    text-align: center;
+}
+
+.banner__main-textmain {
+    font-size: 6rem;
+}
+
+.banner__main-dash {
+    width: 100%;
+    height: 2px;
+    margin: 10px auto;
+    background-color: var(--white-color);
+}
+
+.banner__main-textchild {
+    font-size: 2rem;
+}
+
+.banner__main-textchild span {
+    color: var(--button-color)
+}
+
+.banner__list {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 90%;
+    height: 80px;
+    line-height: 80px;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    bottom: -30px;
+    left: 5%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.banner__list-text p {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.banner__list-usage {
+    width: 1px;
+    height: 80%;
+    background-color: var(--text-color);
+    margin: auto 0;
+}
+
+.banner__list-point {
+    display: flex;
+}
+
+.banner__list-point i,
+.banner__list-point-text {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--star-color);
+    margin-left: 10px;
+}
+
+.banner__list-search {
+    width: 220px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--button-color);
+    color: var(--white-color);
+    margin: auto 0;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Reponsive */
+
+/* Mobile 0-750px */
+@media (max-width: 46.875em) {
+    .banner {
+        padding: 100px
+    }
+
+    .banner__main {}
+
+    .banner__main-dash {
+        width: 60%;
+        height: 2px;
+        margin: 10px auto;
+        background-color: var(--white-color);
+    }
+
+    .banner__main-textmain {
+        font-size: 3rem;
+    }
+
+    .banner__main-textchild {
+        font-size: 1.2rem;
+    }
+    .banner__list {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .banner__list-text p {
+        font-size: 1.2rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-usage {
+        width: 1px;
+        height: 80%;
+        margin: auto 0;
+    }
+
+    .banner__list-point {
+        display: flex;
+    }
+
+    .banner__list-point i,
+    .banner__list-point-text {
+        font-size: 1.2rem;
+        margin-left: 5px;
+    }
+
+    .banner__list-search {
+     width: 100px;
+     height: 100%;
+     line-height: 56px;
+     margin: 0;
+     border-radius: 0;
+     border-top-right-radius: 10px;
+     border-bottom-right-radius: 10px;
+     font-size: 1.2rem;
+    }
+}
+
+/* 530px -600px */
+@media(min-width:33.125em) and (max-width:38.4375em) {
+    .banner {
+        height: 280px;
+    }
+    .banner__list {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .banner__list-text p {
+        font-size: 1.1rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-usage {
+        width: 1px;
+        height: 80%;
+        margin: auto 0;
+    }
+
+    .banner__list-point {
+        display: flex;
+    }
+
+    .banner__list-point i,
+    .banner__list-point-text {
+        font-size: 1.1rem;
+        margin-left: 5px;
+    }
+
+    .banner__list-search {
+     width: 70px;
+     height: 100%;
+     line-height: 56px;
+     font-size: 1.1rem;
+    }
+}
+
+/* Bổ sung mobile cỡ nhỏ 530px */
+@media (max-width: 33.125em) {
+    .banner {
+        padding: 65px 30px;
+        height: 240px;
+    }
+
+    .banner__main-dash {
+        width: 60%;
+        height: 1px;
+        margin: 10px auto;
+        background-color: var(--white-color);
+    }
+
+    .banner__main-textmain {
+        font-size: 2rem;
+    }
+
+    .banner__main-textchild {
+        font-size: 1rem;
+    }
+    .banner__list {
+        width: 90%;
+        height: 100px;
+        line-height: 20px;
+    }
+    .banner__list-text {
+        text-align: center;
+        margin: auto 5px;
+    }
+    .banner__list-text p {
+        font-size: 1.2rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-usage {
+        width: 1px;
+        height: 80%;
+        margin: auto 0;
+    }
+
+    .banner__list-point {
+        display: flex;
+        flex-direction: column;
+        margin: auto 5px;
+        text-align: center;
+    }
+
+    .banner__list-point i,
+    .banner__list-point-text {
+        font-size: 1.2rem;
+        margin-left: 5px;
+    }
+
+    .banner__list-search {
+     width: 100px;
+     height: 100%;
+     line-height: 56px;
+     margin: 0;
+     border-radius: 0;
+     border-top-right-radius: 10px;
+     border-bottom-right-radius: 10px;
+     font-size: 1.2rem;
+    }
+}
+/* Dưới 400px */
+@media (max-width: 25em) {
+    .banner {
+        padding: 20px 30px 60px;
+        height: 200px;
+    }
+
+    .banner__main-dash {
+        width: 60%;
+        height: 1px;
+        margin: 10px auto;
+        background-color: var(--white-color);
+    }
+
+    .banner__main-textmain {
+        font-size: 1.8rem;
+    }
+
+    .banner__main-textchild {
+        font-size: 1rem;
+    }
+    .banner__list {
+        width: 90%;
+        height: 70px;
+        line-height: 20px;
+        bottom: -6%;
+    }
+    .banner__list-text {
+        text-align: center;
+        margin: auto 5px;
+    }
+    .banner__list-text p {
+        font-size: 1rem;
+        margin-left: 5px;
+    }
+
+    .banner__list-usage {
+        width: 1px;
+        height: 80%;
+        margin: auto 0;
+    }
+
+    .banner__list-point {
+        display: flex;
+        flex-direction: column;
+        margin: auto 5px;
+        text-align: center;
+    }
+
+    .banner__list-point i,
+    .banner__list-point-text {
+        font-size: 1rem;
+        margin-left: 0px;
+    }
+
+    .banner__list-search {
+     width: 80px;
+     height: 100%;
+     line-height: 56px;
+     margin: 0;
+     border-radius: 0;
+     border-top-right-radius: 10px;
+     border-bottom-right-radius: 10px;
+     font-size: 1rem;
+    }
+}
+/* Tablet 751px - 990px */
+@media (min-width: 46.9375em) and (max-width: 61.875em) {
+    .banner {
+        padding: 150px
+    }
+
+    .banner__main-dash {
+        width: 80%;
+        height: 2px;
+        margin: 10px auto;
+        background-color: var(--white-color);
+    }
+
+    .banner__main-textmain {
+        font-size: 4rem;
+    }
+
+    .banner__main-textchild {
+        font-size: 1.5rem;
+    }
+
+    .banner__list {
+        width: 90%;
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .banner__list-text p {
+        font-size: 1.6rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-usage {
+        width: 1px;
+        height: 80%;
+        margin: auto 0;
+    }
+
+    .banner__list-point {
+        display: flex;
+    }
+
+    .banner__list-point i,
+    .banner__list-point-text {
+        font-size: 1.6rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-search {
+     width: 150px;
+     height: 56px;
+     line-height: 56px;
+    }
+}
+
+/* tablet 751px - 832px */
+@media (min-width:46.9375em) and (max-width:52em) {
+    .banner {
+        height: 400px;
+    }
+    
+    .banner__list {
+        width: 90%;
+        height: 65px;
+        line-height: 65px;
+    }
+
+    .banner__list-text p {
+        font-size: 1.4rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-usage {
+        width: 1px;
+        height: 80%;
+        margin: auto 0;
+    }
+
+    .banner__list-point {
+        display: flex;
+    }
+
+    .banner__list-point i,
+    .banner__list-point-text {
+        font-size: 1.4rem;
+        margin-left: 10px;
+    }
+
+    .banner__list-search {
+     width: 150px;
+     height: 100%;
+     line-height: 56px;
+     margin: 0;
+     border-radius: 0;
+     border-top-right-radius: 10px;
+     border-bottom-right-radius: 10px;
+    }
+}
+
+/* Pc > 991px  */
+@media (min-width: 61.9375em) {
+    .banner {
+        height: 500px;
+        padding: 150px;
+    }
+}

@@ -1,0 +1,442 @@
+.header {
+    flex: 1;
+    height: 75px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white-color);
+    padding: 0 30px 0;
+    z-index: 1;
+    line-height: 75px;
+}
+
+.header__icon .header__icon-img {
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+
+}
+
+.header__icon-img:hover {
+    cursor: pointer;
+}
+
+.header__page {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    /* margin-top: -20px; */
+}
+.header__page-item {
+    list-style: none;
+    text-decoration: none;
+    color: var(--text-color);
+}
+.header__page .header__page-item {
+    list-style-type: none;
+    font-size: 1.5rem;
+    margin: 0 25px;
+    font-weight: 600;
+}
+
+.header__page-item:hover {
+    cursor: pointer;
+}
+
+/* Thẻ gạch dọc */
+.header__page-item-vertical {
+    list-style-type: none;
+    width: 1px;
+    height: 40%;
+    margin: 0 40px;
+    background-color: var(--text-color);
+}
+
+.header__page-item-login:hover {
+    cursor: pointer;
+    color: var(--text-color)
+}
+
+.header__page-item-login-firt {
+    font-size: 2rem;
+}
+.header__page-item-login-iconbars {
+    font-size: 2rem;
+    display: none;
+    margin-left: 20px;
+}
+.header__page-item-login-iconbars:hover{
+    cursor: pointer;
+}
+
+.header__page-item-login-avt img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0px 10px 0 20px;
+    align-self: center;
+}
+
+.header__page-item-login-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color)
+}
+
+.header__page-item-login-last {
+    font-size: 2rem;
+    margin-left: 10px;
+}
+/* Phần hiển thị thẻ con của thông báo  */
+.header__page-item-login-bell {
+    position: relative;
+}
+.header__page-item-login-bell-list {
+    position: absolute;
+    display: none;
+    visibility: visible;
+    font-weight: 400 !important;
+    color: #000 !important;
+    line-height: 25px;
+    padding: 12px;
+    width: 200px;
+    height: 100px;
+    background-color: #fff;
+    text-align: center;
+    z-index:10;
+    top: 40px;
+    left:-70px ;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    box-shadow: 0 8px 24px 12px rgba(0, 0, 0, .08);
+    cursor: auto;
+}
+.header__page-item-login-bell:hover  .header__page-item-login-bell-list{
+    display: block;
+}
+.header__page-item-login-bell-list:hover {
+    display: block;
+}
+.header__page-item-login-bell-list::before {
+    content: "";
+    border-width: 20px 20px;
+    border-style: solid;
+    border-color:transparent transparent var(--white-color) transparent;
+    position: absolute;
+    right: 0px;
+    top: -30px;
+}
+.header__page-item-login-bell-list::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    right: -20px;
+    top: -30px; 
+}
+.header__page-item-login-bell-list-name{
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+.header__page-item-login-bell-list-text{
+text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+/* Phần chứa thẻ div khi hover vào icon arrow */
+.header__page-item-login-arrow {
+    position: relative;
+}
+.header__page-item-login-arrow-list {
+    position: absolute;
+    display: none;
+    visibility: visible;
+    font-weight: 400 !important;
+    color: #000 !important;
+    line-height: 25px;
+    padding: 12px;
+    width: 140px;
+    background-color: #fff;
+    text-align: center;
+    z-index:10;
+    top: 40px;
+    left:-30px ;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    box-shadow: 0 8px 24px 12px rgba(0, 0, 0, .08);
+}
+.header__page-item-login-arrow:hover  .header__page-item-login-arrow-list{
+    display: block;
+}
+.header__page-item-login-arrow-list:hover {
+    display: block;
+}
+.header__page-item-login-arrow-list::before {
+    content: "";
+    border-width: 20px 20px;
+    border-style: solid;
+    border-color:transparent transparent var(--white-color) transparent;
+    /*trên phải dưới trái */
+    position: absolute;
+    right: 0px;
+    top: -30px;
+}
+.header__page-item-login-arrow-list::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 160px;
+    height: 40px;
+    right: -20px;
+    top: -30px; 
+    /* background-color: red; */
+}
+.header__page-item-login-arrow-list-name{
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.header__page-item-login-arrow-list-name i {
+    margin-right: 10px;
+}
+/* lúc đã đăng nhập tài khoản */
+.header__page-item-login {
+    display: flex;
+    text-decoration: none;
+    color: var(--text-color);
+    height: 40px;
+    line-height: 40px;
+}
+/* Đã đăng nhập tài khoản và đây là thanh menu hiển thị khi reponsive */
+.nav__bars-icon {
+    cursor: pointer;
+    user-select: none;
+    display: none;
+    position: relative;
+}
+/* lúc chưa đăng nhập, mặc định */
+.header__page-item-logout {
+    display: flex;
+    height: auto;
+    text-decoration: none;
+    display: block;
+}
+/* overlay lúc chưa đăng nhập */
+/* .nav__bars-icon-register {
+    display: none;
+}
+.nav__bars-icon-register:checked
+.header__page-item-logout-register {
+    list-style-type: none;
+    font-size: 1.5rem;
+    font-weight: 550;
+    text-decoration: none;
+    color: var(--text-color);
+}
+*/
+.header__page-item-logout-register:nth-child(1) {
+    margin-right: 20px;
+    text-decoration: none;
+ font-size: 1.5rem;
+ color: var(--text-color)
+}
+
+.header__page-item-logout:hover {
+    cursor: pointer;
+}
+
+/* nút đăng ký */
+.header__page-item-logout-register-button {
+    width: 110px;
+    height: 50px;
+    border: solid 1px var(--text-color);
+    border-radius: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    margin: auto 0;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+/* Overlay */
+.nav__overlay {
+    position: fixed;
+top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white-color);
+    display: none;
+    z-index: 10;
+    animation: fadeIn ease 1s;
+}
+.header__page-item-login-overlay {
+    width: 100%;
+    height: 100%;
+}
+#nav-tablet-input:checked + .nav__overlay {
+    display: block;
+}
+#close-overlay{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 2.5rem;
+}
+.close-overlay-icon {
+    position: absolute;
+    right: 10px;
+    color: var(--button-color);
+}
+.close-overlay-icon:hover {
+  opacity: 0.5;
+}
+.header__page-item-login-overlay {
+    display: flex;
+    flex-direction: column;
+}
+.nav__user {
+    display: flex;
+    flex-direction: column;
+}
+.header__page-item-login-overlay-avt {
+   text-decoration: none;
+   text-align: center;
+}
+.header__page-item-login-overlay h3 a{
+    text-decoration: none;
+  }
+.header__page-item-login-overlay-avt img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 20px 0;
+}
+.header__page-item-login-overlay-avt-name {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-top: -30px;
+}
+.header__page-item-login-overlay-about, 
+.header__page-item-login-overlay-go {
+    text-align: center;
+    text-decoration: none;
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    cursor: pointer;
+    display: none;
+}
+.header__page-item-login-overlay-about-name ,
+.header__page-item-login-overlay-go-name,
+.header__page-item-login-overlay-logout,
+.header__page-item-login-overlay-profile {
+    font-size: 2rem;
+    color: var(--text-color);
+}
+.header__page-item-login-overlay-logout {
+    text-align: center;
+    text-decoration: none;
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    cursor: pointer;
+}
+.header__page-item-login-overlay-profile {
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+.header__page-item-login-overlay-logout i,
+.header__page-item-login-overlay-profile i{
+    margin-right: 10px;
+}
+
+.navbar__notuser {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.navbar__notuser-name {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    padding: 20px;
+}
+.navbar__notuser-login ,
+.navbar__notuser-register {
+    text-align: center;
+    text-decoration: none;
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    cursor: pointer;
+    font-size: 2rem;
+}
+/* Reponsive */
+
+/* Mobile 750px*/
+@media (max-width: 46.875em) {
+    .header__page-item-logout {
+        display: none;
+    }
+    .header__page-item {
+        display:none;
+    }
+    .header__icon .header__icon-img {
+        width: 100px;
+        height: 20px;
+        margin-bottom: 20px;
+    
+    }
+    .header__page-item-vertical {
+        display: none;
+    }
+    .header__page-item-login {
+        display: none;
+    }
+    .header__page-item-login-iconbars {
+        display: block;
+    }
+    .nav__bars-icon {
+display: block;
+    }
+    .header__page-item-login-overlay-about {
+        display: block;
+    }
+    .header__page-item-login-overlay-go {
+        display: block;
+    }
+}
+
+/* Tablet (751px - 990px)*/
+@media (min-width: 46.9375em) and (max-width: 61.875em) {
+    .header__page-item-logout {
+        display: none;
+    }
+    .header__page-item-login{
+        display: none;
+    }
+    .header__icon .header__icon-img {
+        width: 120px;
+        height: 25px;
+        margin-bottom: 15px;   
+    }
+    .header__page-item-login-iconbars {
+        display: block;
+    }
+    .nav__bars-icon {
+        display: block;
+    }
+}
+
+/* PC (> 991px)*/
+@media screen and (min-width: 61.9375em) {
+
+}

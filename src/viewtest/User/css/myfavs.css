@@ -1,0 +1,250 @@
+.myfavs-cars-title{
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.myfavs-cars-title p{
+    font-size: 1.75rem;
+}
+
+.myfavs-cars{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+/* mycars */
+.account-balance{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 3rem;
+    align-items: center;
+}
+
+.myfavs-cars-title-filter{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.myfavs-cars-title-filter select {
+    cursor: pointer;
+    padding: 12px 36px 12px 12px;
+    font-size: 1.75rem;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.myfavs-cars-title-filter select option{
+    cursor: pointer;
+}
+
+/* mytrips */
+
+.content-box-mytrips{
+    display: flex;
+    padding: 45px 30px 50px;
+    width: 100%;
+    border-radius: 20px;
+    flex-direction: column;
+    gap: 20px;
+}
+.mytrips-mode{
+    display: flex;
+    padding: 20px;
+}
+
+.mytrips-mode-tab{
+    font-size: 2rem;
+    min-width: 350px;
+    max-width: unset;
+}
+.mytrips-mode-tab .mytrips-link{
+    padding: 20px;
+}
+
+.active{
+    border-bottom: 3px solid #5fcf86;
+}
+
+.myfavs-cars-table{
+    font-size: 1.5rem;
+}
+
+.myfavs-table-content{
+    padding: 10px;
+}
+
+/* myreward */
+.myfavs-cars .install-app{
+    display: flex;
+    gap: 20px;
+}
+
+.myaddress-form{
+    background-color: var(--white-color);
+    gap: 30px;
+}
+
+.myaddress-add{
+    font-size: 1.75rem;
+    padding: 12px 20px;
+    border: 1px solid #000;
+    border-radius: 8px;
+}
+
+/* resetpw */
+.box-title{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    font-size: 18.175px;
+    padding-bottom: 20px;
+}
+.myfavs-cars-content{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.form-content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.form-content input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.775rem;
+    border-radius: 8px;
+}
+
+.resetpw-btn{
+    justify-content: flex-end;
+    display: flex;
+}
+
+.resetpw-btn-submit{
+    padding: 12px 20px;
+    font-size: 2rem;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background-color: #5fcf86;
+}
+
+/* deleteaccount */
+.deleteaccount-form{
+    padding-top: 100px;
+}
+
+.deleteaccount-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+} 
+
+.deleteaccount-content h2 {
+    text-align: center;
+    font-size: 2.755rem;
+}
+
+.deleteaccount-content img{
+    width: 360px;
+}
+
+.deleteaccount-content-inner{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 660px;
+    font-size: 1.775rem;
+}
+
+.deleteaccount-content-inner ul{
+    padding-left: 24px;
+}
+
+.deleteaccount-btn{
+    font-size: 2rem;
+    padding: 12px 20px;
+    border: 1px solid red;
+    background: red;
+    border-radius: 8px;
+}
+
+/* active */
+.user-active{
+    border-left: 4px solid var(--button-color);
+}
+@media(max-width: 500px) {
+    .myfavs-cars-title {
+        font-size: 2.3rem;
+    }
+    .mytrips-mode-tab {
+        font-size: 1.8rem;
+        margin-left: -20px;
+      }
+      .mytrips-mode-tab .mytrips-link{
+        padding: 10px;
+    }  
+}
+@media(max-width: 350px) {
+    .myfavs-cars-title{
+        font-size: 2.2rem;
+    }
+    .mytrips-mode-tab {
+        font-size: 1.7rem;
+        margin-left: -30px;
+      }
+      .mytrips-mode-tab .mytrips-link{
+        padding: 10px;
+    }  
+}
+
+/* sua lai mycar */
+.owner-report--heading{
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    text-transform: uppercase;
+}
+
+.myfavs-cars-content{
+    width: 90%;
+    padding-bottom: 45px;
+    margin: 0 auto;
+    height: auto;
+    background-color: var(--white-color);
+}
+
+.owner-report-body{
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+    gap: 20px;
+}
+
+.owner-report-body .money{
+    text-align: center;
+    font-size: 2rem;
+}
+
+.summary-change{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1.775rem;
+    background-color: #f6f6f6;
+    padding: 10px;
+}

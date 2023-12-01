@@ -1,0 +1,308 @@
+
+
+.Container_polyci {
+  width: 100%;
+   
+}
+.polyci-content{
+
+    position: relative;
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    
+}
+.banner-polyci{
+    width: 100%;
+    min-height: 450px;
+    border-radius: 16px;
+    background-position: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 80px;
+    background: url("https://www.mioto.vn/static/media/banner-top.51cb70e2.png");
+ position: relative;
+}
+.title-polyci {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.title-polyci h1{
+font-size: 50px;
+ font-weight: 700;
+ color: #f7fbff;
+ 
+}
+.space.sec{
+    padding-top: 80px;
+}
+.announcement-content {
+    width: 100%;
+    background: #fce0d3;
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 12px;
+    gap: 12px;
+}
+
+.announcement-content h4{
+    text-align: center;
+    font-size: 40px;
+}
+.announcement-fonweigh8{
+    font-weight: 800;
+}
+.announcement-content p {
+    text-align: justify;
+    font-size: 16px;
+}
+.sidebar-polyci{
+    display: flex;
+   width: 100%;
+   
+}
+.sidebar-content{
+    width: 300px;
+    margin-right: 50px;
+    font-size: 16px;
+}
+ a{
+ text-decoration: none;
+ color: black;
+}
+.line{
+    width: 250px;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 12px 0;
+}
+.category-option {
+    width: calc(100% - 300px);
+   margin-bottom: 40px;
+}
+.category-option h4 {
+    font-size: 35px;
+    margin: 20px 0;
+}
+.subtitle{
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    margin-bottom: 12px;
+   
+}
+.category-option-content {
+    margin-top: 30px;
+}
+.category-option-content h6{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+.category-option-content p {
+    margin-bottom: 12px;
+    line-height: 24px;
+   font-size: 16px;
+}
+.category-option-table {
+    border: 1px solid #c6c6c6;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.table-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+.box-content{
+    width: 33.3333333333%;
+    min-height: 58px;
+ border-right:1px solid #c6c6c6;
+    border-bottom: 1px solid #c6c6c6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 3px;
+    text-align: center;
+}
+.box-content h5 {
+    font-size: 16px;
+    font-weight: 500;
+}
+.box-content p {
+    font-size: 13px;
+}
+.table-wrap .note{
+    font-size: 15px;
+    padding: 5px 10px;
+    max-width: 880px;
+    
+}
+.tutorial-sidebar--item {
+    font-size: 16px;
+    color: #242420;
+    padding-left: 16px;
+    cursor: pointer;
+
+}
+.activee{
+    font-weight: 600;
+    border-left: 4px solid #5fcf86;
+}
+
+@media (max-width: 1199px) {
+.Container_polyci {
+    max-width: 80%;
+    margin: auto;
+}
+.title-polyci h1 {
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    width: 100%;
+    
+}
+.category-option{
+    width: 100%;
+}
+.dropdown-container{
+    width: 100%;
+    display: block !important;
+}
+.hidden-sidebar {
+    display: none;
+} 
+.sidebar-polyci{
+display: flex;
+flex-direction: column;
+width: 100%;
+}
+
+}
+@media (max-width: 1399px) {
+.Container_polyci{
+    max-width: 95%;
+    margin: auto;
+}
+.title-polyci h1 {
+    font-size: 35px;
+    width: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+}
+@media (max-width: 991px) {
+    .banner-polyci {
+        width: 100%;
+    
+    }
+    .Container_polyci{
+    max-width: 95%;
+}
+.title-polyci h1{
+
+}
+
+}
+@media (max-width: 775px) {
+.Container_polyci {
+    max-width: 95%;
+    margin: auto;
+
+}
+.banner-polyci {
+    width: 100%;
+
+}
+
+.title-polyci h1 {
+
+}
+}
+@media (max-width: 300px) {
+    .Container_polyci{
+    max-width: 100% !important;
+    margin: auto !important;
+    
+}
+.title-polyci h1{
+  
+}
+.banner-polyci {
+    width: 100%;
+    min-height: 300px;
+}
+}
+@media (max-width: 576px) {
+    .Container_polyci{
+    max-width: 100%;
+    margin: auto;
+    
+}
+.title-polyci h1{
+
+}
+.announcement-content h4 {
+    font-size: 20px;
+}
+}
+
+#dropdown-basic-button .Item  {
+ color: rgb(226, 226, 226) ;
+}
+.dropdown-container {
+    display: none ;
+}
+.dropdown-container {
+    position: relative;
+
+
+ 
+  }
+  .hihi{
+   width: 100%;
+  }
+  .dropdown-btn {
+    text-align: start;
+    background-color: #ffffff;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+ border: 1px solid #ddd;
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+  }
+  .dropdown-btn.selected {
+    border: 1px solid green;
+  }
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+  width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 30px;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }

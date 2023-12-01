@@ -1,0 +1,133 @@
+.modal-main{
+  width: 100%;
+  cursor: pointer;
+}
+
+.modal-user {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    cursor: auto;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+
+  .btn-openModal{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: 1.5rem;
+    padding: 0 14px;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    border-radius: 10px;
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal-body {
+    padding: 40px 32px;
+    font-size: 1.555rem;
+  }
+
+  .modal-body > h1 {
+    text-align: center;
+  }
+
+  .input-textarenna{
+    width: 100%;
+  }
+
+  .input-textarenna > h3{
+    padding: 10px 20px 0 20px;
+  }
+  .wrap-input{
+    border: 1px solid #d8dae5;
+  }
+
+  .wrap-input input {
+    width: 100%;
+    border: none;
+    line-height: 2rem;
+    padding: 10px;
+  }
+
+  .btn-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 10px 0 10px; 
+
+  }
+
+  .btn-modal button {
+    padding: 15px 25px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-modal-active{
+    background-color: var(--button-color);
+    color: #fefefe;
+    font-weight: 800;
+  }
+
+  .avt-upload{
+    display: flex;
+    justify-content: center;
+  }
+
+  .avt-upload img{  
+    width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    /* border: 1px solid var(--button-color); */
+  }
+
+  .css-sghohy-MuiButtonBase-root-MuiButton-root{
+    padding: 10px 20px !important;
+    font-size: 1.2rem !important;
+  }

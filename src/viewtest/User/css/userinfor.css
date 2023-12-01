@@ -1,0 +1,362 @@
+/* Phần thanh thông tin bên trái */
+.userinfor {
+    background-color: var(--main-color);
+    padding: 80px 40px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.userinfor__nav {
+    width: 28%;
+    height: 100%;
+}
+
+.userinfor__nav-name {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+.userinfor__nav-list {}
+
+.userinfor__nav-list-child {
+    display: flex;
+    height: 60px;
+    font-size: 1.5rem;
+    margin: auto;
+    border-top: 1px solid var(--navunderlined-color);
+    line-height: 60px;
+    padding-left: 10px;
+}
+
+/* .userinfor__nav-list-child:nth-child(1) {
+    border-left: 5px solid var(--button-color);
+} */
+
+.userinfor__nav-list-child-icon {
+    margin-right: 15px;
+    opacity: 0.7;
+}
+
+.userinfor__nav-list-child-text {
+    opacity: 0.7;
+}
+
+/* Phần thanh thông tin bên phải */
+.userbox {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.userinfor__profile {
+    display: flex;
+    flex-direction: column;
+    padding: 45px 30px;
+    width: 100%;
+    /* height: 470px; */
+    background-color: var(--white-color);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    gap: 50px;
+}
+
+.userinfor__profile-main{
+    display: flex;
+    gap: 50px;
+}
+.userinfor__profile-account {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.userinfor__profile-account-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.userinfor__profile-account-projectname {
+    font-size: 2.5rem;
+    width: 75%;
+
+}
+
+.userinfor__profile-account-img {
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.userinfor__profile-account-name {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 25px;
+}
+
+.userinfor__profile-account-text {
+    font-size: 1.4rem;
+    opacity: 0.6;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.userinfor__profile-account-bonus-main{
+    display: flex;
+}
+
+.userinfor__profile-account-bonus {
+    display: flex;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: 1px solid var(--navunderlined-color);
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.userinfor__profile-account-bonus-icon {
+    font-size: 2rem;
+    color: var(--star-color);
+    align-items: center;
+    margin: 0 10px;
+
+}
+
+.userinfor__profile-account-bonus-name {
+    font-size: 2rem;
+}
+
+/* Phần này là phần bên phải của thông tin khách hàng */
+
+.userinfor__profile-detail {
+    width: 65%;
+}
+
+.userinfor__profile-detail-trip {
+    display: flex;
+}
+
+.userinfor__profile-detail-trip-icon {
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--navunderlined-color);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    line-height: 30px;
+    text-align: center;
+}
+
+.userinfor__profile-detail-trip-button {
+    width: 135px;
+    height: 65px;
+    border: 1px solid var(--navunderlined-color);
+    border-radius: 20px;
+    display: flex;
+    color: var(--button-color);
+    line-height: 65px;
+    margin-top: -10px;
+}
+
+.userinfor__profile-detail-trip-button-icon {
+    font-size: 2rem;
+    color: var(--button-color);
+    margin: 0 15px 0 5px;
+}
+
+.userinfor__profile-detail-trip-button-text {
+    font-size: 2rem;
+}
+
+.userinfor__profile-detail-trip-button-text span {
+    opacity: 0.6;
+}
+
+
+.userinfor__profile-detail-form {
+    width: 100%;
+    height: 95px;
+    background-color: var(--main-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.userinfor__profile-detail-form-date {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.userinfor__profile-detail-form-date-name {
+    font-size: 1.5rem;
+    opacity: 0.4;
+
+}
+
+.userinfor__profile-detail-form-date-text {
+    font-size: 1.5rem;
+}
+
+.userinfor__profile-detail-form-sex {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color);
+}
+
+.userinfor__profile-detail-form-sex-name {
+    font-size: 1.5rem;
+    opacity: 0.4;
+
+}
+
+.userinfor__profile-detail-form-sex-text {
+    font-size: 1.5rem;
+}
+
+
+.userinfor__profile-detail-list {
+
+}
+.userinfor__profile-detail-list-number {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.userinfor__profile-detail-list-number-name {
+    font-size: 1.3rem;
+    opacity: 0.4;
+}
+.userinfor__profile-detail-list-number-text i{
+   margin-left: 10px;
+}
+/* Phần giấy phép lái xe */
+/* Phần header */
+.userinfor__papers {
+    width: 100%;
+    /* height: 445px; */
+    background-color: var(--white-color);
+    border-radius: 20px;
+    padding: 30px;
+}
+.userinfor__papers-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.userinfor__papers-header-first {
+    display: flex;
+}
+.userinfor__papers-header-first-name {
+    margin-right: 10px;
+    font-size: 2rem;
+}
+.userinfor__papers-header-first-button {
+    display: flex;
+}
+.userinfor__papers-header-first-button i{
+    font-size: 1rem;
+    color: var(--white-color);
+    background-color: red;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    display: inline-block;
+    line-height: 10px;
+}
+.userinfor__papers-header-first-button p{
+    font-size: 1rem;
+    margin-top: -2px;
+}
+.userinfor__papers-header-last {
+    width: 125px;
+    height: 44px;
+    display: flex;
+    line-height: 44px;
+    border-radius: 20px;
+    border: 1px solid var(--text-color);
+}
+.userinfor__papers-header-last-text {
+    font-size: 1.5rem;
+    margin: 0  10px;
+
+}
+.userinfor__papers-header-last-icon {
+    font-size: 1.5rem;
+}
+/* Phần giấy phép lái xe , phần chi tiết */
+.userinfor__papers-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+/* Phần bên trái */
+.userinfor__papers-content-left {
+    display: flex;
+    flex-direction: column;
+}
+.userinfor__papers-content-left-name{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.userinfor__papers-content-left-text {
+    font-size: 1.5rem;
+    opacity: 0.6;
+    margin-bottom: 10px;
+}
+.userinfor__papers-content-left-input {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--main-color);
+    padding-left: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 1.5;
+}
+
+.active-userinfor{
+    opacity: 0.7;
+}
+/* Phần bên phải hình ảnh */
+.userinfor__papers-content-right {
+    display: flex;
+    flex-direction: column;
+    width: 50%
+}
+.userinfor__papers-content-right-name {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.userinfor__papers-content-right-img {
+    display: contents;
+}
+
+.userinfor__bootom {
+    width: 100%;
+    height: 60px;
+    background-color: var(--main-color);
+}
+
+.link-active{
+    border-left: 4px var(--button-color) solid;
+}
+
+.update-papers{
+    display: flex;
+    gap: 10px;
+}
+.button-enable{
+    background-color: white;
+    border: solid 1px;
+    padding: 11px;
+    border-radius: 20px;
+}
+
+.userinfor__papers-content-right-img-fill{
+    padding: 10px;
+}
