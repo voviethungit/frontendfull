@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa6";
 
 function Userinfornav() {
-
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     window.location.href = "http://localhost:3000/";

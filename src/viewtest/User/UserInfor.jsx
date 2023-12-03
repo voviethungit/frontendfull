@@ -12,11 +12,11 @@ import Navbarmobile from "./Navbarmobile";
 import axios from "axios";
 import Modal from "./Modal";
 import Userinfornav from "./Userinfornav";
-
-
-
+import { useNavigate   } from "react-router-dom";
 
 function UserInfor() {
+  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(true);
   const [fullName, setFullName] = useState('');
   const [avatar, setAvatar] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -29,7 +29,9 @@ function UserInfor() {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
+    if (!accessToken) {
+      setLoggedIn(false);
+    } else {
 
       axios.get('http://localhost:5000/getProfile', {
         headers: {
@@ -53,7 +55,9 @@ function UserInfor() {
         });
     }
   }, []);
-
+  if (!loggedIn) {
+    navigate("/login");
+  }
 
   const [editMode, setEditMode] = useState(false);
 

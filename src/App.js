@@ -33,6 +33,8 @@ import Regu from './viewtest/Home/howtowork/Regu';
 import Mainlocation from './viewtest/Home/Location/Mainlocation';
 // Thanh toán
 import MainPayLive from './viewtest/Pay/MainPayLive';
+// 404 NOT FOUND
+import NotFound from './viewtest/Home/NotFound.jsx';
 function App() {
   return (
     <>
@@ -40,6 +42,7 @@ function App() {
           <ScrollToTop/>
         <Routes>
           <Route path='/' element={<Main />} />
+          <Route path="*" element={<NotFound />} />
           <Route path='/user' element={<MainUser />} />
           <Route path='/about' element={<MainAbout />} />
           <Route path='/listblog' element={<ListBlog/>} />
