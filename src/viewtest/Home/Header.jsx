@@ -42,7 +42,7 @@ function Header() {
         .then((response) => {
           setAvatar(response.data.user.avatar);
           setFullName(response.data.user.fullName);
-          setIsLoggedIn(true); // Đánh dấu đã đăng nhập thành công
+          setIsLoggedIn(true);
         })
         .catch((error) => {
           console.error('Lỗi :', error);
@@ -57,7 +57,7 @@ function Header() {
         <img src='https://i.ibb.co/9W9dKYh/5.png' className='header__icon-img'></img>
       </Link>
       <ul className='header__page'>
-        <Link to="/about" className='header__page-item'>Về Mioto</Link>
+        <Link to="/about" className='header__page-item'>Về XeTot</Link>
         <Link to="/Mytrips" className='header__page-item'>Chuyến đi</Link>
         <li className='header__page-item-vertical'></li>
         {/* Login repon */}
@@ -103,7 +103,7 @@ function Header() {
                 <Link to='/user' className='header__page-item-login-overlay-profile'>
                   <h3 className='header__page-item-login-overlay-profile-name'>
                     <i><FaUserLarge></FaUserLarge></i>
-                    Vào profile
+                    Trang Cá Nhân
                   </h3>
                 </Link>
               </div>
@@ -149,7 +149,7 @@ function Header() {
               <div style={{ display: isArrow ? 'none' : 'block' }} className='header__page-item-login-arrow-list'>
                 <Link to='/user' className='header__page-item-login-arrow-list-name'>
                   <i><FaUserLarge></FaUserLarge></i>
-                  Vào profile
+                  Trang Cá Nhân
                 </Link>
                 <p className='header__page-item-login-arrow-list-name' onClick={handleLogout}>
                   <i><FaDoorOpen></FaDoorOpen></i>

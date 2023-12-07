@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import "./css/contentproduct.css";
 import "./css/base.css";
 import {
@@ -47,6 +48,7 @@ function ContentProduct() {
   const [showFullComment, setShowFullComment] = useState(false);
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
+    const [similarCars, setSimilarCars] = useState([]);
   const [car, setCar] = useState(null);
   const [backgroundColor, setBackgroundColor] = useState("");
   const [reviews, setReviews] = useState([]);
@@ -118,6 +120,7 @@ function ContentProduct() {
       .get(`http://localhost:5000/get-car/${id}`)
       .then((response) => {
         setCar(response.data.car);
+        setSimilarCars(response.data.similarCars);
       })
       .catch((error) => {
         console.error("Lỗi:", error);
@@ -278,6 +281,13 @@ function ContentProduct() {
     setRating(starNumber);
   };
   return (
+<>
+<HelmetProvider>
+<Helmet>
+        <title> {car.title} </title>
+      </Helmet>
+</HelmetProvider>
+     
     <div className="contentproduct">
       <div className="contentproduct__img">
         <div className="contentproduct__img-main">
@@ -974,18 +984,18 @@ function ContentProduct() {
       <div className="contentproduct__other">
         <h2>Xe tương tự</h2>
         <Slider {...car__slider}>
-          {dataCarSlider.map((item) => (
-            <Link>
-              <div key={item.id} className="contentproduct__other-child">
+        {similarCars.map(similarCar => (
+             <Link to={`/product/${similarCar._id}`} className='content__list-child' key={similarCar._id}>
+              <div key={similarCar._id} className="contentproduct__other-child">
                 <div className="contentproduct__other-child-top">
                   <img
-                    key={item.id}
+                    key={similarCar.id}
                     src={
-                      defaultImage[item.title] === item.title
+                      defaultImage[similarCar.title] === similarCar.title
                         ? defaultImage.linkDefault
-                        : item.linkImg
+                        : similarCar.imagePath
                     }
-                    alt={item.title}
+                    alt={similarCar.title}
                     onError={handleErrorImage}
                   />
                   {/* <div className='absolute__heart'>
@@ -997,7 +1007,7 @@ function ContentProduct() {
                     </i>
                   </div>
                   <div className="absolute__user">
-                    <img src={item.userImg} alt="" />
+                    {/* <img src={similarCar} alt="" /> */}
                   </div>
                 </div>
                 <div className="contentproduct__other-child-bottom">
@@ -1005,14 +1015,14 @@ function ContentProduct() {
                     <div className="contentproduct__other-child-auto-car btn__auto">
                       <p className="contentproduct__other-child-auto-car-text">
                         {" "}
-                        {item.number}
+                        Giao Xe Tận Nơi
                       </p>
                     </div>
                   </div>
                   <div className="contentproduct__other-child-name">
                     <h1 className="contentproduct__other-child-name-main">
                       {" "}
-                      <h3>{item.title}</h3>
+                      <h3>{similarCar.title}</h3>
                     </h1>
                     <i>
                       <BsShieldCheck></BsShieldCheck>
@@ -1023,7 +1033,7 @@ function ContentProduct() {
                       <FaLocationDot></FaLocationDot>
                     </i>
                     <p className="contentproduct__other-child-location-text">
-                      {item.location}
+                      {similarCar.location}
                     </p>
                   </div>
                   <div className="contentproduct__other-child-underlined">
@@ -1036,7 +1046,7 @@ function ContentProduct() {
                           <FaStar></FaStar>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-star-text">
-                          {item.start}
+                          {similarCar.star}
                         </p>
                       </div>
                       <div className="contentproduct__other-child-detail-evaluate-usage">
@@ -1044,13 +1054,13 @@ function ContentProduct() {
                           <FaCarRear></FaCarRear>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-usage-text">
-                          {item.usage}
+                          {similarCar.usage}
                         </p>
                       </div>
                     </div>
                     <div className="contentproduct__other-child-detail-buy">
                       <span className="contentproduct__other-child-detail-buy-sale">
-                        {item.price}
+                        {similarCar.price}K
                       </span>
                       {/* <p className='contentproduct__other-child-detail-buy-day'>
               <span>Giá tổng</span> 1800k
@@ -1064,6 +1074,7 @@ function ContentProduct() {
         </Slider>
       </div>
     </div>
+    </>
   );
 }
 

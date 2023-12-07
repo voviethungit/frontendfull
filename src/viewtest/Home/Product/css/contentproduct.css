@@ -748,17 +748,24 @@ cursor: pointer;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
 }
-
-.list-reviews-item img {
+.list-reviews-item-firt-avt {
+    display: flex;
+}
+.list-reviews-item-firt-avt .list-reviews-item-img{
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    margin-right: 10px;
 }
 
 .list-reviews-item h6 {
     font-size: 1.6rem;
 }
-
+.list-reviews-item-cmt {
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
 .list-reviews-item-name {
     display: flex;
     flex-direction: column;
@@ -1059,7 +1066,31 @@ cursor: pointer;
     color: var(--button-color);
     /* margin-left: 70px; */ 
   }
-
+  .list-reviews-item-name-cmt {
+    width: 120%;
+    max-height: 15px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    margin-left: 10px;
+}
+.full-comment {
+    max-height: none;
+  }
+  
+  .show-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 2px 4px;
+    cursor: pointer;
+  }
+  .none-more {
+     color: var(--button-color);
+     cursor: pointer;
+  }
   /* css hình ảnh xe chi tiết tablet */
   .contentproduct__img-tablet{
     display: none;
@@ -1180,7 +1211,34 @@ cursor: pointer;
     .required-papers-item span {
         font-size: 1.4rem;
     }
-   
+    .list-reviews-item {
+        display: flex;
+        flex-direction: column;
+    }
+    .list-reviews-item p{
+        margin-top: 10px;
+    }
+    .list-reviews-item-name-cmt {
+        width: 110%;
+        max-height: 15px;
+        flex-wrap: wrap;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        margin-left:-10px ;
+    }
+    .full-comment {
+        max-height: none;
+      }
+      
+      .show-more {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: #fff;
+        padding:2px 3px;
+        cursor: pointer;
+      }
 }
 
 /* Tablet 751px - 990px */
@@ -1248,23 +1306,3 @@ cursor: pointer;
     }
 }
 
-.list-reviews-item-name-cmt {
-    width: 250px;
-    max-height: 20px;
-    flex-wrap: wrap;
-   overflow: hidden;
-  position: relative;
-  text-align: left;
-}
-.full-comment {
-    max-height: none;
-  }
-  
-  .show-more {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #fff;
-    padding: 5px;
-    cursor: pointer;
-  }

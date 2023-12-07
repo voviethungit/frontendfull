@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 function Location() {
     const location = {
         dots: true,  // thể hiện chấm nhỏ dưới slide
-        infinite: false, // slide cuối + click = slide đầu (false)
+        infinite: false, // slide cuối + click = slide đầu (false) a + b = c + d = false
         speed: 400,
         slidesToShow: 4,
         slidesToScroll: 1,
