@@ -5,7 +5,6 @@ const PayLive = () => {
   const [amount, setAmount] = useState('');
   const [bankCode, setBankCode] = useState('');
   const [language, setLanguage] = useState('vn');
-
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
@@ -26,10 +25,8 @@ const PayLive = () => {
         bankCode: bankCode,
         language: language
       });
-
-      if (response.data && response.data.paymentUrl) {
-        window.location.href = response.data.paymentUrl;
-      }
+      const paymentUrl = response.data.paymentUrl;
+      window.location.href = paymentUrl;
 
     } catch (error) {
       console.error('Error occurred:', error);
