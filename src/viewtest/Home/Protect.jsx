@@ -63,27 +63,27 @@ function Protect() {
       id: 1,
       title: 'Global',
       linkImg: anh1,
-      linkTo: '/trip'
+      linkTo: '/bao-hiem'
     },
     {
       id: 2,
       title: 'Global',
       linkImg: anh2,
-      linkTo: '/trip'
+      linkTo: '/bao-hiem'
 
     },
     {
       id: 3,
       title: 'Global',
       linkImg: anh3,
-      linkTo: '/trip'
+      linkTo: '/bao-hiem'
 
     },
     {
       id: 4,
       title: 'Global',
       linkImg: anh4,
-      linkTo: '/trip'
+      linkTo: '/bao-hiem'
 
     },
   ];

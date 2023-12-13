@@ -6,7 +6,7 @@ function Post() {
     return (
         <div className='post'>
             <div className='post__name'>
-                <h1 className='post__name-main'>Ưu Điểm Của Mioto</h1>
+                <h1 className='post__name-main'>Ưu Điểm Của Xe Tốt</h1>
                 <p className='post__name-child'>Những tính năng giúp bạn dễ dàng hơn khi thuê xe <br></br> trên Mioto.</p>
             </div>
             <div className='post__container'>
@@ -42,7 +42,7 @@ function Post() {
                         <h1 className='post__container-main-text-title'>Thủ tục đơn giản</h1>
                         <p className='post__container-main-text-child'>
                         Chỉ cần có CCCD gắn chip (Hoặc Passport) & Giấy phép lái xe là
-                        bạn đã đủ điều kiện thuê xe trên Mioto.
+                        bạn đã đủ điều kiện thuê xe trên Xe Tốt
                         </p>
                     </div>
                 </div>

@@ -94,8 +94,11 @@
   .modal {
     max-width: 100%;
     max-height: 100%;
+    /* position: relative; */
   }
-  
+  .modal h1 {
+    color: red;
+  }
   .modal img {
     width: 100%;
     height: 100%;

@@ -12,9 +12,9 @@ const Trip = () => {
               <h5>Bảo hiểm thuê xe</h5>
               <p>
                 Nhằm nâng cao trải nghiệm an toàn và giảm thiểu tổn thất có thể
-                xảy ra do rủi ro trong quá trình thuê xe, Mioto kết hợp với Bảo
+                xảy ra do rủi ro trong quá trình thuê xe, Xe Tốt kết hợp với Bảo
                 hiểm MIC và Bảo hiểm VNI triển khai sản phẩm BẢO HIỂM THUÊ XE,
-                dành riêng cho các giao dịch thuê xe tự lái trên Mioto
+                dành riêng cho các giao dịch thuê xe tự lái trên Xe Tốt
               </p>
             </div>
             <div className="insurance-content-block">
