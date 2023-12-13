@@ -1,0 +1,132 @@
+.pay {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+}
+.pay__information {
+    width: 610px;
+    height: 510px;
+    margin: 20px auto;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 10px;
+}
+.pay__information-name {
+    text-align: center;
+    font-weight: 600;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.pay__information-product {
+
+}
+.pay__information-product span {
+    font-size: 2rem;
+    font-weight: 600;
+}
+.pay__information-product span i {
+    margin-left: 10px;
+    color: var(--button-color)
+}
+.pay__information-product-all {
+ display: flex;
+ margin-top: 10px;
+}
+.pay__information-product-name {
+  width: 50%;
+}
+.pay__information-product-name p{
+    font-size: 1.2rem;
+} 
+.pay__information-product-image {
+    width: 50%;
+}
+.pay__information-product-image img{
+  width: 50%;
+  border-radius: 20px;
+} 
+.pay__information-user {
+
+}
+.pay__information-user span{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.pay__information-user span i{
+    color: var(--button-color);
+    margin-left: 10px;
+}
+.pay__information-user-name,
+.pay__information-user-phone,
+.pay__information-user-location {
+  margin-top: 10px;
+  width: auto;
+  padding: 5px 10px;
+  border: 1px solid var(--text-color);
+}
+.pay__information-user-name p,
+.pay__information-user-phone p,
+.pay__information-user-location p{
+  font-size: 1.8rem;
+}
+.pay__information-method {
+    margin-top: 15px;
+    display: flex ;
+}
+.pay__information-method span {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-right: 10px;
+}
+.pay__information-method-online,
+.pay__information-method-ofline {
+    background-color: var(--main-color);
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+.pay__information-method-online p,
+.pay__information-method-ofline p {
+    font-size: 1.4rem;
+}
+.pay__information-pay {
+    width:auto;
+    margin-top: 20px;
+    text-align: center;
+}
+.pay__information-pay-button {
+    margin: 0 auto;
+    background-color: var(--button-color);
+    border: none;
+    color: var(--white-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+@media (max-width: 38.125em) {
+    .pay {
+      padding:  20px;
+    }
+    .pay__information {
+        width: 100%;
+        height: auto;
+    }
+}
+@media (max-width: 23.75em) {
+    .pay__information {
+        width: 100%;
+        height: auto;
+    }
+    .pay__information-product-image img{
+        margin-left: 20px;
+    }
+    .pay__information-method {
+        flex-direction: column;
+    }
+    .pay__information-method-online ,
+    .pay__information-method-ofline {
+        margin: 10px 0;
+        width: 50%;
+    }
+}

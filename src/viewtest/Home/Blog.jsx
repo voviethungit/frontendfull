@@ -101,15 +101,15 @@ function Blog() {
       }
     };
   return (
-    <div className='blog'>
+    <div className='blog' id='blog'>
        <div className='blog__name'>
-        <h1 className='blog__name-main'>MIOTO Blog</h1>
+        <h1 className='blog__name-main'>Bài Viết Xe Tốt</h1>
        </div>
        <div className='blog__content'>
          <div className='blog__content-firt'>
             <div className='blog__content-firt-firt'>
                 <img className='blog__content-firt-firt-img' src={anh1} alt="" ></img>
-                <Link to="/listblog" className='blog__content-firt-firt-text'>
+                <Link to="/bai-viet" className='blog__content-firt-firt-text'>
                     <p className='blog__content-firt-firt-text-text'>12-08-2023</p>
                     <h3 className='blog__content-firt-firt-text-main'>Khám phá ĐÀ NẴNG vào lễ QUỐC KHÁNH
                      2/9 bằng việc thuê xe
@@ -118,7 +118,7 @@ function Blog() {
             </div>
             <div className='blog__content-firt-last'>
             <img className='blog__content-firt-last-img' src={anh2} alt="" ></img>
-                <Link to="/listblog1" className='blog__content-firt-last-text'>
+                <Link to="/bai-viet1" className='blog__content-firt-last-text'>
                     <p className='blog__content-firt-last-text-text'>12-08-2023</p>
                     <h3 className='blog__content-firt-last-text-main'>Khám phá ĐÀ NẴNG vào lễ QUỐC KHÁNH
                     2/9 bằng việc thuê xe
@@ -128,7 +128,7 @@ function Blog() {
          </div>
          <div className='blog__content-last'>
          <img className='blog__content-last-img' src={anh3} alt="" ></img>
-                <Link to='/listblog2' className='blog__content-last-text'>
+                <Link to='/bai-viet2' className='blog__content-last-text'>
                     <p className='blog__content-last-text-text'>12-08-2023</p>
                     <h3 className='blog__content-last-text-main'>Khám phá ĐÀ NẴNG vào lễ QUỐC KHÁNH
                     2/9 bằng việc thuê xe

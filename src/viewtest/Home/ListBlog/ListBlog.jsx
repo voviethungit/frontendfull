@@ -79,21 +79,21 @@ const ListBlog = () => {
       time: '12-8-2023',
       title: 'Khám phá ĐÀ NẴNG vào lễ QUỐC KHÁNH 2/9 bằng việc thuê xe',
       linkImg: anh2,
-      linkTo: '/listblog1'
+      linkTo: '/bai-viet1'
     },
     {
       id: 3,
       time: '12-8-2023',
       title: 'Khám phá ĐÀ NẴNG vào lễ QUỐC KHÁNH 2/9 bằng việc thuê xe',
       linkImg: anh3,
-      linkTo: '/listblog2'
+      linkTo: '/bai-viet2'
     },
     {
       id: 4,
       time: '12-8-2023',
       title: 'Khám phá ĐÀ NẴNG vào lễ QUỐC KHÁNH 2/9 bằng việc thuê xe',
       linkImg: anh4,
-      linkTo: '/listblog3'
+      linkTo: '/bai-viet3'
     },
   ];
   const handleImageClick = (linkTo) => {

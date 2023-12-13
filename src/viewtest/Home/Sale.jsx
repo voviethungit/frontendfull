@@ -14,16 +14,16 @@ function Sale() {
     const openModal = (image) => {
         setSelectedImage(image);
         setModalOpen(true);
-        setOverlayOpacity(1); // Đặt giá trị opacity thành 1 khi mở modal   
+        setOverlayOpacity(1);    
     };
 
     const closeModal = () => {
         setModalOpen(false);
-        setOverlayOpacity(0); // Đặt giá trị opacity thành 0 khi đóng modal
+        setOverlayOpacity(0); 
     };
     const settings = {
-        dots: true,  // thể hiện chấm nhỏ dưới slide
-        infinite: false, // slide cuối + click = slide đầu (false)
+        dots: true,  
+        infinite: false,
         speed: 400,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -70,6 +70,7 @@ function Sale() {
             id: 1,
             linkImg:
                 'https://n1-cstg.mioto.vn/g/2023/10/01/08/26AFULG2.jpg',
+            text: ' Bài viết khá hay cảm ơn shop'
         },
         {
             id: 2,
@@ -112,7 +113,7 @@ function Sale() {
         <div className='sale'>
             <div className='sale__text'>
                 <h3>Chương trình khuyến mãi</h3>
-                <p>Nhận nhiều ưu đãi từ Mioto</p>
+                <p>Nhận nhiều ưu đãi từ Xe Tốt</p>
             </div>
             <div className="sale__slider">
                 <Slider {...settings}>
@@ -124,22 +125,22 @@ function Sale() {
                                         item.linkImg
                                     }
                                     alt={item.title}
-                                />
+                                    />
                             </div>
                         </div>
                     ))}
                 </Slider>
-            </div>
-            {modalOpen && (
-                <div className="modal-overlay" onClick={closeModal} style={{ opacity: overlayOpacity }}>
-                    <div className="modal" onClick={(e) => e.stopPropagation()}>
-                        <span className="modal-close" onClick={closeModal}>
-                            <FaX/>
-                        </span>
-                        <img src={selectedImage} alt="Selected" />
-                    </div>
-                </div>
-            )}
+            </div>  
+                    {modalOpen && (
+                        <div className="modal-overlay" onClick={closeModal} style={{ opacity: overlayOpacity }}>
+                            <div className="modal" onClick={(e) => e.stopPropagation()}>
+                                <span className="modal-close" onClick={closeModal}>
+                                    <FaX/>
+                                </span>
+                                <img src={selectedImage} alt="Selected" />
+                            </div>
+                        </div>
+                    )}  
         </div>
     )
 }

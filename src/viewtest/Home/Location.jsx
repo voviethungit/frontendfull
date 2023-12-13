@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 function Location() {
     const location = {
         dots: true,  // thể hiện chấm nhỏ dưới slide
-        infinite: false, // slide cuối + click = slide đầu (false) a + b = c + d = false
+        infinite: false, // slide cuối + click = slide đầu (false)
         speed: 400,
         slidesToShow: 4,
         slidesToScroll: 1,
@@ -94,7 +94,7 @@ function Location() {
      <div className='location__slider'>
                 <Slider {...location}>
                     {dataLocation.map((item) => (
-                        <Link to='/location' className="location__slider-container">
+                        <Link to='/dia-diem' className="location__slider-container">
                             <div className="location__slider-container-top">
                                 <img
                                     src={

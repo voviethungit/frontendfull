@@ -31,10 +31,12 @@ import Paymenthowto from './viewtest/Home/howtowork/Paymenthowto';
 import Regu from './viewtest/Home/howtowork/Regu';
 // Địa điểm xe nổi bật
 import Mainlocation from './viewtest/Home/Location/Mainlocation';
-// Thanh toán
-import MainPayLive from './viewtest/Pay/MainPayLive';
+// Nạp tiền
+import PayLive from './viewtest/Pay/PayLive';
 // 404 NOT FOUND
 import NotFound from './viewtest/Home/NotFound.jsx';
+// Thanh toán
+import Pay from './viewtest/Pay/Pay.jsx';
 function App() {
   return (
     <>
@@ -43,15 +45,15 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path="*" element={<NotFound />} />
-          <Route path='/user' element={<MainUser />} />
-          <Route path='/about' element={<MainAbout />} />
-          <Route path='/listblog' element={<ListBlog/>} />
-          <Route path='/listblog1' element={<ListBlog1/>} />
-          <Route path='/listblog2' element={<ListBlog2/>} />
-          <Route path='/listblog3' element={<ListBlog3/>} />
-          <Route path='/product/:id' element={<MainProduct />} />
-          <Route path='/login' element={<MainLogin />} />
-          <Route path='/register' element={<MainRegister />} />
+          <Route path='/nguoi-dung' element={<MainUser />} />
+          <Route path='/ve-xe-tot' element={<MainAbout />} />
+          <Route path='/bai-viet' element={<ListBlog/>} />
+          <Route path='/bai-viet1' element={<ListBlog1/>} />
+          <Route path='/bai-viet2' element={<ListBlog2/>} />
+          <Route path='/bai-viet3' element={<ListBlog3/>} />
+          <Route path='/san-pham/:id' element={<MainProduct />} />
+          <Route path='/dang-nhap' element={<MainLogin />} />
+          <Route path='/dang-ky' element={<MainRegister />} />
           <Route path='/UserInfor' element={<UserInfor />} />  
           <Route path='/Myfavs' element={<Myfavs/>} />  
           <Route path='/Mycars' element={<Mycars/>} />  
@@ -59,7 +61,7 @@ function App() {
           <Route path='/Mytrips' element={<Mytrips/>} />  
           <Route path='/Resetpw' element={<Resetpw/>} />
           <Route path='/Navbarmobile' element={<Navbarmobile/>} />
-          <Route path='/trip' element={<Maintrip/>} />
+          <Route path='/bao-hiem' element={<Maintrip/>} />
           <Route path='/policy' element={<Policy/>} />
           <Route path='/terms' element={<Terms/>} />
           <Route path='/perso' element={<Personalinfo/>} />
@@ -68,8 +70,9 @@ function App() {
           <Route path='/book' element={<Booking/>} />
           <Route path='/paymen' element={<Paymenthowto/>} />
           <Route path='/regu' element={<Regu/>} />
-          <Route path='/location' element={<Mainlocation/>} />
-          <Route path='/paylive' element={<MainPayLive/>} />
+          <Route path='/dia-diem' element={<Mainlocation/>} />
+          <Route path='/nap-tien' element={<PayLive/>} /> 
+          <Route path='/thanh-toan' element={<Pay/>} />
         </Routes>
       </Router>
     </>

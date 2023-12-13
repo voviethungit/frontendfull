@@ -209,6 +209,7 @@
     gap: 8px;
     width: 100%;
     font-size: 1.2rem;
+    text-decoration: none;
 }
 
 .contentproduct__detail-sidebar-insurance-content span {
@@ -1095,7 +1096,86 @@ cursor: pointer;
   .contentproduct__img-tablet{
     display: none;
   }
+/* phần css của hiển thị modal báo cáo xe
+ */
+ .report__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+ }
+ .report__form {
+     width: 430px;
+     height: 400px;
+     background-color: var(--white-color);
+     border-radius: 20px;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     padding: 15px 12px;
+ }
+ .report__form-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    cursor: pointer;
+    color: var(--button-color);
+    font-size: 2rem;
+ }
+ .report__form-title {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin: 20px 0;
+ }
+ .report__form-content {
+     margin: 20px 0;
+    }
+    .report__form-content-text,
+    .report__form-email-text {
+     font-size: 1.5rem;
+     opacity: 0.6;
+     margin-bottom: 10px;
 
+ }
+ .report__form-email-input {
+    width: 100%;
+    height: 30px;
+    border: 1.5px solid var(--main-color);
+    padding-left: 10px;
+ }
+ .report__form-email-input:focus {
+    outline: 1px solid var(--button-color);
+ }
+ .report__form-content-input {
+ width: 100%;
+ height: 100px;
+ border: 1.5px solid var(--main-color);
+ padding: 10px 0 0 10px ;
+ box-sizing: border-box;
+ }
+ .report__form-content-input:focus {
+    outline: 1px solid var(--button-color);
+ }
+ .report__form-button {
+    padding: 15px 5px;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 5px;
+ }
+ .report__form-button-text {
+    font-size: 1.5rem;
+    color: var(--white-color);
+    cursor: pointer;
+ }
 /* Reponsive */
 /* Mobile 0-750px */
 @media (max-width: 46.875em) {
@@ -1155,6 +1235,12 @@ cursor: pointer;
 
 /* Mobile 0-500px */
 @media (max-width: 31.25em) {
+    .report__form {
+        width: 95%;
+    }
+    .contentproduct__evaluate-button {
+        width: 15%;
+    }
     .contentproduct__img {
         display:none
       }

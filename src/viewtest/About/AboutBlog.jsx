@@ -22,15 +22,15 @@ const AboutBlog = () => {
       <div className="container_about">
 
         <div className="aboutus-desc">
-          <h1>Mioto - Cùng bạn đến mọi hành trình</h1>
+          <h1>Xe Tốt - Cùng bạn đến mọi hành trình</h1>
           <p>
             Mỗi chuyến đi là một hành trình khám phá cuộc sống và thế giới xung
             quanh, là cơ hội học hỏi và chinh phục những điều mới lạ của mỗi cá
             nhân để trở nên tốt hơn. Do đó, chất lượng trải nghiệm của khách
-            hàng là ưu tiên hàng đầu và là nguồn cảm hứng của đội ngũ MIOTO.
+            hàng là ưu tiên hàng đầu và là nguồn cảm hứng của đội ngũ Xe Tốt.
             <br />
             <br />
-            MIOTO là nền tảng chia sẻ ô tô, sứ mệnh của chúng tôi không chỉ dừng
+            Xe Tốt là nền tảng chia sẻ ô tô, sứ mệnh của chúng tôi không chỉ dừng
             lại ở việc kết nối chủ xe và khách hàng một cách Nhanh chóng - An
             toàn - Tiện lợi, mà còn hướng đến việc truyền cảm hứng KHÁM PHÁ
             những điều mới lạ đến cộng đồng qua những chuyến đi trên nền tảng
@@ -52,13 +52,13 @@ const AboutBlog = () => {
               <strong> Cảm hứng </strong>
             </p>
             <p>
-              MIOTO đặt mục tiêu trở thành cộng động người dùng ô tô Văn minh &
+              Xe Tốt đặt mục tiêu trở thành cộng động người dùng ô tô Văn minh &
               Uy tín #1 tại Việt Nam, nhằm mang lại những giá trị thiết thực cho
               tất cả những thành viên hướng đến một cuộc sống tốt đẹp hơn.
               <br />
               <br />
               Chúng tôi tin rằng mỗi hành trình đều quan trọng, vì vậy đội ngũ
-              và các đối tác của MIOTO với nhiều kinh nghiệm về lĩnh vực cho
+              và các đối tác của Xe Tốt với nhiều kinh nghiệm về lĩnh vực cho
               thuê xe, công nghệ, bảo hiểm & du lịch sẽ mang đến cho hành trình
               của bạn thêm nhiều trải nghiệm mới lạ, thú vị cùng sự an toàn ở
               mức cao nhất.
@@ -74,14 +74,14 @@ const AboutBlog = () => {
       </div>
    
       <div className="aboutus-icon">
-        <h1>Mioto và những con số </h1>
+        <h1>Xe Tốt và những con số </h1>
         <div className="list-icon">
           <div className="list-icon__item">
             <span className="icon-item__content">
               {" "}
               <FaSuitcaseRolling />
             </span>
-            <h5>100,000+</h5>
+            <h5>500+</h5>
             <p>
               Chuyến đi đầy cảm hứng
               <br />
@@ -93,7 +93,7 @@ const AboutBlog = () => {
               {" "}
               <FaUserGroup />
             </span>
-            <h5>50,000+</h5>
+            <h5>5,000+</h5>
             <p>
               Khách hàng
               <br />
@@ -105,7 +105,7 @@ const AboutBlog = () => {
               {" "}
               <FaHatCowboy />
             </span>
-            <h5>5,000++</h5>
+            <h5>200++</h5>
             <p>
               Đối tác chủ xe
               <br />
@@ -117,7 +117,7 @@ const AboutBlog = () => {
               {" "}
               <FaCar />
             </span>
-            <h5>100+</h5>
+            <h5>50+</h5>
             <p>
               Dòng xe
               <br />
@@ -129,11 +129,11 @@ const AboutBlog = () => {
               {" "}
               <FaMapLocationDot />
             </span>
-            <h5>100+</h5>
+            <h5>40+</h5>
             <p>
-              Thành phố
+              Quận
               <br />
-              Mioto đã có mặt
+              Xe Tốt đã có mặt
             </p>
           </div>
           <div className="list-icon__item">
@@ -143,7 +143,7 @@ const AboutBlog = () => {
             </span>
             <h5>4.95/5*</h5>
             <p>
-              Là số điểm nhận được từ trên 50,000 khách hàng
+              Là số điểm nhận được từ trên 5,000+ khách hàng
               <br />
               đánh giá về dịch vụ của chúng tôi
             </p>

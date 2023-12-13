@@ -7,12 +7,12 @@ function Instruct() {
     <div className='instruct'>
        <div className='instruct__name'>
          <h1 className='instruct__name-text'>Hướng Dẫn Thuê Xe</h1>
-         <p className='instruct__name-child'>Chỉ với 4 bước đơn giản để trải nghiệm thuê xe Mioto một cách nhanh chóng</p>
+         <p className='instruct__name-child'>Chỉ với 4 bước đơn giản để trải nghiệm thuê xe trên Xe Tốt một cách nhanh chóng</p>
        </div>
        <div className='instruct__content'>
          <div className='instruct__content-child'>
             <img className='instruct__content-child-img' src="https://www.mioto.vn/static/media/cho_thue_xe_co_taigia_re_tphcm.12455eba.svg"></img>
-            <h3 className='instruct__content-child-text'><span>01</span>Đặt xe trên app/web Mioto</h3>
+            <h3 className='instruct__content-child-text'><span>01</span>Đặt xe trên web Xe Tốt </h3>
          </div>
          <div className='instruct__content-child'>
             <img className='instruct__content-child-img' src="https://www.mioto.vn/static/media/gia_thue_xe_7cho_tai_tphcm.9455973a.svg"></img>
