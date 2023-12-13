@@ -94,7 +94,7 @@ function ContentProduct() {
 
   const [fullName, setFullName] = useState("");
   const [avatar, setAvatar] = useState(null);
-
+  const [locationUser, setLocationUser] = useState("");
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
@@ -107,6 +107,7 @@ function ContentProduct() {
         .then((response) => {
           setAvatar(response.data.user.avatar);
           setFullName(response.data.user.fullName);
+          setLocationUser(response.data.user.locationUser);
         })
         .catch((error) => {
           console.error("Lỗi :", error);

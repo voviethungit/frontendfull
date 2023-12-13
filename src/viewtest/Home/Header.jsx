@@ -56,7 +56,13 @@ function Header() {
         });
     }
   }, []);
-
+  // if (!fullName) {
+  //   return (
+  //     <div className="spinner-container">
+  //       <BeatLoader color="#36d7b7" size={40} />
+  //     </div>
+  //   );
+  // }
   return (
     <>
       <div className="header" id="header">

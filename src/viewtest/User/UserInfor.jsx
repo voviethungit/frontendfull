@@ -13,7 +13,7 @@ import axios from "axios";
 import Modal from "./Modal";
 import Userinfornav from "./Userinfornav";
 import { useNavigate   } from "react-router-dom";
-
+import BeatLoader from "react-spinners/BeatLoader";
 function UserInfor() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(true);
@@ -76,7 +76,13 @@ function UserInfor() {
         setFile(URL.createObjectURL(e.target.files[0]));
     }
 
-    
+    if (!fullName) {
+      return (
+        <div className="spinner-container">
+          <BeatLoader color="#36d7b7" size={40} />
+        </div>
+      );
+    }
   return (
     <div className="userinfor">
       <div className="userinfor__nav" id="userinfor__nav">

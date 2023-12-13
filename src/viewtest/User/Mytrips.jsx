@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./css/userinfor.css";
 import "./css/base.css";
 import "./css/mainuser.css";
@@ -11,11 +11,23 @@ import Userinfornav from "./Userinfornav";
 import Table from "./compoment/Table";
 
 function Mytrips() {
-  //test
-  const tableData = [
-    { carName: 'Xe A',  status: 'Hoàn Thành', bill: 'Xuất', totalAmount: '800.000đ'},
-    { carName: 'Hùng', status: 'Đã Hủy', bill: 'Xuất', totalAmount: '800000đ' },
-  ];
+  const [rentalHistory, setRentalHistory] = useState([]);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    const accessToken = localStorage.getItem("accessToken");
+    const headers = accessToken
+      ? { Authorization: `Bearer ${accessToken}` }
+      : {};
+    fetch(`http://localhost:5000/rental-history/${userId}`, { headers })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.rentalRecords && data.rentalRecords.length > 0) {
+          setRentalHistory(data.rentalRecords);
+        }
+      })
+      .catch((error) => console.error("Lỗi khi lấy lịch sử thuê:", error));
+  }, []);
 
   return (
     <div className="main-color">
@@ -32,7 +44,6 @@ function Mytrips() {
             <div className="myfavs-cars-title">
               <h3>Chuyến đi của tôi</h3>
             </div>
-
             <div className="mytrips-mode">
               <div className="mytrips-mode-tab">
                 <Link className="userinfor-nav-link mytrips-link active">
@@ -40,20 +51,40 @@ function Mytrips() {
                 </Link>
               </div>
             </div>
-            <div className="myfavs-cars">
-              <img
-                src="https://www.mioto.vn/static/media/empty-trip.8f191e42.svg"
-                alt=""></img>
-              <p>Không có xe yêu thích nào</p>
-            </div>
-
-            <div className="myfavs-cars-table">
-            <div className="myfavs-table-content">
-            <h1>Thông tin thuê xe</h1>
-            <Table data={tableData} />
-            </div>
-            </div>
-
+            {rentalHistory.length > 0 ? (
+              <div className="myfavs-cars-table">
+                <div className="myfavs-table-content">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tên Xe Thuê</th>
+                        <th>Giá Thuê</th>
+                        <th>Địa Chỉ Nhận Xe</th>
+                        <th>Trạng Thái</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rentalHistory.map((rentalHistory, index) => (
+                        <tr key={index}>
+                          <td>{rentalHistory.title}</td>
+                          <td>{rentalHistory.price}đ</td>
+                          <td>{rentalHistory.location}</td>
+                          <td>{rentalHistory.status}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ) : (
+              <div className="myfavs-cars">
+                <img
+                  src="https://www.mioto.vn/static/media/empty-trip.8f191e42.svg"
+                  alt=""
+                />
+                <p>Bạn Chưa Thuê Xe Nào!</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
