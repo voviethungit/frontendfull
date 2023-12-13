@@ -56,7 +56,7 @@ function UserInfor() {
     }
   }, []);
   if (!loggedIn) {
-    navigate("/login");
+    navigate("/dang-nhap");
   }
 
   const [editMode, setEditMode] = useState(false);

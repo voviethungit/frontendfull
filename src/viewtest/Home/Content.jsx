@@ -14,19 +14,32 @@ function Content() {
   const [cars, setCars] = useState([]);
   const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenCategory, setIsOpenCategory] = useState(false); 
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [currentItem, setCurrentItem] = useState("Danh mục");
+  const [isOpenPay, setIsOpenPay] = useState(false); 
+  const [selectedPay, setSelectedPay] = useState(null);
+  const [currentPay, setCurrentPay] = useState("Giá Tiền");
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsOpenCategory(!isOpenCategory);
   };
 
   const handleItemClick = (item) => {
     setCurrentItem(item);
-    setIsOpen(false);
+    setIsOpenCategory(false);
 
     setSelectedDistrict(item === "Danh Mục" ? null : item);
+  };
+
+  const togglePayDropdown = () => {
+    setIsOpenPay(!isOpenPay);
+  };
+  const handlePayClick = (item) => {
+    setCurrentPay(item);
+    setIsOpenPay(false);
+
+    setSelectedPay(item === "Giá Tiền" ? null : item);
   };
   // bộ lọc
   useEffect(() => {
@@ -39,15 +52,15 @@ function Content() {
       .catch((error) => {
         console.error('Lỗi:', error);
       });
-    axios.get('http://localhost:5000/get-categories')
-      .then((response) => {
-        const categoriesData = response.data.categories;
-        setCategories(categoriesData);
-        console.log('API Response:', response.data);
-      })
-      .catch((error) => {
-        console.error('Lỗi:', error);
-      });
+    // axios.get('http://localhost:5000/get-categories')
+    //   .then((response) => {
+    //     const categoriesData = response.data.categories;
+    //     setCategories(categoriesData);
+    //     console.log('API Response:', response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Lỗi:', error);
+    //   });
   }, []);
 
   const contact__pc_tablet = {
@@ -104,6 +117,7 @@ function Content() {
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setSelectedDistrict(null);
+    setSelectedPay(null);
   };
 
   return (
@@ -114,7 +128,7 @@ function Content() {
           <button className="search-button" onClick={toggleDropdown}>
             {currentItem} <i><FaAngleDown /></i>
           </button>
-          {isOpen && (
+          {isOpenCategory && (
             <ul className="search-list">
               <div className='search-list-link'>
                 <li onClick={() => handleItemClick("Danh Mục")}>
@@ -149,6 +163,45 @@ function Content() {
             </ul>
           )}
         </div>
+        <div className="pay-menu">
+          <button className="search-button" onClick={togglePayDropdown}>
+            {currentPay} <i><FaAngleDown /></i>
+          </button>
+          {isOpenPay && (
+            <ul className="search-list">
+              <div className='search-list-link'>
+                <li onClick={() => handlePayClick("Giá Tiền")}>
+                  Giá Tiền
+                </li>
+              </div>
+              <div className='search-list-link'>
+                <li onClick={() => handlePayClick("600-700k")}>
+                  600-700k
+                </li>
+              </div>
+              <div className='search-list-link'>
+                <li onClick={() => handlePayClick("700-800k")}>
+                  700-800k
+                </li>
+              </div>
+              <div className='search-list-link'>
+                <li onClick={() => handlePayClick("800-900k")}>
+                  800-900k
+                </li>
+              </div>
+              <div className='search-list-link'>
+                <li onClick={() => handlePayClick("900k-1tr")}>
+                  900k-1tr
+                </li>
+              </div>
+              <div className='search-list-link'>
+                <li onClick={() => handlePayClick("1tr-1tr1")}>
+                1tr-1tr1
+                </li>
+              </div>
+            </ul>
+          )}
+        </div>
         <div class="content__search-form">
           <input
             type="text"
@@ -165,12 +218,9 @@ function Content() {
           {cars
                .filter((car) =>
                (search.trim() === '' || car.title.toLowerCase().includes(search.toLowerCase())) &&
-               (selectedDistrict === null ||car.location === selectedDistrict)
+               (selectedDistrict === null || car.location === selectedDistrict) &&
+               (selectedPay === null || car.price === selectedPay)
              )
-            // .filter((car) =>
-            //   (search.trim() === '' || car.title.toLowerCase().includes(search.toLowerCase())) &&
-            //   (searchByCategory ? car.location === selectedDistrict : true)
-            // )
             .map((car, index) => (
               <Link to={`/san-pham/${car._id}`} className='content__list-child' key={index}>
                 <nav>

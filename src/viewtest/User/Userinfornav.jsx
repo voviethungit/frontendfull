@@ -33,11 +33,11 @@ function Userinfornav() {
     <div>
       <ul className="userinfor__nav-list">
         <Link
-          to="/user"
+          to="/nguoi-dung"
           className="userinfor-nav-link" 
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/user' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/user')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/nguoi-dung' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/nguoi-dung')} >
             <i className="userinfor__nav-list-child-icon">
               <FaUser />
             </i>
@@ -46,11 +46,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/myfavs"
+          to="/xe-yeu-thich"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/myfavs' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/myfavs')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/xe-yeu-thich' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/xe-yeu-thich')} >
             <i className="userinfor__nav-list-child-icon">
               <FaHeart></FaHeart>
             </i>
@@ -59,11 +59,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/Mycars"
+          to="/xe-cua-toi"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/Mycars' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/Mycars')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/xe-cua-toi' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/xe-cua-toi')} >
             <i className="userinfor__nav-list-child-icon">
               <FaCar></FaCar>
             </i>
@@ -72,11 +72,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/Mytrips"
+          to="/vi-cua-toi"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/Mytrips' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/Mytrips')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/vi-cua-toi' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/vi-cua-toi')} >
             <i className="userinfor__nav-list-child-icon">
               <FaMapLocationDot></FaMapLocationDot>
             </i>
@@ -85,11 +85,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/Myreward"
+          to="/qua-tang-cua-toi"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/Myreward' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/Myreward')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/qua-tang-cua-toi' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/qua-tang-cua-toi')} >
             <i className="userinfor__nav-list-child-icon">
               <FaGift></FaGift>
             </i>
@@ -100,11 +100,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/Myaddress"
+          to="/dia-chi-cua-toi"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/Myaddress' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/Myaddress')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/dia-chi-cua-toi' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/dia-chi-cua-toi')} >
             <i className="userinfor__nav-list-child-icon">
               <FaLocationDot></FaLocationDot>
             </i>
@@ -113,11 +113,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/Resetpw"
+          to="/doi-mat-khau"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/Resetpw' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/Resetpw')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/doi-mat-khau' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/doi-mat-khau')} >
             <i className="userinfor__nav-list-child-icon">
               <FaKey></FaKey>
             </i>
