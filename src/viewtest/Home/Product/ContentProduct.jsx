@@ -52,7 +52,7 @@ function ContentProduct() {
   const [overlayOpacity, setOverlayOpacity] = useState(0);
   const [isHidden, setIsHidden] = useState(true);
   const [similarCars, setSimilarCars] = useState([]);
-
+  const [copySuccess, setCopySuccess] = useState(false);
   const openModal = (image) => {
     setModalOpen(true);
     setOverlayOpacity(1);
@@ -135,7 +135,7 @@ function ContentProduct() {
   }, [id]);
 
   if (!car) {
-    return <div className="loading">Dang tai...</div>;
+    return <div>Dang tai...</div>;
   }
   const contactproduct__tablet = {
     dots: true,
@@ -315,6 +315,20 @@ const totalRatings = getTotalRatings(reviews);
     setIsHidden(!isHidden);
   };
 
+
+  const handleShareClick = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        setCopySuccess(true); 
+        setTimeout(() => {
+          setCopySuccess(false); 
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error('Error copying:', error);
+      });
+  };
+
   return (
     <div className="contentproduct">
       <div className="contentproduct__img">
@@ -353,14 +367,19 @@ const totalRatings = getTotalRatings(reviews);
             <div className="group-name">
               <h3>{car.title}</h3>
               <div className="group-icon">
-                <i>
-                  <FaShareNodes></FaShareNodes>
+                <i onClick={handleShareClick}>
+                  <FaShareNodes ></FaShareNodes>
                 </i>
                 <i>
                   <FaHeart></FaHeart>
                 </i>
               </div>
             </div>
+            {copySuccess && (
+            <div className="copy-success-message">
+              Đã sao chép thành công!
+            </div>
+          )}
             <div className="group-total">
               <div className="group-total-star">
                 <i>
