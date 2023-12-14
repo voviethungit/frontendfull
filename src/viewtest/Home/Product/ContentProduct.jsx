@@ -51,9 +51,7 @@ function ContentProduct() {
   const [modalOpen, setModalOpen] = useState(false);
   const [overlayOpacity, setOverlayOpacity] = useState(0);
   const [isHidden, setIsHidden] = useState(true);
-  const [fullName, setFullName] = useState('');
-  const [avatar, setAvatar] = useState(null);
-
+  const [similarCars, setSimilarCars] = useState([]);
 
   const openModal = (image) => {
     setModalOpen(true);
@@ -67,7 +65,7 @@ function ContentProduct() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/reviews');
+        const response = await axios.get(`http://localhost:5000/reviews/${id}`);
         setReviews(response.data);
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -77,6 +75,24 @@ function ContentProduct() {
     fetchReviews();
   }, [id]);
 
+  useEffect(() => {
+    const fetchSimilarCars = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/get-car/${id}`);
+        const data = await response.json();
+        
+        if (data.success) {
+          setSimilarCars(data.similarCars);
+        } else {
+          console.error('Failed to fetch similar cars:', data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching similar cars:', error);
+      }
+    };
+
+    fetchSimilarCars();
+  }, [id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -104,29 +120,8 @@ function ContentProduct() {
     }
   };
 
-  const [fullName, setFullName] = useState("");
-  const [avatar, setAvatar] = useState(null);
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
 
-      axios.get('http://localhost:5000/getProfile', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then((response) => {
-          setAvatar(response.data.user.avatar);
-          setFullName(response.data.user.fullName);
-          setLocationUser(response.data.user.locationUser);
-        })
-        .catch((error) => {
-          console.error('Lỗi :', error);
-
-        });
-    }
-  }, []);
 
   useEffect(() => {
     axios
@@ -207,6 +202,21 @@ function ContentProduct() {
       img: car.image3,
     },
   ];
+  // Hàm tính tổng số bình luận
+const getTotalComments = (reviews) => {
+  return reviews.length;
+};
+
+// Hàm tính tổng số đánh giá
+const getTotalRatings = (reviews) => {
+  let totalRatings = 0;
+  reviews.forEach((review) => {
+    totalRatings += review.rating;
+  });
+  return totalRatings;
+};
+const totalComments = getTotalComments(reviews);
+const totalRatings = getTotalRatings(reviews);
   // ảnh xe tương tự ở dưới cùng
   const car__slider = {
     dots: true,
@@ -763,7 +773,7 @@ function ContentProduct() {
                 <i>
                   <FaStar></FaStar>
                 </i>{" "}
-                5.0 <span> 1 đánh giá</span>
+                {totalRatings} <span>{totalComments} đánh giá</span>
               </div>
               <div className="list-reviews">
                 {reviews.map((review, index) => (
@@ -772,11 +782,11 @@ function ContentProduct() {
                       <div className="list-reviews-item-firt-avt">
                         <img
                           className="list-reviews-item-img"
-                          src={avatar}
-                          alt={fullName}
+                          src={review.avatar}
+                          alt={review.fullName}
                         />
                         <div className="list-reviews-item-name" key={index}>
-                          <h6>{fullName}</h6>
+                          <h6>{review.fullName}</h6>
                           <div className="list-reviews-item-name-star">
                             {Array.from({ length: review.rating }, (_, i) => (
                               <i key={i}>
@@ -1042,18 +1052,18 @@ function ContentProduct() {
       <div className="contentproduct__other">
         <h2>Xe tương tự</h2>
         <Slider {...car__slider}>
-          {dataCarSlider.map((item) => (
-            <Link>
-              <div key={item.id} className="contentproduct__other-child">
+          {similarCars.map((similarcar) => (
+            <Link key={similarcar._id} to={`/san-pham/${similarcar._id}`}>
+              <div key={similarcar._id} className="contentproduct__other-child">
                 <div className="contentproduct__other-child-top">
                   <img
-                    key={item.id}
+                    key={similarcar._id}
                     src={
-                      defaultImage[item.title] === item.title
+                      defaultImage[similarcar.title] === similarcar.title
                         ? defaultImage.linkDefault
-                        : item.linkImg
+                        : similarcar.imagePath
                     }
-                    alt={item.title}
+                    alt={similarcar.title}
                     onError={handleErrorImage}
                   />
                   <div className="absolute__heart" style={{ backgroundColor }}>
@@ -1062,7 +1072,7 @@ function ContentProduct() {
                     </i>
                   </div>
                   <div className="absolute__user">
-                    <img src={item.userImg} alt="" />
+                    <img src={similarcar.avatar} alt="" />
                   </div>
                 </div>
                 <div className="contentproduct__other-child-bottom">
@@ -1070,14 +1080,14 @@ function ContentProduct() {
                     <div className="contentproduct__other-child-auto-car btn__auto">
                       <p className="contentproduct__other-child-auto-car-text">
                         {" "}
-                        {item.number}
+                        {similarcar.number}
                       </p>
                     </div>
                   </div>
                   <div className="contentproduct__other-child-name">
                     <h1 className="contentproduct__other-child-name-main">
                       {" "}
-                      <h3>{item.title}</h3>
+                      <h3>{similarcar.title}</h3>
                     </h1>
                     <i>
                       <BsShieldCheck></BsShieldCheck>
@@ -1088,7 +1098,7 @@ function ContentProduct() {
                       <FaLocationDot></FaLocationDot>
                     </i>
                     <p className="contentproduct__other-child-location-text">
-                      {item.location}
+                      {similarcar.location}
                     </p>
                   </div>
                   <div className="contentproduct__other-child-underlined">
@@ -1101,7 +1111,7 @@ function ContentProduct() {
                           <FaStar></FaStar>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-star-text">
-                          {item.start}
+                        {totalRatings}
                         </p>
                       </div>
                       <div className="contentproduct__other-child-detail-evaluate-usage">
@@ -1109,13 +1119,13 @@ function ContentProduct() {
                           <FaCarRear></FaCarRear>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-usage-text">
-                          {item.usage}
+                          {similarcar.usage}
                         </p>
                       </div>
                     </div>
                     <div className="contentproduct__other-child-detail-buy">
                       <span className="contentproduct__other-child-detail-buy-sale">
-                        {item.price}
+                        {similarcar.price}đ
                       </span>
                       {/* <p className='contentproduct__other-child-detail-buy-day'>
               <span>Giá tổng</span> 1800k
