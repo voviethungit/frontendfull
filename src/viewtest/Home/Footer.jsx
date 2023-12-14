@@ -20,7 +20,7 @@ function Footer() {
       <div className='footer__content'>
         <div className='footer__content-firt'>
         <ScrollLink to='header' smooth={true} duration={800} offset={-20} delay={100}>
-          <img className='footer__content-firt-img' src='https://www.mioto.vn/static/media/logo-full.ea382559.png'></img>           
+          <img className='footer__content-firt-img' src='https://i.ibb.co/9W9dKYh/5.png'></img>           
       </ScrollLink>
           < div className='footer__column'>
           <div className='footer__content-firt-phone'>
@@ -29,7 +29,7 @@ function Footer() {
           </div>
           <div className='footer__content-firt-email'>
             <h4 className='footer__content-firt-emai-name'>nguyennvpd06505@fpt.edu.vn</h4>
-            <p className='footer__content-firt-email-text'>Gửi mail cho Mioto</p>
+            <p className='footer__content-firt-email-text'>Gửi mail cho Xe Tốt</p>
           </div>
           </div>
           <div className='footer__content-firt-icon'>
@@ -60,15 +60,15 @@ function Footer() {
           <li className="footer__content-list-child footer__content-list-child-name-none">
             <h3 className="footer__content-list-child-name" ></h3>
             <div className="footer__content-list-child-text">
-              <Link to='/about' className="footer__content-list-child-text-text">Về Mioto</Link>
-              <Link to='/listblog' className="footer__content-list-child-text-text">Mioto Blog</Link>
-              <Link to='/user' className="footer__content-list-child-text-text">Người dùng</Link>
+              <Link to='/ve-xe-tot' className="footer__content-list-child-text-text">Về Xe Tốt</Link>
+              <Link to='/bai-viet' className="footer__content-list-child-text-text">Bài Viết Xe Tốt</Link>
+              <Link to='/nguoi-dung' className="footer__content-list-child-text-text">Người dùng</Link>
             </div>
           </li>
           <li className="footer__content-list-child">
             <h3 className="footer__content-list-child-name" >Đối Tác</h3>
             <div className="footer__content-list-child-text">
-              <p className="footer__content-list-child-text-text">Đăng ký chủ xe Mioto</p>
+              <p className="footer__content-list-child-text-text">Đăng ký chủ xe Xe Tốt</p>
               <p className="footer__content-list-child-text-text">Đăng ký GPS MITRACK 4G</p>
             </div>
           </li>
@@ -77,21 +77,21 @@ function Footer() {
       <div className='footer__dash'></div>
       <div className='footer__license'>
         <p className='footer__license-firt'>
-        © Công ty Cổ Phần Mioto Asia
+        © Nhóm 5AESIEUNHAN
         </p>
         <ul className='footer__license-last'>
           <p className="footer__license-last-text">
-            Số GCNĐKKD: 0317307544 </p>
+            6 Thành Viên</p>
           <p className="footer__license-last-text">
-          Ngày cấp: 24-05-22 </p>
+          Ngày code: 25-09-2023 </p>
           <p className="footer__license-last-text">
-            Nơi cấp: Sở Kế hoạch và Đầu tư TPHCM</p>
+            Web tham khảo : Mioto Việt Nam</p>
         </ul>
       </div>
       <div className='footer__dash'></div>
       <div className='footer__location'>
         <p className='footer__location-firt'>
-        Địa chỉ: Văn phòng 02, Tầng 08, Tòa nhà Pearl Plaza, Số 561A Điện Biên Phủ, Phường 25, Quận Bình Thạnh, Thành phố Hồ Chí Minh, Việt Nam.
+        Địa chỉ: Hòa Minh - Liên Chiểu - Đà Nẵng - Việt Nam
         </p>
         <ul className='footer__location-last'>
           <p className="footer__location-last-text">
@@ -99,7 +99,7 @@ function Footer() {
           <p className="footer__location-last-text">
           Số TK: 0948988426 </p>
           <p className="footer__location-last-text">
-          Nơi cấp: Sở Kế hoạch và Đầu tư TPHCM</p>
+          Tài liệu có thể được lấy từ nhiều <br></br>nguồn khác nhau</p>
         </ul>
       </div>
       <div className='footer__img'>

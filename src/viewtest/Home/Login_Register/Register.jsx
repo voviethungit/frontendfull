@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState , useEffect  } from "react";
 import "./css/register.css";
 import "./css/base.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaGoogle } from "react-icons/fa6";
+const SuccessNotification = () => {
+  return (
+    <div className="success-notification">
+   
+      <p>Đăng ký thành công!</p>
+    </div>
+  );
+};
 function Register() {
   const [fullName, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -11,7 +19,11 @@ function Register() {
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [avatarFile, setAvatarFile] = useState(null);
-
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [errorModalContent, setErrorModalContent] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+ 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setAvatarFile(file);
@@ -42,10 +54,39 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password.length < 6) {
-      alert("Mật khẩu phải chứa ít nhất 6 ký tự.");
+    setSubmitted(true);
+    if (!fullName || !email || !password || !location || !phoneNumber || !avatarFile) {
+      showErrorModal("Vui lòng nhập đầy đủ thông tin.");
       return;
     }
+  
+    if (!isChecked) {
+      showErrorModal("Bạn phải đồng ý với chính sách của Hungdev.");
+      return;
+    }
+
+    if (password.length < 6) {
+      showErrorModal("Mật khẩu phải chứa ít nhất 6 ký tự.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showErrorModal("Địa chỉ email không hợp lệ.");
+      return;
+    }
+
+    const isNumeric = /^\d+$/;
+if (!isNumeric.test(phoneNumber)) {
+  showErrorModal("Số điện thoại không hợp lệ");
+  return;
+}
+
+// Check if the phone number has at least 10 digits
+if (phoneNumber.length < 10) {
+  showErrorModal("Số điện thoại không hợp lệ");
+  return;
+}
+
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("fullName", fullName);
@@ -61,15 +102,21 @@ function Register() {
         "http://localhost:5000/register",
         formDataToSend
       );
+
       if (response.data.success) {
-        alert("Đăng ký thành công");
-        window.location.href = "http://localhost:3000/login";
+
+        setShowSuccessNotification(true);
+        setTimeout(() => {
+          setShowSuccessNotification(false);
+          window.location.href = "http://localhost:3000/login";
+        }, 3000);
+   
       } else {
-        alert("Đăng ký không thành công. " + response.data.message);
+        showErrorModal("Đăng ký không thành công. " + response.data.message);
       }
     } catch (error) {
       console.error("Có lỗi xảy ra khi Register:", error);
-      alert("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
+      showErrorModal("Đã có lỗi xảy ra. Vui lòng thử lại sau.");
     }
   };
 
@@ -78,16 +125,64 @@ function Register() {
   const handleCheckboxClick = () => {
     setIsChecked(!isChecked);
   };
+ 
+  const showErrorModal = (content) => {
+    setErrorModalContent(content);
+    setErrorModalVisible(true);
+  };
+
+  const hideErrorModal = () => {
+    setErrorModalVisible(false);
+    setErrorModalContent("");
+  };
+  const handleOverlayClick = (e) => {
+    console.log("Overlay clicked");
+    if (e.target.classList.contains("background-modal-opacity")) {
+      hideErrorModal();
+    }
+  };
+  useEffect(() => {
+    const body = document.querySelector("body");
+    if (errorModalVisible) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "auto";
+    }
+  }, [errorModalVisible]);
+
 
   return (
-    <form className="register-form" onSubmit={handleSubmit}>
-      <div className="hehehe">
-        <div className="modal">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2>Đăng ký</h2>
-            </div>
+    <div>
+    {showSuccessNotification && (
+        <SuccessNotification onClose={() => setShowSuccessNotification(false)} />
+      )}
 
+                   {errorModalVisible && (
+           <div className="background-modal-opacity"  onClick={handleOverlayClick}>
+        <div className="modal-error ">
+       <img src="https://th.bing.com/th/id/R.fe2dd5ae5f292611169640ea4175cff2?rik=4aPcCLbsDWo5Wg&pid=ImgRaw&r=0" alt="" />
+            <button onClick={hideErrorModal}>X</button>
+            <p>{errorModalContent}</p>
+
+        </div>
+      </div>
+    )}
+          
+
+
+    <form className="register-form" onSubmit={handleSubmit}>
+    
+      <div className="hehehe">
+ 
+        <div className="modal">
+          
+          <div className="modal-content">
+       <div className="modal-header">
+        
+              <h2>Đăng ký</h2>
+  
+            </div>
+         
             <div className="modal-body">
               <div className="modal-input-body">
                 <div className="modal-input-body">
@@ -107,6 +202,11 @@ function Register() {
                             accept="image/*"
                             onChange={(e) => handleImageChange(e)}
                           />
+                           {avatarFile && (
+                            <div className="wrap-images">
+                              <img src={URL.createObjectURL(avatarFile)} alt="Avatar" />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -126,7 +226,7 @@ function Register() {
                             name="phoneNumber"
                             placeholder="Nhập Số Điện Thoại"
                             onChange={handleChange}
-                            required
+                    
                           ></input>
                         </div>
                       </div>
@@ -185,7 +285,7 @@ function Register() {
                           <input
                             type="password"
                             name="password"
-                            required
+                    
                             className="input-password"
                             placeholder="Nhập Mật Khẩu"
                             onChange={handleChange}
@@ -204,7 +304,7 @@ function Register() {
                         </div>
                       </div>
                       <div className="wrap-input">
-                        <div className="wrap-text">
+                      <div className= "wrap-text">
                           <input
                             type="text"
                             name="location"
@@ -245,7 +345,7 @@ function Register() {
                   <div className="wrap-btn-text">
                     <p>
                       Bạn đã có tài khoản ?
-                      <Link to="/login">
+                      <Link to="/dang-nhap">
                         {" "}
                         <span>Đăng nhập</span>{" "}
                       </Link>
@@ -272,7 +372,11 @@ function Register() {
           </div>
         </div>
       </div>
+      
+     
+
     </form>
+    </div>
   );
 }
 

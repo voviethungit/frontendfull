@@ -143,7 +143,7 @@ function Mainlocation() {
                                     : car.title.toLowerCase().includes(search.toLowerCase())
                             )
                             .map((car, index) => (
-                                <Link to={`/product/${car._id}`} className='location__list-child' key={index}>
+                                <Link to={`/san-pham/${car._id}`} className='location__list-child' key={index}>
                                     <nav>
                                         <img src={car.imagePath} className='location__list-child-img' />
                                         <div className='btn__freetax location__list-child-img-tax '>

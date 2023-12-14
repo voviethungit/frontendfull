@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./css/userinfor.css";
 import "./css/base.css";
 import "./css/mainuser.css";
@@ -6,36 +6,8 @@ import Header from "../Home/Header";
 import Footer from "../Home/Footer";
 import Navbarmobile from "./Navbarmobile";
 import Userinfornav from "./Userinfornav";
-import { useNavigate   } from "react-router-dom";
-import axios from "axios";
+
 function Myfavs() {
-  const navigate = useNavigate();
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [accountBalance, setAccountBalance] = useState('');
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      setLoggedIn(false);
-    } else {
-
-      axios.get('http://localhost:5000/getProfile', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then((response) => {
-          setAccountBalance(response.data.user.accountBalance);
-        })
-        .catch((error) => {
-          console.error('Lỗi :', error);
-
-        });
-    }
-  }, []);
-  if (!loggedIn) {
-    navigate("/login");
-  }
   return (
     <div  className="main-color">
       <Header />
@@ -57,7 +29,7 @@ function Myfavs() {
               <div className="owner-report--heading"><h1>Bảng tổng hợp giao dịch</h1></div>
               <div className="owner-report-body">
                 <div className="money">
-                  <h2>{accountBalance}đ</h2>
+                  <h2>0đ</h2>
                   <span>Số dư hiện tại</span>
                 </div>
                 <div className="summary-change">
