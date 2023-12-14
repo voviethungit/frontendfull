@@ -103,25 +103,9 @@ function ContentProduct() {
       console.error("Error submitting review:", error);
     }
   };
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
 
-      axios.get('http://localhost:5000/getProfile', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then((response) => {
-          setAvatar(response.data.user.avatar);
-          setFullName(response.data.user.fullName);
-        })
-        .catch((error) => {
-          console.error('Lỗi :', error);
 
-        });
-    }
-  }, []);
+
 
   useEffect(() => {
     axios
@@ -135,7 +119,7 @@ function ContentProduct() {
   }, [id]);
 
   if (!car) {
-    return <div>Dang tai...</div>;
+    return <div className="loading">Dang tai...</div>;
   }
   const contactproduct__tablet = {
     dots: true,
@@ -767,11 +751,11 @@ function ContentProduct() {
                       <div className="list-reviews-item-firt-avt">
                         <img
                           className="list-reviews-item-img"
-                          src={avatar}
-                          alt={fullName}
+                          src={review.avatar}
+                          alt={review.fullName}
                         />
                         <div className="list-reviews-item-name" key={index}>
-                          <h6>{fullName}</h6>
+                          <h6>{review.fullName}</h6>
                           <div className="list-reviews-item-name-star">
                             {Array.from({ length: review.rating }, (_, i) => (
                               <i key={i}>

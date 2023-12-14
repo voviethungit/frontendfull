@@ -61,7 +61,10 @@ function Content() {
     //   .catch((error) => {
     //     console.error('Lỗi:', error);
     //   });
-  }, []);
+    console.log('search:', search);
+    console.log('selectedDistrict:', selectedDistrict);
+    console.log('selectedPay:', selectedPay);
+  }, [search, selectedDistrict, selectedPay]);
 
   const contact__pc_tablet = {
     dots: true,
@@ -216,11 +219,13 @@ function Content() {
       <div className='content__list'>
         <Slider {...contact__pc_tablet}>
           {cars
-               .filter((car) =>
-               (search.trim() === '' || car.title.toLowerCase().includes(search.toLowerCase())) &&
-               (selectedDistrict === null || car.location === selectedDistrict) &&
-               (selectedPay === null || car.price === selectedPay)
-             )
+               .filter((car) => {
+                const titleMatch = car.title.toLowerCase().includes(search.toLowerCase());
+                const districtMatch = selectedDistrict === null || car.location === selectedDistrict;
+                const payMatch = selectedPay === null || car.price === selectedPay;
+            
+                return titleMatch && districtMatch && payMatch;
+              })
             .map((car, index) => (
               <Link to={`/san-pham/${car._id}`} className='content__list-child' key={index}>
                 <nav>
