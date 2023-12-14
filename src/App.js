@@ -55,11 +55,11 @@ function App() {
           <Route path='/dang-nhap' element={<MainLogin />} />
           <Route path='/dang-ky' element={<MainRegister />} />
           <Route path='/UserInfor' element={<UserInfor />} />  
-          <Route path='/Myfavs' element={<Myfavs/>} />  
-          <Route path='/Mycars' element={<Mycars/>} />  
-          <Route path='/Myreward' element={<Myreward/>} />  
-          <Route path='/Mytrips' element={<Mytrips/>} />  
-          <Route path='/Resetpw' element={<Resetpw/>} />
+          <Route path='/xe-yeu-thich' element={<Myfavs/>} />  
+          <Route path='/xe-cua-toi' element={<Mycars/>} />  
+          <Route path='/qua-tang-cua-toi' element={<Myreward/>} />  
+          <Route path='/vi-cua-toi' element={<Mytrips/>} />  
+          <Route path='/doi-mat-khau' element={<Resetpw/>} />
           <Route path='/Navbarmobile' element={<Navbarmobile/>} />
           <Route path='/bao-hiem' element={<Maintrip/>} />
           <Route path='/policy' element={<Policy/>} />
