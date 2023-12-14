@@ -52,7 +52,6 @@ function Header() {
     }
   }, []);
 
-
   return (
     <div className='header' id='header'>
       <Link to="/" className='header__icon'>
