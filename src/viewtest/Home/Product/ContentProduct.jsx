@@ -267,34 +267,6 @@ const totalRatings = getTotalRatings(reviews);
       linkDefault: imgGirl,
     }));
   };
-  const dataCarSlider = [
-    {
-      id: 1,
-      tax: "Đặt xe nhanh",
-      flash: "Miễn thế chấp",
-      number: "Số tự động",
-      title: "VINFAST LUX SA 2.0 2021",
-      location: "Quận 7, Hồ Chí Minh",
-      start: "5.0",
-      usage: "75 chuyến",
-      price: "800k",
-      userImg: user,
-      linkImg: car.imagePath,
-    },
-    {
-      id: 2,
-      tax: "Đặt xe nhanh",
-      flash: "Miễn thế chấp",
-      number: "Số tự động",
-      title: "VINFAST LUX SA 2.0 2021",
-      location: "Quận 7, Hồ Chí Minh",
-      start: "5.0",
-      usage: "75 chuyến",
-      price: "800k",
-      userImg: user,
-      linkImg: car.imagePath,
-    },
-  ];
   // Xe yêu thích
   const handleIconClick = () => {
     // Thay đổi màu nền khi người dùng nhấn vào biểu tượng
@@ -965,7 +937,7 @@ const totalRatings = getTotalRatings(reviews);
                   <span>1 225 000đ * 1ngày</span>
                 </p>
               </div>
-              <Link to="/thanh-toan">
+              <Link to={`/thanh-toan/${car._id}`}>
                 <button className="btn__large price-container-button">
                   <i>
                     <FaCircleCheck></FaCircleCheck>

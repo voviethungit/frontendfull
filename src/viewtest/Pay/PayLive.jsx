@@ -1,39 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PayLive.css";
 import axios from "axios";
 const PayLive = () => {
-  const [amount, setAmount] = useState("");
-  const [bankCode, setBankCode] = useState("");
   const [language, setLanguage] = useState("vn");
-  const handleAmountChange = (e) => {
-    setAmount(e.target.value);
-  };
+  const [userId, setUserId] = useState('');
 
-  const handleBankCodeChange = (e) => {
-    setBankCode(e.target.value);
-  };
-
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/create_payment_url",
-        {
-          amount: amount,
-          bankCode: bankCode,
-          language: language,
-        }
-      );
-      const paymentUrl = response.data.paymentUrl;
-      window.location.href = paymentUrl;
-    } catch (error) {
-      console.error("Error occurred:", error);
-    }
-  };
+console.log(userId);
   return (
     <div className="">
       <div className="Paylive-container">
@@ -110,7 +91,7 @@ const PayLive = () => {
             </h6>
           </div>
           <div className="Vnpay-content-atm">
-            <form className="form-Vnpay-content-atm" method="post" action="http://localhost:8888/order/create_payment_url">
+            <form className="form-Vnpay-content-atm" method="post" action="http://localhost:5000/create_payment_url">
               <input
                 className="form-control"
                 id="amount"
@@ -124,49 +105,57 @@ const PayLive = () => {
                 <div className="controls">
                   <p className="radio-inline">
                     <input
-                      type="hidden"
+                      type="radio"
+                      name="bankCode"
+                      value=""
+                      id="defaultPaymentMethod"
+                    />
+                                 Cổng thanh toán VNPAYQR <br />
+                    <input
+                      type="radio"
                       name="bankCode"
                       value="VNBANK"
                       
                     />
+                 Thanh toán qua ATM-Tài khoản ngân hàng nội địa <br />
                     <input
-                      type="hidden"
-                      name="language"
-                      value="vn"
+                      type="radio"
+                      name="bankCode"
+                      value="VNPAYQR"
                       
                     />
-                    Cổng thanh toán VNPAYQR
+                    Thanh toán qua ứng dụng hỗ trợ VNPAYQR <br />
+                    <input
+                      type="radio"
+                      name="bankCode"
+                      value="INTCARD"
+                      
+                    />
+        Thanh toán qua thẻ quốc tế
                   </p>
-                  {/* <label className="radio-inline">
-                <input
-                  type="radio"
-                  name="bankCode"
-                  value="VNPAYQR"
-                  onChange={handleBankCodeChange}
-                />
-                Thanh toán qua ứng dụng hỗ trợ VNPAYQR
-              </label> */}
                 </div>
-              </div>
-              <button className="btn btn-default" type="submit">
-                Thanh toán
-              </button>
-            </form>
-            <div className="form-group">
+                <div className="form-group">
               <label>Ngôn ngữ</label>
               <div className="controls">
                 <label className="radio-inline">
-                  {/* <input
+                  <input
                     type="radio"
                     name="language"
                     value="vn"
                     checked={language === "vn"}
                     onChange={handleLanguageChange}
-                  /> */}
+                  />
                   Tiếng việt
                 </label>
               </div>
             </div>
+            <input type="hidden" name="userId" value={userId} />
+              </div>
+              <button className="btn btn-default" type="submit">
+                Thanh toán
+              </button>
+            </form>
+            
             <p className="power-vnpay-text">
               Powerd by <span className="VNPAY-colorred">VN</span>
               <span className="VNPAY-colorblue">PAY</span>

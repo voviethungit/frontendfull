@@ -72,7 +72,7 @@ function App() {
           <Route path='/regu' element={<Regu/>} />
           <Route path='/dia-diem' element={<Mainlocation/>} />
           <Route path='/nap-tien' element={<PayLive/>} /> 
-          <Route path='/thanh-toan' element={<Pay/>} />
+          <Route path='/thanh-toan/:id' element={<Pay/>} />
         </Routes>
       </Router>
     </>
