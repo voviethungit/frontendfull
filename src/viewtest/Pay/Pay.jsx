@@ -126,7 +126,7 @@ function Pay() {
             <div className="pay__information-pay">
               <button
                 className="btn__large pay__information-pay-button"
-                onClick={handleRentCar}
+                onClick={handleConfirmRent} type="submit"
               >
                 Chọn thuê
               </button>
