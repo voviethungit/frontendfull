@@ -942,7 +942,7 @@ const totalRatings = getTotalRatings(reviews);
                   <span>1 225 000đ * 1ngày</span>
                 </p>
               </div>
-              <Link to="/thanh-toan">
+              <Link to={`/thanh-toan/${car._id}`}>
                 <button className="btn__large price-container-button">
                   <i>
                     <FaCircleCheck></FaCircleCheck>
