@@ -36,17 +36,17 @@ function Navbarmobile() {
               <li onClick={() => handleItemClick("Xe yêu thích")}>Xe yêu thích</li>
             </Link>
 
-            <Link to="/xe-cua-toi" className='dropdown-list-link'>
+            {/* <Link to="/xe-cua-toi" className='dropdown-list-link'>
               <li onClick={() => handleItemClick("Xe của tôi")}>Xe của tôi</li>
-            </Link>
+            </Link> */}
             <Link to="/vi-cua-toi" className='dropdown-list-link'>
-              <li onClick={() => handleItemClick("Chuyến đi của tôi")}>Ví của tôi</li>
+              <li onClick={() => handleItemClick("Ví của tôi")}>Ví của tôi</li>
             </Link>
             <Link to="/qua-tang-cua-toi" className='dropdown-list-link'>
               <li onClick={() => handleItemClick("Quà tặng")}>Quà tặng</li>
             </Link>
-            <Link to="/dia-chi-cua-toi" className='dropdown-list-link'>
-              <li onClick={() => handleItemClick("Địa chỉ của tôi")}>Địa chỉ của tôi</li>
+            <Link to="/chuyen-di-cua-toi" className='dropdown-list-link'>
+              <li onClick={() => handleItemClick("Lịch sử chuyến")}>Lịch sử chuyến</li>
             </Link>
             <Link to="/doi-mat-khau" className='dropdown-list-link'>
               <li onClick={() => handleItemClick("Đổi mật khẩu")}>Đổi mật khẩu</li>

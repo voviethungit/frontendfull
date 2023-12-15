@@ -14,10 +14,10 @@ function Content() {
   const [cars, setCars] = useState([]);
   const [categories, setCategories] = useState([]);
   const [search, setSearch] = useState('');
-  const [isOpenCategory, setIsOpenCategory] = useState(false); 
+  const [isOpenCategory, setIsOpenCategory] = useState(false);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [currentItem, setCurrentItem] = useState("Danh mục");
-  const [isOpenPay, setIsOpenPay] = useState(false); 
+  const [isOpenPay, setIsOpenPay] = useState(false);
   const [selectedPay, setSelectedPay] = useState(null);
   const [currentPay, setCurrentPay] = useState("Giá Tiền");
 
@@ -30,16 +30,18 @@ function Content() {
     setIsOpenCategory(false);
 
     setSelectedDistrict(item === "Danh Mục" ? null : item);
+    setSelectedPay(null);
   };
 
   const togglePayDropdown = () => {
     setIsOpenPay(!isOpenPay);
   };
   const handlePayClick = (item) => {
+    const numericValue = parseFloat(item);
+
     setCurrentPay(item);
     setIsOpenPay(false);
-
-    setSelectedPay(item === "Giá Tiền" ? null : item);
+    setSelectedPay(isNaN(numericValue) ? null : numericValue);
   };
   // bộ lọc
   useEffect(() => {
@@ -48,23 +50,15 @@ function Content() {
         const carsData = response.data.cars;
         setCars(carsData);
         console.log('API Response:', response.data);
+        console.log('search:', search);
+        console.log('selectedDistrict:', selectedDistrict);
+        console.log('selectedPay:', selectedPay);
       })
       .catch((error) => {
         console.error('Lỗi:', error);
       });
-    // axios.get('http://localhost:5000/get-categories')
-    //   .then((response) => {
-    //     const categoriesData = response.data.categories;
-    //     setCategories(categoriesData);
-    //     console.log('API Response:', response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Lỗi:', error);
-    //   });
-    console.log('search:', search);
-    console.log('selectedDistrict:', selectedDistrict);
-    console.log('selectedPay:', selectedPay);
   }, [search, selectedDistrict, selectedPay]);
+  
 
   const contact__pc_tablet = {
     dots: true,
@@ -183,7 +177,7 @@ function Content() {
                 </li>
               </div>
               <div className='search-list-link'>
-                <li onClick={() => handlePayClick("700-800k")}>
+                <li onClick={() => handlePayClick("800000vnđ")}>
                   700-800k
                 </li>
               </div>
@@ -219,13 +213,25 @@ function Content() {
       <div className='content__list'>
         <Slider {...contact__pc_tablet}>
           {cars
-               .filter((car) => {
-                const titleMatch = car.title.toLowerCase().includes(search.toLowerCase());
-                const districtMatch = selectedDistrict === null || car.location === selectedDistrict;
-                const payMatch = selectedPay === null || car.price === selectedPay;
+            .filter((car) => {
+              const titleMatch = car.title.toLowerCase().includes(search.toLowerCase());
+              const districtMatch = selectedDistrict === null || car.location === selectedDistrict;
+              const payMatch = selectedPay === null || car.price === selectedPay;
             
-                return titleMatch && districtMatch && payMatch;
-              })
+              return titleMatch && districtMatch && payMatch;
+            })
+            // .filter((car) => {
+            //   const titleMatch = car.title.toLowerCase().includes(search.toLowerCase());
+            //   const districtMatch = selectedDistrict === null || car.location === selectedDistrict;
+
+            //   // Chuyển đổi giá trị car.price sang số
+            //   const carPrice = parseFloat(car.price);
+
+            //   // So sánh giá trị carPrice với selectedPay
+            //   const payMatch = selectedPay === null || carPrice >= selectedPay;
+
+            //   return titleMatch && districtMatch && payMatch;
+            // })
             .map((car, index) => (
               <Link to={`/san-pham/${car._id}`} className='content__list-child' key={index}>
                 <nav>

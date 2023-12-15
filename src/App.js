@@ -17,6 +17,7 @@ import Myreward from './viewtest/User/Myreward';
 import Mytrips from './viewtest/User/Mytrips';
 import Resetpw from './viewtest/User/Resetpw';
 import Navbarmobile from './viewtest/User/Navbarmobile';
+import Myaddress from './viewtest/User/Myaddress.jsx'
 import Maintrip from './viewtest/Home/Trip/Maintrip';
 import ScrollToTop from './viewtest/Home/Scroptotop';
 // Tú Footer
@@ -56,9 +57,10 @@ function App() {
           <Route path='/dang-ky' element={<MainRegister />} />
           <Route path='/UserInfor' element={<UserInfor />} />  
           <Route path='/xe-yeu-thich' element={<Myfavs/>} />  
-          <Route path='/xe-cua-toi' element={<Mycars/>} />  
+          <Route path='/chuyen-di-cua-toi' element={<Mytrips/>} />  
+          <Route path='/vi-cua-toi' element={<Mycars/>} />  
           <Route path='/qua-tang-cua-toi' element={<Myreward/>} />  
-          <Route path='/vi-cua-toi' element={<Mytrips/>} />  
+          <Route path='/dia-chi-cua-toi' element={<Myaddress/>} />  
           <Route path='/doi-mat-khau' element={<Resetpw/>} />
           <Route path='/Navbarmobile' element={<Navbarmobile/>} />
           <Route path='/bao-hiem' element={<Maintrip/>} />

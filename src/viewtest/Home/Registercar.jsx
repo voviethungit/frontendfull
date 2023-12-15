@@ -58,8 +58,12 @@ function Registercar() {
                     <p className='registercar__container-list-text'> Hãy thiết lập nhắc nhở về những chuyến đi để có thể tiết kiệm thời gian nhất
                     </p>
                     <div className='registercar__container-list-button'>
-                        <button onClick={handleSetReminder} className='registercar__container-list-button-firt btn__large'><p>Nhắc Nhở</p></button>
-                        <button className='registercar__container-list-button-last btn__large'><p>Hiển thị thông báo</p></button>
+                        <button onClick={handleSetReminder} className='registercar__container-list-button-firt btn__large'>
+                          <p>Nhắc Nhở</p>
+                        </button>
+                        <button className='registercar__container-list-button-last btn__large'>
+                          <p>Hiển thị thông báo</p>
+                        </button>
                     </div>
                 </div>
                 <img className='registercar__container-img' src='https://www.mioto.vn/static/media/thue_xe_oto_tu_lai_di_du_lich_gia_re.fde3ac82.png' alt=''></img>
