@@ -56,7 +56,7 @@ function ContentProduct() {
   const [similarCars, setSimilarCars] = useState([]);
   const [copySuccess, setCopySuccess] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  
+
   const openModal = (image) => {
     setModalOpen(true);
     setOverlayOpacity(1);
@@ -71,29 +71,45 @@ function ContentProduct() {
       try {
         const userId = localStorage.getItem("userId");
         const accessToken = localStorage.getItem("accessToken");
-        const response = await fetch(`http://localhost:5000/favorite/${userId}/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            carId: id,
-            title: car.title,
-            imagePath: car.imagePath,
-            price: car.price,
-          }),
-        });
+        if (!userId || !accessToken) {
+          window.location.href = "/login"; 
+    return; 
+  }
+        const response = await fetch(
+          `http://localhost:5000/favorite/${userId}/${id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify({
+              carId: id,
+              title: car.title,
+              imagePath: car.imagePath,
+              price: car.price,
+            }),
+          }
+        );
         const data = await response.json();
         if (data.success) {
           setIsFavorite(true);
-          localStorage.setItem('isFavoriteCarId', 'true');
+          localStorage.setItem(`favorite_${id}`, "true");
         }
       } catch (error) {
         console.error("Lỗi khi thêm vào xe yêu thích:", error);
       }
     }
   };
+  const applyFavoriteStatus = () => {
+    const favoriteStatus = localStorage.getItem(`favorite_${id}`);
+    if (favoriteStatus === "true") {
+      setIsFavorite(true);
+    }
+  };
+  useEffect(() => {
+    applyFavoriteStatus();
+  }, []);
 
   // cuộn trang
   const { carreaload } = useLocation();
@@ -154,6 +170,36 @@ function ContentProduct() {
       console.log("Review submitted:", response.data);
     } catch (error) {
       console.error("Error submitting review:", error);
+    }
+  };
+  const handleSimilarCarFavoriteClick = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const accessToken = localStorage.getItem("accessToken");
+
+      const response = await fetch(
+        `http://localhost:5000/favorite/${userId}/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            carId: id,
+            title: car.title,
+            imagePath: car.imagePath,
+            price: car.price,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        console.log("Đã thêm vào xe yêu thích:", id);
+      }
+    } catch (error) {
+      console.error("Lỗi khi thêm vào xe yêu thích:", error);
     }
   };
   useEffect(() => {
@@ -339,7 +385,7 @@ const totalRatings = getTotalRatings(reviews);
       });
   };
   // tính tổng giá tiền
-  
+
   const tongTien = car.price + 125000 + 125000;
   return (
     <div className="contentproduct">
@@ -1120,7 +1166,7 @@ const totalRatings = getTotalRatings(reviews);
         <h2>Xe tương tự</h2>
         <Slider {...car__slider}>
           {similarCars.map((similarcar) => (
-            <Link key={similarcar._id} to={`/san-pham/${similarcar._id}`}>
+            <Link to={`/san-pham/${similarcar._id}`}>
               <div key={similarcar._id} className="contentproduct__other-child">
                 <div className="contentproduct__other-child-top">
                   <img
@@ -1134,7 +1180,11 @@ const totalRatings = getTotalRatings(reviews);
                     onError={handleErrorImage}
                   />
                   <div className="absolute__heart" style={{ backgroundColor }}>
-                    <i onClick={handleIconClick}>
+                    <i
+                      onClick={() =>
+                        handleSimilarCarFavoriteClick(similarcar._id)
+                      }
+                    >
                       <FaHeart />
                     </i>
                   </div>
