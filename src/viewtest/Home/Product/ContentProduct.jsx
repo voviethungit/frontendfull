@@ -217,7 +217,7 @@ const getTotalRatings = (reviews) => {
     totalRatings += review.rating;
   });
 
-  return (totalRatings / reviews.length).toFixed(2);
+  return (totalRatings / reviews.length).toFixed(1);
 };
 const totalComments = getTotalComments(reviews);
 const totalRatings = getTotalRatings(reviews);
@@ -401,7 +401,7 @@ const totalRatings = getTotalRatings(reviews);
               <div className="price">
                 <h4>{car.price}/ngày</h4>
               </div>
-              <div className="date-time-form">
+              {/* <div className="date-time-form">
                 <div className="form-item">
                   <label>Nhận xe</label>
                   <div className="wrap-date-time">
@@ -425,7 +425,7 @@ const totalRatings = getTotalRatings(reviews);
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="dropdown-form">
                 <label>Địa điểm giao nhận xe</label>
                 <div className="wrap-form">
@@ -514,7 +514,7 @@ const totalRatings = getTotalRatings(reviews);
                     <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
-                <Link to="/thanh-toan">
+                <Link to={`/thanh-toan/${car._id}`}>
                 <button className="btn__large price-container-button">
                   <i>
                     <FaCircleCheck></FaCircleCheck>
@@ -723,7 +723,7 @@ const totalRatings = getTotalRatings(reviews);
             </div>
             <div className="contentproduct__detail-container-content-rules">
               <h6>Điều khoản</h6>
-              <p  className={isHidden ? 'hide' : ''}>
+              <p  className={isHidden ? 'hide' : 'hideshow'}>
                 Quy định khác: <br />
                 ◦ Sử dụng xe đúng mục đích. <br />
                 ◦ Không sử dụng xe thuê vào mục đích phi pháp, trái pháp luật.{" "}
@@ -834,7 +834,7 @@ const totalRatings = getTotalRatings(reviews);
             <div className="price">
               <h4>{car.price}/ngày</h4>
             </div>
-            <div className="date-time-form">
+            {/* <div className="date-time-form">
               <div className="form-item">
                 <label>Nhận xe</label>
                 <div className="wrap-date-time">
@@ -858,7 +858,7 @@ const totalRatings = getTotalRatings(reviews);
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="dropdown-form">
               <label></label>
               <div className="wrap-form">
