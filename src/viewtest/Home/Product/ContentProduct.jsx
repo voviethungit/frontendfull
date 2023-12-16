@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams, useLocation } from "react-router-dom";
 import "./css/contentproduct.css";
 import "./css/base.css";
+import { Helmet } from 'react-helmet';
 import {
   FaHeart,
   FaShareNodes,
@@ -342,6 +343,9 @@ const totalRatings = getTotalRatings(reviews);
   const tongTien = car.price + 125000 + 125000;
   return (
     <div className="contentproduct">
+       <Helmet>
+        <title>{car.title}</title>
+      </Helmet>
       <div className="contentproduct__img">
         <div className="contentproduct__img-main">
           <img src={car.imagePath} alt={car.title}></img>
@@ -538,12 +542,12 @@ const totalRatings = getTotalRatings(reviews);
                     <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
-                <div className="promoion">
+                {/* <div className="promoion">
                   <i className="promoion-icon">
                     <FaCalendarMinus></FaCalendarMinus>
                   </i>
                   <p className="promotion-text">Sử dụng khuyến mãi</p>
-                </div>
+                </div> */}
                 <div className="line-page"></div>
                 <div className="price-item price-content-total">
                   <p className="df-align-center">Tổng phí thuê xe</p>
@@ -986,12 +990,12 @@ const totalRatings = getTotalRatings(reviews);
                   <span>{tongTien}đ * 1ngày</span>
                 </p>
               </div>
-              <div className="promoion">
+              {/* <div className="promoion">
                 <i className="promoion-icon">
                   <FaCalendarMinus></FaCalendarMinus>
                 </i>
                 <p className="promotion-text">Sử dụng khuyến mãi</p>
-              </div>
+              </div> */}
               <div className="line-page"></div>
               <div className="price-item price-content-total">
                 <p className="df-align-center">Tổng phí thuê xe</p>

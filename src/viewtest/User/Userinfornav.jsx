@@ -125,8 +125,7 @@ function Userinfornav() {
           </li>
         </Link>
 
-        <Link
-          to={handleLogout}
+        <Link onClick = {handleLogout}
           className="userinfor-nav-link"
         >
           <li className="userinfor__nav-list-child">

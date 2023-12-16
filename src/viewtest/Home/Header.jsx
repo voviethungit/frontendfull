@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import images from './img/erenyeager.jpg';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-import { BeatLoader } from 'react-spinners'
+import { BeatLoader } from 'react-spinners';
 
 
 function Header() {
@@ -65,8 +65,8 @@ function Header() {
           <>
             <Link to="/ve-xe-tot" className='logout-item-page'>Về Xe Tốt
             </Link>
-            <ScrollLink to='bai-viet' smooth={true} duration={800} className='logout-item-page'>Bài Viết
-            </ScrollLink>
+            <Link to='/bai-viet' className='logout-item-page'>Bài Viết
+            </Link>
           </>
         )}
         {isLoggedIn ? (
@@ -91,7 +91,6 @@ function Header() {
               /> */}
             <Link to="/chuyen-di-cua-toi" className='header__page-item'>Chuyến đi</Link>
             <Link to="/nap-tien" className='header__page-item'>Nạp Tiền</Link>
-            {/* <Link to="/listblog" className='header__page-item'>Bài Viết</Link> */}
             <ScrollLink to='blog' smooth={true} duration={800} className='header__page-item'>Bài Viết</ScrollLink>
             <span onClick={togglebellDisplay} className='header__page-item-login-bell'
             >
@@ -187,7 +186,7 @@ function Header() {
                 <Link to='/nguoi-dung' className='header__page-item-login-overlay-profile'>
                   <h3 className='header__page-item-login-overlay-profile-name'>
                     <i><FaUserLarge></FaUserLarge></i>
-                    Vào profile
+                     Trang cá nhân
                   </h3>
                 </Link>
               </div>
@@ -211,7 +210,7 @@ function Header() {
                     Về Xe Tốt
                   </h3>
                 </Link>
-                <Link to="/bai-viet" className='navbar__notuser-register about__mobile'>
+                <Link to="/bai-viet1" className='navbar__notuser-register about__mobile'>
                   <h3 className='navbar__notuser-register-text'>
                     Bài Viết
                   </h3>

@@ -11,6 +11,7 @@ import anh1 from '../img/blog1.jpg';
 import anh2 from '../img/blog2.jpg';
 import anh3 from '../img/blog3.jpg';
 import anh4 from '../img/blog4.jpg';
+import { Helmet } from 'react-helmet';
 
 const ListBlog1 = () => {
   const [defaultImage, setDefaultImage] = useState({});
@@ -103,6 +104,9 @@ const ListBlog1 = () => {
   };
   return (
     <div className="main__listblog1">
+       <Helmet>
+        <title>Bài viết</title>
+      </Helmet>
       <Header/>
       <div className="blog__chill">
         <div className="blog_detail_main">

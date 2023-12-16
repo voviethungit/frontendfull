@@ -258,7 +258,7 @@ function Content() {
                   </div>
                 </nav>
                 <div className='content__list-child-auto'>
-                  <div className='content__list-child-auto-car btn__auto'>
+                  <div className='content__list-child-auto-car '>
                     <p className='content__list-child-auto-car-text'> {car.tax2}</p>
                   </div>
                   <div className='content__list-child-auto-location'></div>
