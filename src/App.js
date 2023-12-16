@@ -39,7 +39,7 @@ import PayLive from './viewtest/Pay/PayLive';
 import NotFound from './viewtest/Home/NotFound.jsx';
 // Thanh toán
 import Pay from './viewtest/Pay/Pay.jsx';
-import { Helmet } from 'react-helmet';
+// import { HelmetProvider } from 'react-helmet';
 function App() {
   return (
     <>
