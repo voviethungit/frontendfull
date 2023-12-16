@@ -70,6 +70,10 @@ function ContentProduct() {
       try {
         const userId = localStorage.getItem("userId");
         const accessToken = localStorage.getItem("accessToken");
+        if (!userId || !accessToken) {
+          window.location.href = "/login"; 
+    return; 
+  }
         const response = await fetch(
           `http://localhost:5000/favorite/${userId}/${id}`,
           {
