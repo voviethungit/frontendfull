@@ -30,7 +30,7 @@ import {
   FaIdCardClip,
   FaLocationDot,
   FaCarRear,
-  FaX
+  FaX,
 } from "react-icons/fa6";
 import { BsShieldCheck } from "react-icons/bs";
 import Slider from "react-slick";
@@ -42,7 +42,9 @@ function ContentProduct() {
   const [defaultImage, setDefaultImage] = useState({});
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [showFullComment, setShowFullComment] = useState(Array(reviews.length).fill(false));
+  const [showFullComment, setShowFullComment] = useState(
+    Array(reviews.length).fill(false)
+  );
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState("");
   const [car, setCar] = useState(null);
@@ -52,6 +54,8 @@ function ContentProduct() {
   const [isHidden, setIsHidden] = useState(true);
   const [similarCars, setSimilarCars] = useState([]);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  
   const openModal = (image) => {
     setModalOpen(true);
     setOverlayOpacity(1);
@@ -61,6 +65,35 @@ function ContentProduct() {
     setModalOpen(false);
     setOverlayOpacity(0);
   };
+  const handleFavoriteClick = async () => {
+    if (!isFavorite) {
+      try {
+        const userId = localStorage.getItem("userId");
+        const accessToken = localStorage.getItem("accessToken");
+        const response = await fetch(`http://localhost:5000/favorite/${userId}/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            carId: id,
+            title: car.title,
+            imagePath: car.imagePath,
+            price: car.price,
+          }),
+        });
+        const data = await response.json();
+        if (data.success) {
+          setIsFavorite(true);
+          localStorage.setItem('isFavoriteCarId', 'true');
+        }
+      } catch (error) {
+        console.error("Lỗi khi thêm vào xe yêu thích:", error);
+      }
+    }
+  };
+
   // cuộn trang
   const { carreaload } = useLocation();
   useEffect(() => {
@@ -69,7 +102,7 @@ function ContentProduct() {
         const response = await axios.get(`http://localhost:5000/reviews/${id}`);
         setReviews(response.data);
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        console.error("Error fetching reviews:", error);
       }
     };
 
@@ -83,19 +116,19 @@ function ContentProduct() {
       try {
         const response = await fetch(`http://localhost:5000/get-car/${id}`);
         const data = await response.json();
-        
+
         if (data.success) {
           setSimilarCars(data.similarCars);
         } else {
-          console.error('Failed to fetch similar cars:', data.message);
+          console.error("Failed to fetch similar cars:", data.message);
         }
       } catch (error) {
-        console.error('Error fetching similar cars:', error);
+        console.error("Error fetching similar cars:", error);
       }
     };
 
     fetchSimilarCars();
-  }, [id, carreaload ]);
+  }, [id, carreaload]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -202,22 +235,22 @@ function ContentProduct() {
     },
   ];
   // Hàm tính tổng số bình luận
-const getTotalComments = (reviews) => {
-  return reviews.length;
-};
+  const getTotalComments = (reviews) => {
+    return reviews.length;
+  };
 
-// Hàm tính tổng số đánh giá
-const getTotalRatings = (reviews) => {
-  if (reviews.length === 0) {
-    return 0; 
-  }
+  // Hàm tính tổng số đánh giá
+  const getTotalRatings = (reviews) => {
+    if (reviews.length === 0) {
+      return 0;
+    }
 
-  let totalRatings = 0;
-  reviews.forEach((review) => {
-    totalRatings += review.rating;
-  });
+    let totalRatings = 0;
+    reviews.forEach((review) => {
+      totalRatings += review.rating;
+    });
 
-  return (totalRatings / reviews.length).toFixed(1);
+  return (totalRatings / reviews.length).toFixed(2);
 };
 const totalComments = getTotalComments(reviews);
 const totalRatings = getTotalRatings(reviews);
@@ -291,21 +324,22 @@ const totalRatings = getTotalRatings(reviews);
     setIsHidden(!isHidden);
   };
 
-
   const handleShareClick = () => {
-    navigator.clipboard.writeText(window.location.href)
+    navigator.clipboard
+      .writeText(window.location.href)
       .then(() => {
-        setCopySuccess(true); 
+        setCopySuccess(true);
         setTimeout(() => {
-          setCopySuccess(false); 
+          setCopySuccess(false);
         }, 2000);
       })
       .catch((error) => {
-        console.error('Error copying:', error);
+        console.error("Error copying:", error);
       });
   };
   // tính tổng giá tiền
-  const tongTien = car.price + 125000 + 125000
+  
+  const tongTien = car.price + 125000 + 125000;
   return (
     <div className="contentproduct">
       <div className="contentproduct__img">
@@ -345,20 +379,20 @@ const totalRatings = getTotalRatings(reviews);
               <h3>{car.title}</h3>
               <div className="group-icon">
                 <i onClick={handleShareClick}>
-                  <FaShareNodes ></FaShareNodes>
+                  <FaShareNodes></FaShareNodes>
                 </i>
-                <i>
-                  <FaHeart></FaHeart>
+                <i onClick={handleFavoriteClick}>
+                  <FaHeart color={isFavorite ? "red" : "black"} />
                 </i>
               </div>
             </div>
             {copySuccess && (
               <div className="coppy-modal">
-            <div className="copy-success-message">
-             <p> Đã sao chép thành công! </p>
-            </div>
+                <div className="copy-success-message">
+                  <p> Đã sao chép thành công! </p>
+                </div>
               </div>
-          )}
+            )}
 
             <div className="group-total">
               <div className="group-total-star">
@@ -392,7 +426,10 @@ const totalRatings = getTotalRatings(reviews);
               <i>
                 <FaShield></FaShield>
               </i>
-              <Link to ="/bao-hiem" className="contentproduct__detail-sidebar-insurance-content">
+              <Link
+                to="/bao-hiem"
+                className="contentproduct__detail-sidebar-insurance-content"
+              >
                 <h3>Bảo hiểm thuê xe MIC</h3>
                 <span>Xem chi tiết</span>
               </Link>
@@ -514,7 +551,7 @@ const totalRatings = getTotalRatings(reviews);
                     <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
-                <Link to={`/thanh-toan/${car._id}`}>
+                <Link to="/thanh-toan">
                 <button className="btn__large price-container-button">
                   <i>
                     <FaCircleCheck></FaCircleCheck>
@@ -723,11 +760,10 @@ const totalRatings = getTotalRatings(reviews);
             </div>
             <div className="contentproduct__detail-container-content-rules">
               <h6>Điều khoản</h6>
-              <p  className={isHidden ? 'hide' : 'hideshow'}>
+              <p  className={isHidden ? 'hide' : ''}>
                 Quy định khác: <br />
-                ◦ Sử dụng xe đúng mục đích. <br />
-                ◦ Không sử dụng xe thuê vào mục đích phi pháp, trái pháp luật.{" "}
-                <br />
+                ◦ Sử dụng xe đúng mục đích. <br />◦ Không sử dụng xe thuê vào
+                mục đích phi pháp, trái pháp luật. <br />
                 ◦ Không sử dụng xe thuê để cầm cố, thế chấp. <br />
                 ◦ Không hút thuốc, nhả kẹo cao su, xả rác trong xe. <br />
                 ◦ Không chở hàng quốc cấm dễ cháy nổ. <br />
@@ -738,7 +774,7 @@ const totalRatings = getTotalRatings(reviews);
                 vời !
               </p>
               <p className="read-more" onClick={toggleContent}>
-              {isHidden ? 'Xem thêm' : 'Ẩn đi'}
+                {isHidden ? "Xem thêm" : "Ẩn đi"}
               </p>
             </div>
             <form className="contentproduct__evaluate" onSubmit={handleSubmit}>
@@ -756,8 +792,9 @@ const totalRatings = getTotalRatings(reviews);
                 {[1, 2, 3, 4, 5].map((starNumber) => (
                   <span
                     key={starNumber}
-                    className={`clickstart__star ${starNumber <= rating ? "active" : ""
-                      }`}
+                    className={`clickstart__star ${
+                      starNumber <= rating ? "active" : ""
+                    }`}
                     onClick={() => rate(starNumber)}
                   >
                     &#9733;
@@ -794,24 +831,36 @@ const totalRatings = getTotalRatings(reviews);
                                 <FaStar />
                               </i>
                             ))}
-
                           </div>
                         </div>
                       </div>
 
                       <div className="list-reviews-item-cmt" key={index}>
-                        <div className={`list-reviews-item-name-cmt ${showFullComment[index] ? 'full-comment' : ''}`}>
+                        <div
+                          className={`list-reviews-item-name-cmt ${
+                            showFullComment[index] ? "full-comment" : ""
+                          }`}
+                        >
                           <h3>{review.reviewText}</h3>
-                          {!showFullComment[index] && review.reviewText.length > 150 && (<div className="show-more" onClick={() => toggleComment(index)}>hiển thị thêm</div>
-                          )}
+                          {!showFullComment[index] &&
+                            review.reviewText.length > 150 && (
+                              <div
+                                className="show-more"
+                                onClick={() => toggleComment(index)}
+                              >
+                                hiển thị thêm
+                              </div>
+                            )}
                           {showFullComment[index] && (
-                            <div className="none-more" onClick={() => toggleComment(index)}>
+                            <div
+                              className="none-more"
+                              onClick={() => toggleComment(index)}
+                            >
                               Ẩn
                             </div>
                           )}
                         </div>
                       </div>
-
                     </div>
                     <p>{review.createdAt}</p>
                   </div>
@@ -825,7 +874,10 @@ const totalRatings = getTotalRatings(reviews);
             <i>
               <FaShield></FaShield>
             </i>
-            <Link to="/bao-hiem" className="contentproduct__detail-sidebar-insurance-content">
+            <Link
+              to="/bao-hiem"
+              className="contentproduct__detail-sidebar-insurance-content"
+            >
               <h3>Bảo hiểm thuê xe MIC</h3>
               <span>Xem chi tiết</span>
             </Link>
@@ -1026,23 +1078,33 @@ const totalRatings = getTotalRatings(reviews);
         </div>
       </div>
       {modalOpen && (
-        <div className="report__overlay" onClick={closeModal} style={{ opacity: overlayOpacity }}>
+        <div
+          className="report__overlay"
+          onClick={closeModal}
+          style={{ opacity: overlayOpacity }}
+        >
           <form className="report__form" onClick={(e) => e.stopPropagation()}>
             <span className="report__form-close" onClick={closeModal}>
               <FaX />
             </span>
             <h3 className="report__form-title">Báo Xấu</h3>
             <div className="report__form-email">
-              <h3 className="report__form-email-text">
-                Email
-              </h3>
-              <input className="report__form-email-input" type="email" placeholder="Vui lòng nhập địa chỉ email của bạn" />
+              <h3 className="report__form-email-text">Email</h3>
+              <input
+                className="report__form-email-input"
+                type="email"
+                placeholder="Vui lòng nhập địa chỉ email của bạn"
+              />
             </div>
             <div className="report__form-content">
               <h3 className="report__form-content-text">
                 Vui lòng nhập báo cáo
               </h3>
-              <textarea className="report__form-content-input" type="text" placeholder="Vui lòng nhập lý do hoặc lời nhắn" />
+              <textarea
+                className="report__form-content-input"
+                type="text"
+                placeholder="Vui lòng nhập lý do hoặc lời nhắn"
+              />
             </div>
             <button className="report__form-button">
               <h3 className="report__form-button-text">Báo cáo</h3>
@@ -1112,7 +1174,7 @@ const totalRatings = getTotalRatings(reviews);
                           <FaStar></FaStar>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-star-text">
-                        {totalRatings}
+                          {totalRatings}
                         </p>
                       </div>
                       <div className="contentproduct__other-child-detail-evaluate-usage">
