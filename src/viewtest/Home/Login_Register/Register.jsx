@@ -108,7 +108,7 @@ if (phoneNumber.length < 10) {
         setShowSuccessNotification(true);
         setTimeout(() => {
           setShowSuccessNotification(false);
-          window.location.href = "http://localhost:3000/login";
+          window.location.href = "http://localhost:3000/dang-nhap";
         }, 3000);
    
       } else {

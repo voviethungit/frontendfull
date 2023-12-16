@@ -37,7 +37,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import imgGirl from "../img/banner1.jpg";
-import user from "../img/erenyeager.jpg";
 
 function ContentProduct() {
   const [defaultImage, setDefaultImage] = useState({});
@@ -123,10 +122,6 @@ function ContentProduct() {
       console.error("Error submitting review:", error);
     }
   };
-
-
-
-
   useEffect(() => {
     axios
       .get(`http://localhost:5000/get-car/${id}`)
@@ -213,11 +208,16 @@ const getTotalComments = (reviews) => {
 
 // Hàm tính tổng số đánh giá
 const getTotalRatings = (reviews) => {
+  if (reviews.length === 0) {
+    return 0; 
+  }
+
   let totalRatings = 0;
   reviews.forEach((review) => {
     totalRatings += review.rating;
   });
-  return totalRatings;
+
+  return (totalRatings / reviews.length).toFixed(2);
 };
 const totalComments = getTotalComments(reviews);
 const totalRatings = getTotalRatings(reviews);
@@ -298,12 +298,14 @@ const totalRatings = getTotalRatings(reviews);
         setCopySuccess(true); 
         setTimeout(() => {
           setCopySuccess(false); 
-        }, 3000);
+        }, 2000);
       })
       .catch((error) => {
         console.error('Error copying:', error);
       });
   };
+  // tính tổng giá tiền
+  const tongTien = car.price + 125000 + 125000
   return (
     <div className="contentproduct">
       <div className="contentproduct__img">
@@ -351,10 +353,13 @@ const totalRatings = getTotalRatings(reviews);
               </div>
             </div>
             {copySuccess && (
+              <div className="coppy-modal">
             <div className="copy-success-message">
-              Đã sao chép thành công!
+             <p> Đã sao chép thành công! </p>
             </div>
+              </div>
           )}
+
             <div className="group-total">
               <div className="group-total-star">
                 <i>
@@ -465,7 +470,7 @@ const totalRatings = getTotalRatings(reviews);
                     </span>
                   </p>
                   <p className="cost">
-                    <span>122 500đ/ ngày</span>
+                    <span>125 000k</span>
                   </p>
                 </div>
                 <div className="price-item">
@@ -486,14 +491,14 @@ const totalRatings = getTotalRatings(reviews);
                     </span>
                   </p>
                   <p className="cost">
-                    <span>125 000đ/ ngày</span>
+                    <span>125 000đ</span>
                   </p>
                 </div>
                 <div className="line-page"></div>
                 <div className="price-item">
                   <p className="df-align-center">Tổng phí thuê xe</p>
                   <p className="cost">
-                    <span>1 225 000đ * 1ngày</span>
+                    <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
                 <div className="promoion">
@@ -506,7 +511,7 @@ const totalRatings = getTotalRatings(reviews);
                 <div className="price-item price-content-total">
                   <p className="df-align-center">Tổng phí thuê xe</p>
                   <p className="cost">
-                    <span>1 225 000đ * 1ngày</span>
+                    <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
                 <Link to="/thanh-toan">
@@ -898,7 +903,7 @@ const totalRatings = getTotalRatings(reviews);
                   </span>
                 </p>
                 <p className="cost">
-                  <span>122 500đ/ ngày</span>
+                  <span>125 000đ/ ngày</span>
                 </p>
               </div>
               <div className="price-item">
@@ -926,7 +931,7 @@ const totalRatings = getTotalRatings(reviews);
               <div className="price-item">
                 <p className="df-align-center">Tổng phí thuê xe</p>
                 <p className="cost">
-                  <span>1 225 000đ * 1ngày</span>
+                  <span>{tongTien}đ * 1ngày</span>
                 </p>
               </div>
               <div className="promoion">
@@ -939,7 +944,7 @@ const totalRatings = getTotalRatings(reviews);
               <div className="price-item price-content-total">
                 <p className="df-align-center">Tổng phí thuê xe</p>
                 <p className="cost">
-                  <span>1 225 000đ * 1ngày</span>
+                  <span>{tongTien}đ * 1ngày</span>
                 </p>
               </div>
               <Link to={`/thanh-toan/${car._id}`}>
@@ -1068,7 +1073,7 @@ const totalRatings = getTotalRatings(reviews);
                     </i>
                   </div>
                   <div className="absolute__user">
-                    <img src={similarcar.avatar} alt="" />
+                    {/* <img src={similarcar.avatar} alt="" /> */}
                   </div>
                 </div>
                 <div className="contentproduct__other-child-bottom">
@@ -1076,7 +1081,7 @@ const totalRatings = getTotalRatings(reviews);
                     <div className="contentproduct__other-child-auto-car btn__auto">
                       <p className="contentproduct__other-child-auto-car-text">
                         {" "}
-                        {similarcar.number}
+                        {similarcar.flash}
                       </p>
                     </div>
                   </div>
