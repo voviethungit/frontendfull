@@ -162,6 +162,8 @@
                   handleRentCar();
                 }}
                 disabled={!(isVnPaySelected || isAccountBalanceSelected)}
+                className="btn__large pay__information-pay-button"
+                onClick={handleConfirmRent} type="submit" 
               >
                 Chọn thuê
               </button>

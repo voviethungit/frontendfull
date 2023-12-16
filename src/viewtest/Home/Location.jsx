@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState } from 'react';
 import './css/location.css'
 import './css/base.css'
 import Slider from 'react-slick';
@@ -7,6 +7,25 @@ import 'slick-carousel/slick/slick-theme.css';
 import {Link} from 'react-router-dom';
 
 function Location() {
+    const [categories, setCategories] = useState([]);
+    useEffect(() => {
+        // Gọi API từ backend khi component được tải lần đầu
+        fetchAllCategories();
+      }, []);
+      const fetchAllCategories = async () => {
+        try {
+          const response = await fetch('http://localhost:5000/all-category');
+          const data = await response.json();
+          if (data.success) {
+            setCategories(data.categories);
+          } else {
+            console.log("Lỗi khi lấy danh sách danh mục");
+          }
+        } catch (error) {
+          console.error("Lỗi kết nối: ", error);
+        }
+      };
+    
     const location = {
         dots: true,  // thể hiện chấm nhỏ dưới slide
         infinite: false, // slide cuối + click = slide đầu (false)
@@ -51,67 +70,30 @@ function Location() {
             },
         ],
     };
-    const dataLocation = [
-        {
-            id: 1,
-            linkImg:
-                'https://meeymap.com/tin-tuc/wp-content/uploads/2022/02/co-so-ha-tang-quan-lien-chieu.jpg',
-            name: 'Liên Chiểu',
-            text: '5+ xe'
-        },
-        {
-            id: 2,
-            linkImg:
-                'https://file1.dangcongsan.vn/data/0/images/2022/07/26/giangntt/quang-canh-quan-thanh-khe.jpg',
-            name: 'Thanh Khê',
-            text: '15+ xe'
-        },
-        {
-            id: 3,
-            linkImg:
-                'https://ik.imagekit.io/tvlk/blog/2022/09/ban-dao-son-tra-3-1024x550.jpg?tr=dpr-2,w-675',
-            name: 'Sơn Trà',
-            text: '10+ xe'
-        },
-        {
-            id: 4,
-            linkImg:
-                'https://giabaohome.vn/wp-content/uploads/2021/05/ban-nha-trung-tam-da-nang-4.jpg',
-            name: 'Hải Châu',
-            text: '10+ xe'
-        },
-        {
-            id: 5,
-            linkImg:
-                'https://tapchimoitruong.vn/uploads/042021/image001_d8fd4ba3.png',
-            name: 'Hòa Khánh',
-            text: '5+ xe'
-        },
-    ];
+   
   return (
     <div className='location'>
       <h2>Địa điểm nổi bật</h2>
      <div className='location__slider'>
                 <Slider {...location}>
-                    {dataLocation.map((item) => (
+                    {categories.map((item) => (
                         <Link to='/dia-diem' className="location__slider-container">
                             <div className="location__slider-container-top">
                                 <img
                                     src={
-                                        item.linkImg
+                                        item.imageCategory
                                     }
-                                    alt={item.title}
+                                    alt={item.model}
                                 />
                             </div>
                             <div className='location__slider-overwhite'>
-                                dvdv
                             </div>
                             <div className='location__slider-container-bottom'>
                                 <h3 className='location__slider-container-bottom-name'>
-                                    {item.name}
+                                    {item.model}
                                 </h3>
                                 <p className='location__slider-container-bottom-text'>
-                                    {item.text}
+                                    5+ xe 
                                 </p>
                             </div>
                         </Link>
