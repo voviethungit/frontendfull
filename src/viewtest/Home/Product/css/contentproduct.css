@@ -2,6 +2,25 @@
     text-align: center;
     margin: 20px 0;
 }
+.copy-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+.copy-success-message {
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: red;
+}
 .contentproduct {
     width: 96%;
     margin: 0 auto;

@@ -89,7 +89,7 @@ function Header() {
                 size={10}
                 className='header__payload'
               /> */}
-            <Link to="/Mytrips" className='header__page-item'>Chuyến đi</Link>
+            <Link to="/chuyen-di-cua-toi" className='header__page-item'>Chuyến đi</Link>
             <Link to="/nap-tien" className='header__page-item'>Nạp Tiền</Link>
             {/* <Link to="/listblog" className='header__page-item'>Bài Viết</Link> */}
             <ScrollLink to='blog' smooth={true} duration={800} className='header__page-item'>Bài Viết</ScrollLink>
@@ -163,7 +163,7 @@ function Header() {
                     Về Xe Tốt
                   </h3>
                 </Link>
-                <Link to="/Mytrips" className='header__page-item-login-overlay-go'>
+                <Link to="/chuyen-di-cua-toi" className='header__page-item-login-overlay-go'>
                   <h3 className='header__page-item-login-overlay-go-name'>
                     Chuyến đi
                   </h3>

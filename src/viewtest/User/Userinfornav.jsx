@@ -59,11 +59,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/xe-cua-toi"
+          to="/vi-cua-toi"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/xe-cua-toi' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/xe-cua-toi')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/vi-cua-toi' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/vi-cua-toi')} >
             <i className="userinfor__nav-list-child-icon">
               <FaCar></FaCar>
             </i>
@@ -72,11 +72,11 @@ function Userinfornav() {
         </Link>
 
         <Link
-          to="/vi-cua-toi"
+          to="/chuyen-di-cua-toi"
           className="userinfor-nav-link"
         >
-          <li className={`userinfor__nav-list-child ${activeLink === '/vi-cua-toi' ? 'active-link' : ''}`}
-              onClick={() => handleLinkClick('/vi-cua-toi')} >
+          <li className={`userinfor__nav-list-child ${activeLink === '/chuyen-di-cua-toi' ? 'active-link' : ''}`}
+              onClick={() => handleLinkClick('/chuyen-di-cua-toi')} >
             <i className="userinfor__nav-list-child-icon">
               <FaMapLocationDot></FaMapLocationDot>
             </i>

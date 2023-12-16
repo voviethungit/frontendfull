@@ -168,9 +168,9 @@ const [ submitted,setSubmitted] = useState(false);
                 </div>
               </div>
             </div>
-            <div className="login-wrap-test">
+            <Link to ="/dang-nhap/quen-mat-khau" className="login-wrap-test">
               <p> Quên mật khẩu?</p>
-            </div>
+            </Link>
             <div className="wrap-btn-login">
               <button type="submit" className="" onClick={resetError}>
                Đăng nhập

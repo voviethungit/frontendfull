@@ -3,9 +3,6 @@ import './css/base.css';
 import './css/registercar.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 
 
 function Registercar() {
@@ -28,42 +25,26 @@ function Registercar() {
         }
       }, []);
 
-      //Thiết lập nhắc nhở
-
-      const handleSetReminderWithTime = (timeInSeconds) => {
-        setTimeout(() => {
-          showReminderNotification();
-        }, timeInSeconds * 1000);
-      };
-    
-      const showReminderNotification = () => {
-        toast.success('Nhắc nhở: Có chuyến đi sắp tới!', {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 5000,
-        });
-      };
-    
-      const handleSetReminder = () => {
-        // Gọi hàm để thiết lập nhắc nhở sau 10 giây
-        handleSetReminderWithTime(1);
-        // showReminderNotification();
-      };
     return (
         <>
         {isLoggedIn ? (
         <div className='registercar'>
-            <div className='registercar__container'>
+            {/* <div className='registercar__container'>
                 <div className='registercar__container-list'>
                     <h1 className='registercar__container-list-name'> Thiết lập nhắc nhở</h1>
                     <p className='registercar__container-list-text'> Hãy thiết lập nhắc nhở về những chuyến đi để có thể tiết kiệm thời gian nhất
                     </p>
                     <div className='registercar__container-list-button'>
-                        <button onClick={handleSetReminder} className='registercar__container-list-button-firt btn__large'><p>Nhắc Nhở</p></button>
-                        <button className='registercar__container-list-button-last btn__large'><p>Hiển thị thông báo</p></button>
+                        <button onClick={handleSetReminder} className='registercar__container-list-button-firt btn__large'>
+                          <p>Nhắc Nhở</p>
+                        </button>
+                        <button className='registercar__container-list-button-last btn__large'>
+                          <p>Hiển thị thông báo</p>
+                        </button>
                     </div>
                 </div>
                 <img className='registercar__container-img' src='https://www.mioto.vn/static/media/thue_xe_oto_tu_lai_di_du_lich_gia_re.fde3ac82.png' alt=''></img>
-            </div>
+            </div> */}
         </div>
         ) : (
         <div className='registercar'>

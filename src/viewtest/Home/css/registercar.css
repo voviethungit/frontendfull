@@ -143,6 +143,8 @@
         flex-direction: column;
         width: 100%;
         transform: scale(0.7);
+        text-align: center;
+        padding-left: 25%;
     }
     .registercar__container-list-button-firt p{
         font-size: 1.6rem;
@@ -169,6 +171,7 @@
         display: flex;
         width: 100%;
         transform: scale(0.7);
+        padding-left: 15%;
     }
 }
 /* Tablet 751px - 990px */
