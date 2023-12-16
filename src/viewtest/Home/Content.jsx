@@ -229,7 +229,7 @@ function Content() {
             .map((car, index) => (
               <Link to={`/san-pham/${car._id}`} className='content__list-child' key={index}>
                 <nav>
-                  <img src={car.imagePath} className='content__list-child-img' />
+                  <img src={car.imagePath} className='content__list-child-img' alt=""/>
                   <div className='btn__freetax content__list-child-img-tax '>
                     <p className='content__list-child-img-tax-text'>
                       {car.flash}

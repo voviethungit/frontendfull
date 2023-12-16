@@ -51,7 +51,9 @@ function AnimatedModal() {
   const [location, setLocation] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const handleFileChange = (e) => {
-    setEditUserData({ ...edituserData, avatar: e.target.files[0] });
+    const selectedFile = e.target.files[0];
+    setEditUserData({ ...edituserData, avatar: selectedFile });
+    setAvatar(URL.createObjectURL(selectedFile)); // Cập nhật biến trạng thái avatar để hiển thị
   };
   const handleInputChange = (e, field) => {
     setUserDetails({
@@ -156,7 +158,7 @@ function AnimatedModal() {
   
   return (
     <div className="modal-user-main">
-      <Button className="hungngulz"
+      <Button
         variant="contained"
         color="primary"
         onClick={handleOpenEditDialog}
@@ -168,7 +170,7 @@ function AnimatedModal() {
         <DialogContent>
           <br />
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={12} className="change-avatar">
             <input
           type="file"
           onChange={handleFileChange}
@@ -176,14 +178,15 @@ function AnimatedModal() {
           id="avatarInput"
           style={{ display: "none" }}
         />
-        <label htmlFor="avatarInput">
+        <label htmlFor="avatarInput" className="label-top">
           <Button variant="contained" component="span">
-            Chọn ảnh
+            Thay ảnh đại diện
           </Button>
         </label>
         {edituserData.avatar && (
           <p>File đã chọn: {edituserData.avatar.name}</p>
         )}
+        <img src={avatar} alt="" className="avatar-input"/>
             </Grid>
             <Grid item xs={12}>
               <TextField

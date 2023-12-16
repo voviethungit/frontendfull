@@ -4,7 +4,7 @@ import './css/base.css';
 import './css/reponsive.css'
 import './css/mainuser.css'
 import { Link } from 'react-router-dom';
-
+import { FaChevronDown } from "react-icons/fa6";
 
 function Navbarmobile() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +22,7 @@ function Navbarmobile() {
     <div>
       <div className="dropdown-menu">
         <button className="dropdown-button" onClick={toggleDropdown}>
-          {currentItem}
+          {currentItem}<FaChevronDown />
         </button>
         {isOpen && (
           <ul className="dropdown-list">
@@ -37,13 +37,13 @@ function Navbarmobile() {
             </Link>
 
             <Link to="/xe-cua-toi" className='dropdown-list-link'>
-              <li onClick={() => handleItemClick("Xe của tôi")}>Xe của tôi</li>
+              <li onClick={() => handleItemClick("Xe của tôi")}>Ví của tôi</li>
             </Link>
             <Link to="/vi-cua-toi" className='dropdown-list-link'>
-              <li onClick={() => handleItemClick("Chuyến đi của tôi")}>Ví của tôi</li>
+              <li onClick={() => handleItemClick("Chuyến đi của tôi")}>Lịch sử thuê xe</li>
             </Link>
             <Link to="/qua-tang-cua-toi" className='dropdown-list-link'>
-              <li onClick={() => handleItemClick("Quà tặng")}>Quà tặng</li>
+              <li onClick={() => handleItemClick("Quà tặng")}>Khuyến mãi / Quà tặng</li>
             </Link>
             <Link to="/dia-chi-cua-toi" className='dropdown-list-link'>
               <li onClick={() => handleItemClick("Địa chỉ của tôi")}>Địa chỉ của tôi</li>

@@ -248,3 +248,21 @@
     background-color: #f6f6f6;
     padding: 10px;
 }
+
+/* xe yeu thich */
+.myfavs-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.item-car{
+    display: flex;
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+.myfavs > .content-box{
+    height: 100%;
+}

@@ -53,6 +53,7 @@ function UserInfor() {
           console.error('Lỗi :', error);
 
         });
+        
     }
   }, []);
   if (!loggedIn) {
@@ -67,6 +68,7 @@ function UserInfor() {
 
   const cancelEdit = () => {
     setEditMode(false);
+    setFile(null);
   };
   
 //them anh
@@ -83,6 +85,7 @@ function UserInfor() {
         </div>
       );
     }
+
   return (
     <div className="userinfor">
       <div className="userinfor__nav" id="userinfor__nav">
@@ -210,7 +213,7 @@ function UserInfor() {
             <div className="update-papers">
               <button onClick={toggleEditMode} className="button-enable">
                 <div></div>
-                {editMode ? "Lưu" : "Chỉnh sửa 🖋️"}
+                {editMode ? "Lưu" : "Chỉnh sửa "}
               </button>
               {editMode && <button className="button-enable" onClick={cancelEdit}>Hủy</button>}
             </div>
@@ -243,15 +246,13 @@ function UserInfor() {
                 placeholder="Nhập đầy đủ họ tên"
               ></input>
               <p className="userinfor__papers-content-left-text">Ngày sinh</p>
-              <input
+              <input type="date"
                 className={
                   editMode
                     ? "userinfor__papers-content-left-input active-userinfor"
                     : "userinfor__papers-content-left-input"
                 }
                 disabled={!editMode}
-                type="text"
-                placeholder="11-10-2003"
               ></input>
             </div>
             <div className="userinfor__papers-content-right">
@@ -264,7 +265,7 @@ function UserInfor() {
                   ? "userinfor__papers-content-right-img-fill active-userinfor"
                   : "userinfor__papers-content-right-img-fill"}
               disabled={!editMode}/>
-              <img src={file} alt=""/>
+              <img src={file} alt="" className="image-GPLX"/>
               </div>
             </div>
           </div>

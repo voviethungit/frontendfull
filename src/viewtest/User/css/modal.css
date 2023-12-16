@@ -16,6 +16,7 @@
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 
 
@@ -27,107 +28,64 @@
     padding: 0 14px;
   }
   
-  /* Modal Content */
-  .modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 800px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s;
-    border-radius: 10px;
-  }
-  
-  /* Add Animation */
-  @-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-  }
-  
-  @keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-  }
-
-  .close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+  /* css mui */
+  .modal-user-main .css-sghohy-MuiButtonBase-root-MuiButton-root{
+    border-radius: 20px;
+    background-color: white;
+    border: solid 1px;
+    padding: 11px;
     color: #000;
-    text-decoration: none;
-    cursor: pointer;
+    box-shadow: none;
+    font-family: 'Manrope', sans-serif;
+    text-transform: none;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 1.444rem;
   }
 
-  .modal-body {
-    padding: 40px 32px;
-    font-size: 1.555rem;
+  .modal-user-main .css-sghohy-MuiButtonBase-root-MuiButton-root:hover{
+    background-color: unset;
   }
 
-  .modal-body > h1 {
-    text-align: center;
+  .css-zw3mfo-MuiModal-root-MuiDialog-root .label-top {
+    position: unset;
+    padding: 0;
   }
 
-  .input-textarenna{
-    width: 100%;
+  .css-mhc70k-MuiGrid-root .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root{
+    font-size: 2rem;
   }
 
-  .input-textarenna > h3{
-    padding: 10px 20px 0 20px;
-  }
-  .wrap-input{
-    border: 1px solid #d8dae5;
+  .css-mhc70k-MuiGrid-root .css-14lo706{
+    font-size: 1.55rem;
   }
 
-  .wrap-input input {
-    width: 100%;
-    border: none;
-    line-height: 2rem;
-    padding: 10px;
+  .css-mhc70k-MuiGrid-root .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    font-size: 1.5rem;
   }
 
-  .btn-modal{
+  .css-bdhsul-MuiTypography-root-MuiDialogTitle-root{
+    font-size: 2rem !important;
+  }
+
+  .avatar-input{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin: 0 125px;
+  }
+
+  .css-mhc70k-MuiGrid-root .change-avtart{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
+
+  .css-1t1j96h-MuiPaper-root-MuiDialog-paper > .css-knqc4i-MuiDialogActions-root{
     justify-content: space-between;
-    padding: 20px 10px 0 10px; 
-
+    padding: 8px 15px;
   }
 
-  .btn-modal button {
-    padding: 15px 25px;
-    cursor: pointer;
-    border: none;
-  }
-
-  .btn-modal-active{
-    background-color: var(--button-color);
-    color: #fefefe;
-    font-weight: 800;
-  }
-
-  .avt-upload{
-    display: flex;
-    justify-content: center;
-  }
-
-  .avt-upload img{  
-    width: 250px;
-    height: 250px;
-    border-radius: 100%;
-    /* border: 1px solid var(--button-color); */
-  }
-
-  .css-sghohy-MuiButtonBase-root-MuiButton-root{
-    padding: 10px 20px !important;
-    font-size: 1.2rem !important;
+  .css-knqc4i-MuiDialogActions-root .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+    font-size: 1.5rem;
   }

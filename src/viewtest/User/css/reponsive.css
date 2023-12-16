@@ -35,6 +35,8 @@
   }
   
   .dropdown-button {
+    display: flex;
+    justify-content: space-between;
     background-color: var(--white-color);
     color: #000000;
     padding: 10px 20px;

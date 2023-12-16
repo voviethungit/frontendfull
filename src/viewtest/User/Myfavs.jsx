@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import "./css/userinfor.css";
 import "./css/base.css";
 import "./css/mainuser.css";
@@ -9,6 +9,8 @@ import Navbarmobile from "./Navbarmobile";
 import Userinfornav from "./Userinfornav";
 
 function Myfavs() {
+
+  const [avatar, setAvatar] = useState();
   return (
     <div  className="main-color">
       <Header />
@@ -19,7 +21,7 @@ function Myfavs() {
         </div>
         {/* Drop menu mobile */}
         <Navbarmobile />
-        <div className="userbox">
+        <div className="userbox myfavs">
           <div className="content-box">
             <div className="myfavs-cars-title">
               <h3>Xe yêu thích của tôi</h3>
@@ -30,6 +32,13 @@ function Myfavs() {
                 alt=""
               ></img>
               <p>Không có xe yêu thích nào</p>
+            </div>
+
+            {/* xe yêu thích*/}
+            <div className="myfavs-content">
+              <div className="item-car">
+              
+              </div>
             </div>
           </div>
         </div>
