@@ -89,13 +89,22 @@ function ContentProduct() {
         const data = await response.json();
         if (data.success) {
           setIsFavorite(true);
-          localStorage.setItem("isFavoriteCarId", "true");
+          localStorage.setItem(`favorite_${id}`, "true");
         }
       } catch (error) {
         console.error("Lỗi khi thêm vào xe yêu thích:", error);
       }
     }
   };
+  const applyFavoriteStatus = () => {
+    const favoriteStatus = localStorage.getItem(`favorite_${id}`);
+    if (favoriteStatus === "true") {
+      setIsFavorite(true);
+    }
+  };
+  useEffect(() => {
+    applyFavoriteStatus();
+  }, []);
 
   // cuộn trang
   const { carreaload } = useLocation();
@@ -159,7 +168,6 @@ function ContentProduct() {
     }
   };
   const handleSimilarCarFavoriteClick = async () => {
-    
     try {
       const userId = localStorage.getItem("userId");
       const accessToken = localStorage.getItem("accessToken");
