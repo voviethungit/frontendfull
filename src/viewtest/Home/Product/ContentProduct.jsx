@@ -38,6 +38,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import imgGirl from "../img/banner1.jpg";
+import moment from 'moment';
+import 'moment/locale/vi';
 
 function ContentProduct() {
   const [defaultImage, setDefaultImage] = useState({});
@@ -66,15 +68,39 @@ function ContentProduct() {
     setModalOpen(false);
     setOverlayOpacity(0);
   };
+  const applyFavoriteStatus = () => {
+    const favoriteStatus = localStorage.getItem(`favorite_${id}`);
+    setIsFavorite(favoriteStatus === "true");
+  };
+  
   const handleFavoriteClick = async () => {
-    if (!isFavorite) {
-      try {
-        const userId = localStorage.getItem("userId");
-        const accessToken = localStorage.getItem("accessToken");
-        if (!userId || !accessToken) {
-          window.location.href = "/login"; 
-    return; 
-  }
+    try {
+      const userId = localStorage.getItem("userId");
+      const accessToken = localStorage.getItem("accessToken");
+  
+      if (!userId || !accessToken) {
+        window.location.href = "/dang-nhap";
+        return;
+      }
+  
+      if (isFavorite) {
+        // Đang là yêu thích, gửi yêu cầu xóa
+        const response = await fetch(
+          `http://localhost:5000/favorite/${userId}/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+        const data = await response.json();
+        if (data.success) {
+          localStorage.removeItem(`favorite_${id}`);
+        }
+      } else {
+        // Không phải là yêu thích, gửi yêu cầu thêm mới
         const response = await fetch(
           `http://localhost:5000/favorite/${userId}/${id}`,
           {
@@ -93,20 +119,79 @@ function ContentProduct() {
         );
         const data = await response.json();
         if (data.success) {
-          setIsFavorite(true);
           localStorage.setItem(`favorite_${id}`, "true");
         }
-      } catch (error) {
-        console.error("Lỗi khi thêm vào xe yêu thích:", error);
       }
+  
+      // Sau mỗi lần click, cập nhật trạng thái yêu thích
+      applyFavoriteStatus();
+    } catch (error) {
+      console.error("Lỗi khi thêm vào/loại bỏ xe yêu thích:", error);
     }
   };
-  const applyFavoriteStatus = () => {
-    const favoriteStatus = localStorage.getItem(`favorite_${id}`);
-    if (favoriteStatus === "true") {
-      setIsFavorite(true);
-    }
-  };
+  
+  // const handleFavoriteClick = async () => {
+  //   try {
+  //     const userId = localStorage.getItem("userId");
+  //     const accessToken = localStorage.getItem("accessToken");
+      
+  //     if (!userId || !accessToken) {
+  //       window.location.href = "/dang-nhap"; 
+  //       return; 
+  //     }
+  
+  //     if (isFavorite) {
+  //       // Đang là yêu thích, gửi yêu cầu xóa
+  //       const response = await fetch(
+  //         `http://localhost:5000/favorite/${userId}/${id}`,
+  //         {
+  //           method: "DELETE", // Sử dụng phương thức DELETE để xóa
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         }
+  //       );
+  //       const data = await response.json();
+  //       if (data.success) {
+  //         setIsFavorite(false);
+  //         localStorage.removeItem(`favorite_${id}`);
+  //       }
+  //     } else {
+  //       // Không phải là yêu thích, gửi yêu cầu thêm mới
+  //       const response = await fetch(
+  //         `http://localhost:5000/favorite/${userId}/${id}`,
+  //         {
+  //           method: "PUT",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //           body: JSON.stringify({
+  //             carId: id,
+  //             title: car.title,
+  //             imagePath: car.imagePath,
+  //             price: car.price,
+  //           }),
+  //         }
+  //       );
+  //       const data = await response.json();
+  //       if (data.success) {
+  //         setIsFavorite(true);
+  //         localStorage.setItem(`favorite_${id}`, "true");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Lỗi khi thêm vào/loại bỏ xe yêu thích:", error);
+  //   }
+  // };
+  
+  // const applyFavoriteStatus = () => {
+  //   const favoriteStatus = localStorage.getItem(`favorite_${id}`);
+  //   if (favoriteStatus === "true") {
+  //     setIsFavorite(true);
+  //   }
+  // };
   useEffect(() => {
     applyFavoriteStatus();
   }, []);
@@ -114,7 +199,7 @@ function ContentProduct() {
   // cuộn trang
   const { carreaload } = useLocation();
   useEffect(() => {
-    const fetchReviews = async () => {
+    const fetchReviews = async (review) => {
       try {
         const response = await axios.get(`http://localhost:5000/reviews/${id}`);
         setReviews(response.data);
@@ -296,9 +381,9 @@ function ContentProduct() {
     reviews.forEach((review) => {
       totalRatings += review.rating;
     });
-
-  return (totalRatings / reviews.length).toFixed(2);
-};
+    
+    return (totalRatings / reviews.length).toFixed(2);
+  };
 const totalComments = getTotalComments(reviews);
 const totalRatings = getTotalRatings(reviews);
   // ảnh xe tương tự ở dưới cùng
@@ -351,11 +436,6 @@ const totalRatings = getTotalRatings(reviews);
       linkDefault: imgGirl,
     }));
   };
-  // Xe yêu thích
-  const handleIconClick = () => {
-    // Thay đổi màu nền khi người dùng nhấn vào biểu tượng
-    setBackgroundColor("red"); // Thay đổi màu nền theo ý muốn của bạn
-  };
   // Đánh giá sao
   const rate = (starNumber) => {
     setRating(starNumber);
@@ -385,8 +465,9 @@ const totalRatings = getTotalRatings(reviews);
       });
   };
   // tính tổng giá tiền
-
   const tongTien = car.price + 125000 + 125000;
+
+
   return (
     <div className="contentproduct">
        <Helmet>
@@ -601,7 +682,7 @@ const totalRatings = getTotalRatings(reviews);
                     <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
-                <Link to="/thanh-toan">
+                <Link to={`/thanh-toan/${car._id}`}>
                 <button className="btn__large price-container-button">
                   <i>
                     <FaCircleCheck></FaCircleCheck>
@@ -912,7 +993,7 @@ const totalRatings = getTotalRatings(reviews);
                         </div>
                       </div>
                     </div>
-                    <p>{review.createdAt}</p>
+                    <p className="list-reviews-item-time">{review.createdAt}</p>
                   </div>
                 ))}
               </div>

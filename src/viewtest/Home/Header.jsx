@@ -28,7 +28,7 @@ function Header() {
     setIsArrow(!isArrow);
   };
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     window.location.href = "http://localhost:3000/"
   };
   const defaultImage = images // ảnh mặc định
@@ -154,7 +154,7 @@ function Header() {
                 <div className='header__page-item-login-overlay-avt'>
                   <img src={avatar || defaultImage} alt="" />
                   <h3 className='header__page-item-login-overlay-avt-name'>
-                    Xin chào {fullName};
+                    Xin chào <br></br>{fullName}
                   </h3>
                 </div>
                 <Link to="/ve-xe-tot" className='header__page-item-login-overlay-about'>

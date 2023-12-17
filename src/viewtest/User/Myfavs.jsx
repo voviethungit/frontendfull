@@ -7,6 +7,15 @@ import Header from "../Home/Header";
 import Footer from "../Home/Footer";
 import Navbarmobile from "./Navbarmobile";
 import Userinfornav from "./Userinfornav";
+import {
+  FaHeart,
+  FaStar,
+  FaLocationDot,
+  FaCarRear,
+} from "react-icons/fa6";
+import { BsShieldCheck } from "react-icons/bs";
+import Slider from "react-slick";
+import { Link } from "react-router-dom";
 
 function Myfavs() {
   const [favoriteCars, setFavoriteCars] = useState([]);
@@ -37,6 +46,48 @@ function Myfavs() {
 
     fetchFavoriteCars();
   }, []);
+  const car__love = { 
+    dots: true,
+    infinite: false,
+    speed: 400,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    row: 1,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 850,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 550,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 350,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <div className="main-color">
       <Header />
@@ -47,29 +98,101 @@ function Myfavs() {
         </div>
         {/* Drop menu mobile */}
         <Navbarmobile />
-        <div className="userbox">
-          <div className="content-box">
+        <div className="love__car-box">
+          <div className="love__car-content">
             <div className="myfavs-cars-title">
               <h3>Xe yêu thích của tôi</h3>
             </div>
             <div className="myfavs-cars">
+              <Slider {...car__love}>
               {favoriteCars.length > 0 ? (
-                favoriteCars.map((car) => (
-                  <div key={car._id} className="car-item">
-                    <img src={car.imagePath} alt={car.title} />
-                    <h4>{car.title}</h4>
-                    <p>{car.price}</p>
+                    favoriteCars.map((car) => (
+                  <Link to={`/san-pham/${car._id}`} className="love__car-link">
+                  <div key={car._id} className="love__car-child">
+                  <div className="love__car-child-top">
+                   <img src={car.imagePath} alt={car.title} />
+                    {/* <div className="absolute__heart" style={{ backgroundColor }}>
+                      <i
+                        onClick={() =>
+                          handleSimilarCarFavoriteClick(car._id)
+                        }
+                      >
+                        <FaHeart />
+                      </i>
+                    </div> */}
+                    {/* <div className="absolute__user">
+                      <img src={car.avatar} alt="" />
+                    </div> */}
                   </div>
+                  <div className="love__car-child-bottom">
+                    <div className="love__car-child-auto">
+                      <div className="love__car-child-auto-car btn__auto">
+                        <p className="love__car-child-auto-car-text">
+                          {car.flash}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="love__car-child-name">
+                      <h1 className="love__car-child-name-main">
+                        <h3>{car.title}</h3>
+                      </h1>
+                      <i>
+                        <BsShieldCheck></BsShieldCheck>
+                      </i>
+                    </div>
+                    <div className="love__car-child-location">
+                      <i>
+                        <FaLocationDot></FaLocationDot>
+                      </i>
+                      <p className="love__car-child-location-text">
+                        {car.location}
+                      </p>
+                    </div>
+                    <div className="love__car-child-underlined">
+                      {" "}
+                    </div>
+                    <div className="love__car-child-detail">
+                      <div className="love__car-child-detail-evaluate">
+                        <div className="love__car-child-detail-evaluate-star">
+                          <i>
+                            <FaStar></FaStar>
+                          </i>
+                          <p className="love__car-child-detail-evaluate-star-text">
+                            {car.star}
+                          </p>
+                        </div>
+                        <div className="love__car-child-detail-evaluate-usage">
+                          <i>
+                            <FaCarRear></FaCarRear>
+                          </i>
+                          <p className="love__car-child-detail-evaluate-usage-text">
+                            {car.usage}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="love__car-child-detail-buy">
+                        <span className="love__car-child-detail-buy-sale">
+                          {car.price}đ
+                        </span>
+                        {/* <p className='love__car-child-detail-buy-day'>
+                <span>Giá tổng</span> 1800k
+              </p> */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  </Link>
                 ))
               ) : (
                 <div className="empty-fav">
                   <img
                     src="https://www.mioto.vn/static/media/empty-favcar.2c855700.svg"
                     alt=""
-                  ></img>
+                    ></img>
                   <p>Không có xe yêu thích nào</p>
                 </div>
               )}
+              </Slider>
             </div>
           </div>
         </div>

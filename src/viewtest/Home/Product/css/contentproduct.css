@@ -114,6 +114,8 @@
 
 .group-name h3 {
     font-size: 4rem;
+    line-height: 40px;
+    margin: 10px 0;
 }
 
 .group-icon {
@@ -127,6 +129,8 @@
     border-radius: 100%;
     border: 1px solid #e0e0e0;
     cursor: pointer;
+    width: auto;
+    height: 50px;
 }
 
 .group-icon i:nth-of-type(1) {
@@ -971,10 +975,11 @@ cursor: pointer;
   }
   .clickstart__star.active {
     color: var(--star-color);
+    border: none;
   }
   /* button */
   .contentproduct__evaluate-button {
-    width: 10%;
+    width: 12%;
     height: 30px;
     align-self: flex-end;
     cursor: pointer;
@@ -1095,7 +1100,8 @@ cursor: pointer;
   }
   .list-reviews-item-name-cmt {
     width: 120%;
-    max-height: 15px;
+    max-height: 20px;
+    line-height: 20px;
     flex-wrap: wrap;
     overflow: hidden;
     position: relative;
@@ -1117,6 +1123,11 @@ cursor: pointer;
   .none-more {
      color: var(--button-color);
      cursor: pointer;
+  }
+  .list-reviews-item-time {
+    width: 100px;
+    display: flex;
+    flex-wrap: wrap;
   }
   /* css hình ảnh xe chi tiết tablet */
   .contentproduct__img-tablet{
@@ -1332,7 +1343,7 @@ cursor: pointer;
     }
     .list-reviews-item-name-cmt {
         width: 110%;
-        max-height: 15px;
+        max-height: 18px;
         flex-wrap: wrap;
         overflow: hidden;
         position: relative;
@@ -1348,7 +1359,7 @@ cursor: pointer;
         bottom: 0;
         right: 0;
         background-color: #fff;
-        padding:2px 3px;
+        padding:2px 0px;
         cursor: pointer;
       }
 }

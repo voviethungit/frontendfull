@@ -3,10 +3,10 @@ import Header from "../Home/Header";
 import Footer from "../Home/Footer";
 import "./Pay.css";
 import "../Home/css/base.css";
-import { FaCar, FaClipboardUser } from "react-icons/fa6";
-import { Link, useParams } from "react-router-dom";
+import { FaCar, FaClipboardUser,FaArrowRight,FaCheck} from "react-icons/fa6";
+import { Link, useParams   } from "react-router-dom";
 import axios from "axios";
-import { Helmet } from 'react-helmet';
+
 function Pay() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -19,6 +19,7 @@ function Pay() {
   const [isVnPaySelected, setVnPaySelected] = useState(false);
   const [isAccountBalanceSelected, setAccountBalanceSelected] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [accountBalance, setAccountBalance] = useState(0);
 
   const handleRentCar = () => {
     if (isVnPaySelected || isAccountBalanceSelected) {
@@ -26,9 +27,23 @@ function Pay() {
     }
   };
 
+  const [showRechargeModal, setShowRechargeModal] = useState(false);
+  const handleCancelRecharge = () => {
+    setShowRechargeModal(false);
+    setShowConfirmation(false);
+  };
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [modalTimeout, setModalTimeout] = useState(null);
+
   const handleConfirmRent = () => {
     const userId = localStorage.getItem('userId');
     const accessToken = localStorage.getItem('accessToken');
+    let shouldShowRechargeModal = false;
+  
+    if (isAccountBalanceSelected && accountBalance < price) {
+      shouldShowRechargeModal = true;
+    }
+  
     if (userId && accessToken) {
       axios
         .post(`http://localhost:5000/rent-car/${userId}/${id}`, null, {
@@ -38,18 +53,42 @@ function Pay() {
         })
         .then((response) => {
           console.log('Thuê xe thành công:', response.data);
-          setShowSuccessMessage(true);
+          setShowSuccessModal(true);
+  
+          // Đặt hẹn giờ đóng modal và chuyển hướng sau 5 giây
+          const timeoutId = setTimeout(() => {
+            setShowSuccessModal(false);
+            setTimeout(() => {
+              window.location.href = "http://localhost:3000";
+            }, 1500)
+          }, 1500);
+          setModalTimeout(timeoutId);
         })
         .catch((error) => {
           console.error('Lỗi khi thuê xe:', error);
+        })
+        .finally(() => {
+          setShowConfirmation(false);
+          if (shouldShowRechargeModal) {
+            setShowRechargeModal(true);
+          }
         });
+    } else {
+      setShowConfirmation(true);
     }
-    setShowConfirmation(false);
   };
 
   const handleCancelRent = () => {
     setShowConfirmation(false);
   };
+  useEffect(() => {
+    return () => {
+      // Làm sạch hẹn giờ khi component bị hủy
+      if (modalTimeout) {
+        clearTimeout(modalTimeout);
+      }
+    };
+  }, [modalTimeout]);
 
   useEffect(() => {
     axios
@@ -77,6 +116,7 @@ function Pay() {
           setPhoneNumber(response.data.user.phoneNumber);
           setFullName(response.data.user.fullName);
           setLocation(response.data.user.location);
+          setAccountBalance(response.data.user.accountBalance);
         })
         .catch((error) => {
           console.error("Lỗi :", error);
@@ -84,10 +124,7 @@ function Pay() {
     }
   }, []);
   return (
-    <>
-      <Helmet>
-        <title>Thanh toán</title>
-      </Helmet>
+    <div>
       <Header />
       <div className="pay">
         <form className="pay__information">
@@ -130,6 +167,9 @@ function Pay() {
                 <div className="pay__information-user-location">
                   <p>Địa chỉ: {location}</p>
                 </div>
+                <div className="pay__information-user-location">
+                <p>Số dư tài khoản: {accountBalance}</p>
+              </div>
               </div>
             </div>
           </div>
@@ -166,8 +206,7 @@ function Pay() {
                 handleRentCar();
               }}
               disabled={!(isVnPaySelected || isAccountBalanceSelected)}
-              className="btn__large pay__information-pay-button"
-              onClick={handleConfirmRent} type="submit"
+              // onClick={handleConfirmRent} type="submit" 
             >
               Chọn thuê
             </button>
@@ -194,7 +233,33 @@ function Pay() {
           <p>Thuê xe thành công!</p>
         </div>
       )}
-    </>
+      {showRechargeModal && (
+        <div className="recharge-modal">
+          <div className="recharge-modal-content">
+            <div className="recharge-modal-text">
+              <p className="warning-text">Tài khoản không đủ tiền !.</p>
+              <img src="https://img7.thuthuatphanmem.vn/uploads/2023/08/29/hinh-het-tien-meme-doc-dao_085859180.jpg" className="img-hettien" alt="" />
+              <p className="warning-text">Vui lòng nạp thêm tiền vào tài khoản để thỏa sức thuê xe!!!.</p>
+            </div>
+            <div className="recharge-modal-btn">
+                <Link to="/nap-tien" className="confirm-button">Nạp tiền ngay</Link>
+                <button className="cancel-button" onClick={handleCancelRecharge}>Đóng</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showSuccessModal && (
+        <div className="success-modal">
+          <div className="success-modal-content">
+            <p>Thuê xe thành công<FaCheck/>!</p>
+            <p>Bây giờ bạn có thể liên hệ chủ xe để nhận xe đúng nơi nhất </p>
+            <button className="confirm-button" onClick={() => setShowSuccessModal(false)}>
+              Đóng
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
