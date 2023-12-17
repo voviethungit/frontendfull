@@ -213,7 +213,14 @@
 .content__list-child-auto-car-text {
   font-size: 1.1rem;
 }
-
+.content__list-child-auto-car {
+  width: 80px;
+  height: 25px;
+  background-color: var(--autonumber-color);
+  border-radius: 10px;
+  text-align: center;
+  line-height: 25px;
+}
 .content__list-child-name {
   display: flex;
   margin-bottom: 10px;

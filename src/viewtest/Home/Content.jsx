@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
+
+
 function Content() {
   const [cars, setCars] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -20,6 +22,7 @@ function Content() {
   const [isOpenPay, setIsOpenPay] = useState(false);
   const [selectedPay, setSelectedPay] = useState(null);
   const [currentPay, setCurrentPay] = useState("Giá Tiền");
+  const [filteredCars, setFilteredCars] = useState([]);
 
   const toggleDropdown = () => {
     setIsOpenCategory(!isOpenCategory);
@@ -31,24 +34,43 @@ function Content() {
 
     setSelectedDistrict(item === "Danh Mục" ? null : item);
     setSelectedPay(null);
+    setSearch("")
   };
 
   const togglePayDropdown = () => {
     setIsOpenPay(!isOpenPay);
   };
+  const parsePriceRange = (range) => {
+    const [min, max] = range.split('-').map(value => parseFloat(value.trim()));
+    return { min, max };
+  };
   const handlePayClick = (item) => {
     const numericValue = parseFloat(item);
-
     setCurrentPay(item);
     setIsOpenPay(false);
     setSelectedPay(isNaN(numericValue) ? null : numericValue);
+    setSearch("")
   };
+ 
   // bộ lọc
   useEffect(() => {
     axios.get('http://localhost:5000/get-car')
       .then((response) => {
         const carsData = response.data.cars;
         setCars(carsData);
+
+        // Áp dụng bộ lọc theo danh mục
+        const categoryFilter = selectedDistrict === null ? carsData : carsData.filter(car => car.location === selectedDistrict);
+
+        // Áp dụng bộ lọc theo giá tiền 
+        const priceFilter = selectedPay === null ? categoryFilter : categoryFilter.filter(car => parseFloat(car.price) === selectedPay);
+
+
+        // Áp dụng bộ lọc theo tên
+        const nameFilter = search === '' ? priceFilter : priceFilter.filter(car => car.title.toLowerCase().includes(search.toLowerCase()));
+
+        setFilteredCars(nameFilter);
+
         console.log('API Response:', response.data);
         console.log('search:', search);
         console.log('selectedDistrict:', selectedDistrict);
@@ -172,7 +194,7 @@ function Content() {
                 </li>
               </div>
               <div className='search-list-link'>
-                <li onClick={() => handlePayClick("600-700k")}>
+                <li onClick={() => handlePayClick("700000vnđ")}>
                   600-700k
                 </li>
               </div>
@@ -182,17 +204,17 @@ function Content() {
                 </li>
               </div>
               <div className='search-list-link'>
-                <li onClick={() => handlePayClick("800-900k")}>
+                <li onClick={() => handlePayClick("900000vnđ")}>
                   800-900k
                 </li>
               </div>
               <div className='search-list-link'>
-                <li onClick={() => handlePayClick("900k-1tr")}>
+                <li onClick={() => handlePayClick("1000000vnđ")}>
                   900k-1tr
                 </li>
               </div>
               <div className='search-list-link'>
-                <li onClick={() => handlePayClick("1tr-1tr1")}>
+                <li onClick={() => handlePayClick("1100000vnđ")}>
                 1tr-1tr1
                 </li>
               </div>
@@ -217,25 +239,13 @@ function Content() {
               const titleMatch = car.title.toLowerCase().includes(search.toLowerCase());
               const districtMatch = selectedDistrict === null || car.location === selectedDistrict;
               const payMatch = selectedPay === null || car.price === selectedPay;
-            
-              return titleMatch && districtMatch && payMatch;
+             
+              return titleMatch && districtMatch && payMatch ;
             })
-            // .filter((car) => {
-            //   const titleMatch = car.title.toLowerCase().includes(search.toLowerCase());
-            //   const districtMatch = selectedDistrict === null || car.location === selectedDistrict;
-
-            //   // Chuyển đổi giá trị car.price sang số
-            //   const carPrice = parseFloat(car.price);
-
-            //   // So sánh giá trị carPrice với selectedPay
-            //   const payMatch = selectedPay === null || carPrice >= selectedPay;
-
-            //   return titleMatch && districtMatch && payMatch;
-            // })
             .map((car, index) => (
               <Link to={`/san-pham/${car._id}`} className='content__list-child' key={index}>
                 <nav>
-                  <img src={car.imagePath} className='content__list-child-img' />
+                  <img src={car.imagePath} className='content__list-child-img' ></img>
                   <div className='btn__freetax content__list-child-img-tax '>
                     <p className='content__list-child-img-tax-text'>
                       {car.flash}
@@ -248,7 +258,7 @@ function Content() {
                   </div>
                 </nav>
                 <div className='content__list-child-auto'>
-                  <div className='content__list-child-auto-car btn__auto'>
+                  <div className='content__list-child-auto-car '>
                     <p className='content__list-child-auto-car-text'> {car.tax2}</p>
                   </div>
                   <div className='content__list-child-auto-location'></div>

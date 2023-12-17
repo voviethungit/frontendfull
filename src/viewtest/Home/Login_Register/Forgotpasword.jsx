@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import "./css/forgotpassword.css";
-import Header from "../Header";
-import Footer from "../Footer";
-import axios from "axios";
+import React from 'react'
+import './css/forgotpassword.css'
+import Header from '../Header';
+import Footer from '../Footer';
 const Forgotpasword = () => {
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
@@ -22,8 +21,9 @@ const Forgotpasword = () => {
   };
   return (
     <div>
-      <Header />
-      <form onSubmit={handleForgotPassword} className="form-Forgotpassword">
+          <Header/>
+        <form action="" className="form-Forgotpassword">
+   
         <div className="Forgotpassword-container">
           <div className="Forgotpassword-content">
             <div className="Forgotpassword-header">

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams, useLocation } from "react-router-dom";
 import "./css/contentproduct.css";
 import "./css/base.css";
+import { Helmet } from 'react-helmet';
 import {
   FaHeart,
   FaShareNodes,
@@ -37,6 +38,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import imgGirl from "../img/banner1.jpg";
+import moment from 'moment';
+import 'moment/locale/vi';
 
 function ContentProduct() {
   const [defaultImage, setDefaultImage] = useState({});
@@ -65,15 +68,20 @@ function ContentProduct() {
     setModalOpen(false);
     setOverlayOpacity(0);
   };
+  const applyFavoriteStatus = () => {
+    const favoriteStatus = localStorage.getItem(`favorite_${id}`);
+    setIsFavorite(favoriteStatus === "true");
+  };
+  
   const handleFavoriteClick = async () => {
     if (!isFavorite) {
       try {
         const userId = localStorage.getItem("userId");
         const accessToken = localStorage.getItem("accessToken");
         if (!userId || !accessToken) {
-          setShowLoginPrompt(true);
-          return;
-        }
+          window.location.href = "/login"; 
+    return; 
+  }
         const response = await fetch(
           `http://localhost:5000/favorite/${userId}/${id}`,
           {
@@ -92,19 +100,12 @@ function ContentProduct() {
         );
         const data = await response.json();
         if (data.success) {
-          setIsFavorite(true);
           localStorage.setItem(`favorite_${id}`, "true");
         }
       } catch (error) {
         console.error("Lỗi khi thêm vào xe yêu thích:", error);
       }
     }
-  };
-  const handleLoginRedirect = () => {
-    window.location.href = "/dang-nhap";
-  };
-  const handleClosePrompt = () => {
-    setShowLoginPrompt(false);
   };
   const applyFavoriteStatus = () => {
     const favoriteStatus = localStorage.getItem(`favorite_${id}`);
@@ -119,7 +120,7 @@ function ContentProduct() {
   // cuộn trang
   const { carreaload } = useLocation();
   useEffect(() => {
-    const fetchReviews = async () => {
+    const fetchReviews = async (review) => {
       try {
         const response = await axios.get(`http://localhost:5000/reviews/${id}`);
         setReviews(response.data);
@@ -301,11 +302,11 @@ function ContentProduct() {
     reviews.forEach((review) => {
       totalRatings += review.rating;
     });
-
+    
     return (totalRatings / reviews.length).toFixed(2);
   };
-  const totalComments = getTotalComments(reviews);
-  const totalRatings = getTotalRatings(reviews);
+const totalComments = getTotalComments(reviews);
+const totalRatings = getTotalRatings(reviews);
   // ảnh xe tương tự ở dưới cùng
   const car__slider = {
     dots: true,
@@ -356,11 +357,6 @@ function ContentProduct() {
       linkDefault: imgGirl,
     }));
   };
-  // Xe yêu thích
-  const handleIconClick = () => {
-    // Thay đổi màu nền khi người dùng nhấn vào biểu tượng
-    setBackgroundColor("red"); // Thay đổi màu nền theo ý muốn của bạn
-  };
   // Đánh giá sao
   const rate = (starNumber) => {
     setRating(starNumber);
@@ -390,10 +386,14 @@ function ContentProduct() {
       });
   };
   // tính tổng giá tiền
-
   const tongTien = car.price + 125000 + 125000;
+
+
   return (
     <div className="contentproduct">
+       <Helmet>
+        <title>{car.title}</title>
+      </Helmet>
       <div className="contentproduct__img">
         <div className="contentproduct__img-main">
           <img src={car.imagePath} alt={car.title}></img>
@@ -499,7 +499,7 @@ function ContentProduct() {
               <div className="price">
                 <h4>{car.price}/ngày</h4>
               </div>
-              <div className="date-time-form">
+              {/* <div className="date-time-form">
                 <div className="form-item">
                   <label>Nhận xe</label>
                   <div className="wrap-date-time">
@@ -523,7 +523,7 @@ function ContentProduct() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="dropdown-form">
                 <label>Địa điểm giao nhận xe</label>
                 <div className="wrap-form">
@@ -599,12 +599,12 @@ function ContentProduct() {
                     <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
-                <div className="promoion">
+                {/* <div className="promoion">
                   <i className="promoion-icon">
                     <FaCalendarMinus></FaCalendarMinus>
                   </i>
                   <p className="promotion-text">Sử dụng khuyến mãi</p>
-                </div>
+                </div> */}
                 <div className="line-page"></div>
                 <div className="price-item price-content-total">
                   <p className="df-align-center">Tổng phí thuê xe</p>
@@ -612,13 +612,13 @@ function ContentProduct() {
                     <span>{tongTien}đ * 1ngày</span>
                   </p>
                 </div>
-                <Link to="/thanh-toan">
-                  <button className="btn__large price-container-button">
-                    <i>
-                      <FaCircleCheck></FaCircleCheck>
-                    </i>
-                    <h3>Chọn Thuê</h3>
-                  </button>
+                <Link to={`/thanh-toan/${car._id}`}>
+                <button className="btn__large price-container-button">
+                  <i>
+                    <FaCircleCheck></FaCircleCheck>
+                  </i>
+                  <h3>Chọn Thuê</h3>
+                </button>
                 </Link>
               </div>
               <div className="surcharge">
@@ -821,7 +821,7 @@ function ContentProduct() {
             </div>
             <div className="contentproduct__detail-container-content-rules">
               <h6>Điều khoản</h6>
-              <p className={isHidden ? "hide" : ""}>
+              <p  className={isHidden ? 'hide' : ''}>
                 Quy định khác: <br />
                 ◦ Sử dụng xe đúng mục đích. <br />◦ Không sử dụng xe thuê vào
                 mục đích phi pháp, trái pháp luật. <br />
@@ -923,7 +923,7 @@ function ContentProduct() {
                         </div>
                       </div>
                     </div>
-                    <p>{review.createdAt}</p>
+                    <p className="list-reviews-item-time">{review.createdAt}</p>
                   </div>
                 ))}
               </div>
@@ -947,7 +947,7 @@ function ContentProduct() {
             <div className="price">
               <h4>{car.price}/ngày</h4>
             </div>
-            <div className="date-time-form">
+            {/* <div className="date-time-form">
               <div className="form-item">
                 <label>Nhận xe</label>
                 <div className="wrap-date-time">
@@ -971,7 +971,7 @@ function ContentProduct() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="dropdown-form">
               <label></label>
               <div className="wrap-form">
@@ -1047,12 +1047,12 @@ function ContentProduct() {
                   <span>{tongTien}đ * 1ngày</span>
                 </p>
               </div>
-              <div className="promoion">
+              {/* <div className="promoion">
                 <i className="promoion-icon">
                   <FaCalendarMinus></FaCalendarMinus>
                 </i>
                 <p className="promotion-text">Sử dụng khuyến mãi</p>
-              </div>
+              </div> */}
               <div className="line-page"></div>
               <div className="price-item price-content-total">
                 <p className="df-align-center">Tổng phí thuê xe</p>

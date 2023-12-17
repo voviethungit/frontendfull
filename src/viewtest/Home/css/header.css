@@ -301,6 +301,8 @@
     display: none;
     z-index: 10;
     animation: fadeIn ease 1s;
+    overflow-y: auto;
+    padding: 20px;
 }
 .header__page-item-login-overlay {
     width: 100%;
@@ -348,6 +350,8 @@
     font-size: 2rem;
     color: var(--text-color);
     margin-top: -30px;
+    margin-bottom: 10px;
+    line-height: 30px;
 }
 .header__page-item-login-overlay-about, 
 .header__page-item-login-overlay-go,
@@ -457,7 +461,6 @@
         display: block;
     } 
 }
-
 /* Tablet (751px - 990px)*/
 @media (min-width: 46.9375em) and (max-width: 61.875em) {
     .header__page-item-logout {

@@ -11,10 +11,14 @@ import Aboutme from './Aboutme';
 import Registercar from './Registercar';
 import Blog from './Blog';
 import Footer from './Footer';
+import { Helmet } from 'react-helmet';
 const Main = () => {
   return (
     // Trang này là trang chính chỉ để import các thành phần từ các trang khác vào
     <div className='main'>
+       <Helmet>
+        <title>Trang chủ</title>
+      </Helmet>
       <Header/>
       <Banner/>
       <Sale/>

@@ -17,6 +17,10 @@ function Navbarmobile() {
     setCurrentItem(item);
     setIsOpen(false);
   };
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    window.location.href = "http://localhost:3000/"
+  };
 
   return (
     <div>
@@ -51,8 +55,8 @@ function Navbarmobile() {
             <Link to="/doi-mat-khau" className='dropdown-list-link'>
               <li onClick={() => handleItemClick("Đổi mật khẩu")}>Đổi mật khẩu</li>
             </Link>
-            <Link to="nguoi-dung" className='dropdown-list-link'>
-              <li onClick={() => handleItemClick("Đăng xuất")}>Đăng xuất</li>
+            <Link to="http://localhost:3000/" className='dropdown-list-link'>
+              <li onClick={handleLogout}>Đăng xuất</li>
             </Link>
             <Link to="/Deleteaccount" className='dropdown-list-link'>
               <li onClick={() => handleItemClick("Xóa tài khoản")}>Xóa tài khoản</li>
