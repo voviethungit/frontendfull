@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Navbarmobile from "./Navbarmobile";
 import Userinfornav from "./Userinfornav";
 import Table from "./compoment/Table";
+import { Helmet } from 'react-helmet';
 
 function Mytrips() {
   const [rentalHistory, setRentalHistory] = useState([]);
@@ -31,6 +32,9 @@ function Mytrips() {
 
   return (
     <div className="main-color">
+       <Helmet>
+        <title>Chuyến đi </title>
+      </Helmet>
       <Header />
       <div className="userinfor">
         <div className="userinfor__nav" id="userinfor__nav">

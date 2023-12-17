@@ -12,8 +12,9 @@ import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaSearch } from "react-icons/fa";
-import './css/mainlocation.css'
-import './css/bannerlocation.css'
+import './css/mainlocation.css';
+import './css/bannerlocation.css';
+import { Helmet } from 'react-helmet';
 
 function Mainlocation() {
     const [cars, setCars] = useState([]);
@@ -88,6 +89,9 @@ function Mainlocation() {
     };
     return (
         <>
+             <Helmet>
+        <title>Danh mục</title>
+      </Helmet>
             <Header />
             <div className='banner__location'>             
                     <img className='banner__location-img' src='https://meeymap.com/tin-tuc/wp-content/uploads/2022/02/co-so-ha-tang-quan-lien-chieu.jpg' alt='' />

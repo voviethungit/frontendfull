@@ -2,9 +2,13 @@ import React from 'react'
 import './css/forgotpassword.css'
 import Header from '../Header';
 import Footer from '../Footer';
+import { Helmet } from 'react-helmet';
 const Forgotpasword = () => {
   return (
     <div>
+       <Helmet>
+        <title>Quên mật khẩu</title>
+      </Helmet>
           <Header/>
         <form action="" className="form-Forgotpassword">
    

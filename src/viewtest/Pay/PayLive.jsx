@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./PayLive.css";
 import axios from "axios";
+import Header from "../Home/Header";
+import Footer from "../Home/Footer";
+import { Helmet } from 'react-helmet';
+
 const PayLive = () => {
   const [language, setLanguage] = useState("vn");
   const [userId, setUserId] = useState('');
@@ -16,7 +20,12 @@ const PayLive = () => {
   };
 console.log(userId);
   return (
+
     <div className="">
+       <Helmet>
+        <title>Nạp tiền</title>
+      </Helmet>
+      <Header/>
       <div className="Paylive-container">
         <div className="Paylive-content">
           <div className="Paylive-content-title">
@@ -177,6 +186,7 @@ console.log(userId);
           </p>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
