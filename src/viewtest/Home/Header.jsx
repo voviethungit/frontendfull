@@ -28,7 +28,7 @@ function Header() {
     setIsArrow(!isArrow);
   };
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.clear();
     window.location.href = "http://localhost:3000/"
   };
   const defaultImage = images // ảnh mặc định

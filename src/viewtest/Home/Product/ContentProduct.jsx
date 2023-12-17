@@ -55,7 +55,7 @@ function ContentProduct() {
   const [similarCars, setSimilarCars] = useState([]);
   const [copySuccess, setCopySuccess] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const openModal = (image) => {
     setModalOpen(true);
     setOverlayOpacity(1);
@@ -71,9 +71,9 @@ function ContentProduct() {
         const userId = localStorage.getItem("userId");
         const accessToken = localStorage.getItem("accessToken");
         if (!userId || !accessToken) {
-          window.location.href = "/login"; 
-    return; 
-  }
+          setShowLoginPrompt(true);
+          return;
+        }
         const response = await fetch(
           `http://localhost:5000/favorite/${userId}/${id}`,
           {
@@ -99,6 +99,12 @@ function ContentProduct() {
         console.error("Lỗi khi thêm vào xe yêu thích:", error);
       }
     }
+  };
+  const handleLoginRedirect = () => {
+    window.location.href = "/dang-nhap";
+  };
+  const handleClosePrompt = () => {
+    setShowLoginPrompt(false);
   };
   const applyFavoriteStatus = () => {
     const favoriteStatus = localStorage.getItem(`favorite_${id}`);
@@ -432,6 +438,15 @@ function ContentProduct() {
                 </i>
               </div>
             </div>
+            {showLoginPrompt && (
+              <div className="login-prompt">
+                <p>Bạn chưa đăng nhập để sử dụng chức năng.</p>
+                <button onClick={handleLoginRedirect}>
+                  Đến trang đăng nhập
+                </button>
+                <button onClick={handleClosePrompt}>Hủy</button>
+              </div>
+            )}
             {copySuccess && (
               <div className="coppy-modal">
                 <div className="copy-success-message">
