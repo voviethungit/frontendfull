@@ -914,6 +914,25 @@ cursor: pointer;
     margin-bottom: 30px;
     /* position: relative; */
   }
+  .contentproduct__other-child-img-flash {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+  
+  .contentproduct__other-child-img-tax {
+    position: absolute;
+    top: 5px;
+    left: 110px;
+  }
+  
+  .contentproduct__other-child-img-flash-text {
+    color: var(--white-color);
+  }
+  
+  .contentproduct__other-child-img-tax-text {
+    color: var(--white-color);
+  }
   .child__absolute {
     display: flex;
     width: 95%;
