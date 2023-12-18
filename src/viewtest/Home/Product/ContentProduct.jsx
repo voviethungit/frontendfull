@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams, useLocation } from "react-router-dom";
 import "./css/contentproduct.css";
 import "./css/base.css";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import {
   FaHeart,
   FaShareNodes,
@@ -38,8 +38,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import imgGirl from "../img/banner1.jpg";
-import moment from 'moment';
-import 'moment/locale/vi';
+import moment from "moment";
+import "moment/locale/vi";
 
 function ContentProduct() {
   const [defaultImage, setDefaultImage] = useState({});
@@ -58,7 +58,7 @@ function ContentProduct() {
   const [similarCars, setSimilarCars] = useState([]);
   const [copySuccess, setCopySuccess] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const openModal = (image) => {
     setModalOpen(true);
     setOverlayOpacity(1);
@@ -68,134 +68,57 @@ function ContentProduct() {
     setModalOpen(false);
     setOverlayOpacity(0);
   };
+
+  useEffect(() => {
+    applyFavoriteStatus(); 
+  }, []);
+
   const applyFavoriteStatus = () => {
     const favoriteStatus = localStorage.getItem(`favorite_${id}`);
-    setIsFavorite(favoriteStatus === "true");
+    if (favoriteStatus === "true") {
+      setIsFavorite(true);
+    }
   };
-  
+
   const handleFavoriteClick = async () => {
     try {
       const userId = localStorage.getItem("userId");
       const accessToken = localStorage.getItem("accessToken");
-  
+
       if (!userId || !accessToken) {
-        window.location.href = "/dang-nhap";
+        setShowLoginPrompt(true);
         return;
       }
-  
-      if (isFavorite) {
-        // Đang là yêu thích, gửi yêu cầu xóa
-        const response = await fetch(
-          `http://localhost:5000/favorite/${userId}/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        const data = await response.json();
-        if (data.success) {
-          localStorage.removeItem(`favorite_${id}`);
+
+      const response = await fetch(
+        `http://localhost:5000/favorite/${userId}/${id}`,
+        {
+          method: isFavorite ? "DELETE" : "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            carId: id,
+            title: car.title,
+            imagePath: car.imagePath,
+            price: car.price,
+          }),
         }
-      } else {
-        // Không phải là yêu thích, gửi yêu cầu thêm mới
-        const response = await fetch(
-          `http://localhost:5000/favorite/${userId}/${id}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify({
-              carId: id,
-              title: car.title,
-              imagePath: car.imagePath,
-              price: car.price,
-            }),
-          }
-        );
-        const data = await response.json();
-        if (data.success) {
-          localStorage.setItem(`favorite_${id}`, "true");
-        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setIsFavorite((prevState) => {
+          const newState = !prevState;
+          localStorage.setItem(`favorite_${id}`, newState ? "true" : "false");
+          return newState;
+        });
       }
-  
-      // Sau mỗi lần click, cập nhật trạng thái yêu thích
-      applyFavoriteStatus();
     } catch (error) {
-      console.error("Lỗi khi thêm vào/loại bỏ xe yêu thích:", error);
+      console.error("Lỗi khi thêm vào xe yêu thích:", error);
     }
   };
-  
-  // const handleFavoriteClick = async () => {
-  //   try {
-  //     const userId = localStorage.getItem("userId");
-  //     const accessToken = localStorage.getItem("accessToken");
-      
-  //     if (!userId || !accessToken) {
-  //       window.location.href = "/dang-nhap"; 
-  //       return; 
-  //     }
-  
-  //     if (isFavorite) {
-  //       // Đang là yêu thích, gửi yêu cầu xóa
-  //       const response = await fetch(
-  //         `http://localhost:5000/favorite/${userId}/${id}`,
-  //         {
-  //           method: "DELETE", // Sử dụng phương thức DELETE để xóa
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${accessToken}`,
-  //           },
-  //         }
-  //       );
-  //       const data = await response.json();
-  //       if (data.success) {
-  //         setIsFavorite(false);
-  //         localStorage.removeItem(`favorite_${id}`);
-  //       }
-  //     } else {
-  //       // Không phải là yêu thích, gửi yêu cầu thêm mới
-  //       const response = await fetch(
-  //         `http://localhost:5000/favorite/${userId}/${id}`,
-  //         {
-  //           method: "PUT",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${accessToken}`,
-  //           },
-  //           body: JSON.stringify({
-  //             carId: id,
-  //             title: car.title,
-  //             imagePath: car.imagePath,
-  //             price: car.price,
-  //           }),
-  //         }
-  //       );
-  //       const data = await response.json();
-  //       if (data.success) {
-  //         setIsFavorite(true);
-  //         localStorage.setItem(`favorite_${id}`, "true");
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Lỗi khi thêm vào/loại bỏ xe yêu thích:", error);
-  //   }
-  // };
-  
-  // const applyFavoriteStatus = () => {
-  //   const favoriteStatus = localStorage.getItem(`favorite_${id}`);
-  //   if (favoriteStatus === "true") {
-  //     setIsFavorite(true);
-  //   }
-  // };
-  useEffect(() => {
-    applyFavoriteStatus();
-  }, []);
-
   // cuộn trang
   const { carreaload } = useLocation();
   useEffect(() => {
@@ -257,36 +180,7 @@ function ContentProduct() {
       console.error("Error submitting review:", error);
     }
   };
-  const handleSimilarCarFavoriteClick = async () => {
-    try {
-      const userId = localStorage.getItem("userId");
-      const accessToken = localStorage.getItem("accessToken");
 
-      const response = await fetch(
-        `http://localhost:5000/favorite/${userId}/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            carId: id,
-            title: car.title,
-            imagePath: car.imagePath,
-            price: car.price,
-          }),
-        }
-      );
-
-      const data = await response.json();
-      if (data.success) {
-        console.log("Đã thêm vào xe yêu thích:", id);
-      }
-    } catch (error) {
-      console.error("Lỗi khi thêm vào xe yêu thích:", error);
-    }
-  };
   useEffect(() => {
     axios
       .get(`http://localhost:5000/get-car/${id}`)
@@ -380,11 +274,11 @@ function ContentProduct() {
     reviews.forEach((review) => {
       totalRatings += review.rating;
     });
-    
+
     return (totalRatings / reviews.length).toFixed(2);
   };
-const totalComments = getTotalComments(reviews);
-const totalRatings = getTotalRatings(reviews);
+  const totalComments = getTotalComments(reviews);
+  const totalRatings = getTotalRatings(reviews);
   // ảnh xe tương tự ở dưới cùng
   const car__slider = {
     dots: true,
@@ -466,10 +360,9 @@ const totalRatings = getTotalRatings(reviews);
   // tính tổng giá tiền
   const tongTien = car.price + 125000 + 125000;
 
-
   return (
     <div className="contentproduct">
-       <Helmet>
+      <Helmet>
         <title>{car.title}</title>
       </Helmet>
       <div className="contentproduct__img">
@@ -516,6 +409,13 @@ const totalRatings = getTotalRatings(reviews);
                 </i>
               </div>
             </div>
+            {showLoginPrompt && (
+              <div className="login-prompt">
+                <p>Bạn chưa đăng nhập để sử dụng chức năng.</p>
+                <button>Đến trang đăng nhập</button>
+                <button>Hủy</button>
+              </div>
+            )}
             {copySuccess && (
               <div className="coppy-modal">
                 <div className="copy-success-message">
@@ -682,12 +582,12 @@ const totalRatings = getTotalRatings(reviews);
                   </p>
                 </div>
                 <Link to={`/thanh-toan/${car._id}`}>
-                <button className="btn__large price-container-button">
-                  <i>
-                    <FaCircleCheck></FaCircleCheck>
-                  </i>
-                  <h3>Chọn Thuê</h3>
-                </button>
+                  <button className="btn__large price-container-button">
+                    <i>
+                      <FaCircleCheck></FaCircleCheck>
+                    </i>
+                    <h3>Chọn Thuê</h3>
+                  </button>
                 </Link>
               </div>
               <div className="surcharge">
@@ -890,7 +790,7 @@ const totalRatings = getTotalRatings(reviews);
             </div>
             <div className="contentproduct__detail-container-content-rules">
               <h6>Điều khoản</h6>
-              <p  className={isHidden ? 'hide' : ''}>
+              <p className={isHidden ? "hide" : ""}>
                 Quy định khác: <br />
                 ◦ Sử dụng xe đúng mục đích. <br />◦ Không sử dụng xe thuê vào
                 mục đích phi pháp, trái pháp luật. <br />
@@ -1259,17 +1159,7 @@ const totalRatings = getTotalRatings(reviews);
                     alt={similarcar.title}
                     onError={handleErrorImage}
                   />
-                   <div className='btn__freetax contentproduct__other-child-img-tax '>
-                    <p className='contentproduct__other-child-img-tax-text'>
-                      {similarcar.tax}
-                    </p>
-                  </div>
-                  <div className='contentproduct__other-child-img-flash btn__electronic'>
-                    <p className='contentproduct__other-child-img-flash-text'>
-                      {similarcar.tax2}
-                    </p>
-                  </div>
-                  {/* <div className="absolute__heart" style={{ backgroundColor }}>
+                  <div className="absolute__heart" style={{ backgroundColor }}>
                     <i
                       onClick={() =>
                         handleSimilarCarFavoriteClick(similarcar._id)
