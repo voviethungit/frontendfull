@@ -265,12 +265,11 @@ function ContentProduct() {
     return reviews.length;
   };
 
-  // Hàm tính tổng số đánh giá
+  // Hàm tính trung bình cộng số đánh giá
   const getTotalRatings = (reviews) => {
     if (reviews.length === 0) {
       return 0;
     }
-
     let totalRatings = 0;
     reviews.forEach((review) => {
       totalRatings += review.rating;
@@ -1160,14 +1159,27 @@ function ContentProduct() {
                     alt={similarcar.title}
                     onError={handleErrorImage}
                   />
+                   <div className='btn__freetax contentproduct__other-child-img-tax '>
+                    <p className='contentproduct__other-child-img-tax-text'>
+                      {similarcar.tax}
+                    </p>
+                  </div>
+                  <div className='contentproduct__other-child-img-flash btn__electronic'>
+                    <p className='contentproduct__other-child-img-flash-text'>
+                      {similarcar.tax2}
+                    </p>
+                  </div>
+                  {/* <div className="absolute__heart" style={{ backgroundColor }}>
+                    <i
+                      onClick={() =>
+                        handleSimilarCarFavoriteClick(similarcar._id)
+                      }
+                    >
                   <div className="absolute__heart" style={{ backgroundColor }}>
                     <i>
                       <FaHeart />
                     </i>
-                  </div>
-                  <div className="absolute__user">
-                    {/* <img src={similarcar.avatar} alt="" /> */}
-                  </div>
+                  </div> */}
                 </div>
                 <div className="contentproduct__other-child-bottom">
                   <div className="contentproduct__other-child-auto">
