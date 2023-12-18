@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useParams, useLocation } from "react-router-dom";
 import "./css/contentproduct.css";
 import "./css/base.css";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
 import {
   FaHeart,
   FaShareNodes,
@@ -38,8 +38,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import imgGirl from "../img/banner1.jpg";
-import moment from 'moment';
-import 'moment/locale/vi';
+import moment from "moment";
+import "moment/locale/vi";
 
 function ContentProduct() {
   const [defaultImage, setDefaultImage] = useState({});
@@ -68,55 +68,57 @@ function ContentProduct() {
     setModalOpen(false);
     setOverlayOpacity(0);
   };
-  const applyFavoriteStatus = () => {
-    const favoriteStatus = localStorage.getItem(`favorite_${id}`);
-    setIsFavorite(favoriteStatus === "true");
-  };
-  
-  const handleFavoriteClick = async () => {
-    if (!isFavorite) {
-      try {
-        const userId = localStorage.getItem("userId");
-        const accessToken = localStorage.getItem("accessToken");
-        if (!userId || !accessToken) {
-          window.location.href = "/login"; 
-    return; 
-  }
-        const response = await fetch(
-          `http://localhost:5000/favorite/${userId}/${id}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: JSON.stringify({
-              carId: id,
-              title: car.title,
-              imagePath: car.imagePath,
-              price: car.price,
-            }),
-          }
-        );
-        const data = await response.json();
-        if (data.success) {
-          localStorage.setItem(`favorite_${id}`, "true");
-        }
-      } catch (error) {
-        console.error("Lỗi khi thêm vào xe yêu thích:", error);
-      }
-    }
-  };
+
+  useEffect(() => {
+    applyFavoriteStatus(); 
+  }, []);
+
   const applyFavoriteStatus = () => {
     const favoriteStatus = localStorage.getItem(`favorite_${id}`);
     if (favoriteStatus === "true") {
       setIsFavorite(true);
     }
   };
-  useEffect(() => {
-    applyFavoriteStatus();
-  }, []);
 
+  const handleFavoriteClick = async () => {
+    try {
+      const userId = localStorage.getItem("userId");
+      const accessToken = localStorage.getItem("accessToken");
+
+      if (!userId || !accessToken) {
+        setShowLoginPrompt(true);
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:5000/favorite/${userId}/${id}`,
+        {
+          method: isFavorite ? "DELETE" : "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            carId: id,
+            title: car.title,
+            imagePath: car.imagePath,
+            price: car.price,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setIsFavorite((prevState) => {
+          const newState = !prevState;
+          localStorage.setItem(`favorite_${id}`, newState ? "true" : "false");
+          return newState;
+        });
+      }
+    } catch (error) {
+      console.error("Lỗi khi thêm vào xe yêu thích:", error);
+    }
+  };
   // cuộn trang
   const { carreaload } = useLocation();
   useEffect(() => {
@@ -178,36 +180,7 @@ function ContentProduct() {
       console.error("Error submitting review:", error);
     }
   };
-  const handleSimilarCarFavoriteClick = async () => {
-    try {
-      const userId = localStorage.getItem("userId");
-      const accessToken = localStorage.getItem("accessToken");
 
-      const response = await fetch(
-        `http://localhost:5000/favorite/${userId}/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            carId: id,
-            title: car.title,
-            imagePath: car.imagePath,
-            price: car.price,
-          }),
-        }
-      );
-
-      const data = await response.json();
-      if (data.success) {
-        console.log("Đã thêm vào xe yêu thích:", id);
-      }
-    } catch (error) {
-      console.error("Lỗi khi thêm vào xe yêu thích:", error);
-    }
-  };
   useEffect(() => {
     axios
       .get(`http://localhost:5000/get-car/${id}`)
@@ -302,11 +275,11 @@ function ContentProduct() {
     reviews.forEach((review) => {
       totalRatings += review.rating;
     });
-    
+
     return (totalRatings / reviews.length).toFixed(2);
   };
-const totalComments = getTotalComments(reviews);
-const totalRatings = getTotalRatings(reviews);
+  const totalComments = getTotalComments(reviews);
+  const totalRatings = getTotalRatings(reviews);
   // ảnh xe tương tự ở dưới cùng
   const car__slider = {
     dots: true,
@@ -388,10 +361,9 @@ const totalRatings = getTotalRatings(reviews);
   // tính tổng giá tiền
   const tongTien = car.price + 125000 + 125000;
 
-
   return (
     <div className="contentproduct">
-       <Helmet>
+      <Helmet>
         <title>{car.title}</title>
       </Helmet>
       <div className="contentproduct__img">
@@ -441,10 +413,8 @@ const totalRatings = getTotalRatings(reviews);
             {showLoginPrompt && (
               <div className="login-prompt">
                 <p>Bạn chưa đăng nhập để sử dụng chức năng.</p>
-                <button onClick={handleLoginRedirect}>
-                  Đến trang đăng nhập
-                </button>
-                <button onClick={handleClosePrompt}>Hủy</button>
+                <button>Đến trang đăng nhập</button>
+                <button>Hủy</button>
               </div>
             )}
             {copySuccess && (
@@ -613,12 +583,12 @@ const totalRatings = getTotalRatings(reviews);
                   </p>
                 </div>
                 <Link to={`/thanh-toan/${car._id}`}>
-                <button className="btn__large price-container-button">
-                  <i>
-                    <FaCircleCheck></FaCircleCheck>
-                  </i>
-                  <h3>Chọn Thuê</h3>
-                </button>
+                  <button className="btn__large price-container-button">
+                    <i>
+                      <FaCircleCheck></FaCircleCheck>
+                    </i>
+                    <h3>Chọn Thuê</h3>
+                  </button>
                 </Link>
               </div>
               <div className="surcharge">
@@ -821,7 +791,7 @@ const totalRatings = getTotalRatings(reviews);
             </div>
             <div className="contentproduct__detail-container-content-rules">
               <h6>Điều khoản</h6>
-              <p  className={isHidden ? 'hide' : ''}>
+              <p className={isHidden ? "hide" : ""}>
                 Quy định khác: <br />
                 ◦ Sử dụng xe đúng mục đích. <br />◦ Không sử dụng xe thuê vào
                 mục đích phi pháp, trái pháp luật. <br />
@@ -1191,11 +1161,7 @@ const totalRatings = getTotalRatings(reviews);
                     onError={handleErrorImage}
                   />
                   <div className="absolute__heart" style={{ backgroundColor }}>
-                    <i
-                      onClick={() =>
-                        handleSimilarCarFavoriteClick(similarcar._id)
-                      }
-                    >
+                    <i>
                       <FaHeart />
                     </i>
                   </div>

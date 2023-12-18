@@ -100,7 +100,7 @@ console.log(userId);
             </h6>
           </div>
           <div className="Vnpay-content-atm">
-            <form className="form-Vnpay-content-atm" method="post" action="http://localhost:5000/create_payment_url">
+            <form className="form-Vnpay-content-atm" method="post" action="http://localhost:8888/oder/create_payment_url">
               <input
                 className="form-control"
                 id="amount"

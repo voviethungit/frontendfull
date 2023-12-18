@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './css/forgotpassword.css'
 import Header from '../Header';
 import Footer from '../Footer';
+import axios from 'axios';
 const Forgotpasword = () => {
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
@@ -22,7 +23,7 @@ const Forgotpasword = () => {
   return (
     <div>
           <Header/>
-        <form action="" className="form-Forgotpassword">
+        <form onSubmit={handleForgotPassword} className="form-Forgotpassword">
    
         <div className="Forgotpassword-container">
           <div className="Forgotpassword-content">
