@@ -52,7 +52,6 @@ function Myfavs() {
     speed: 400,
     slidesToShow: 3,
     slidesToScroll: 1,
-    row: 1,
     initialSlide: 0,
     responsive: [
       {
@@ -107,23 +106,16 @@ function Myfavs() {
               <Slider {...car__love}>
               {favoriteCars.length > 0 ? (
                     favoriteCars.map((car) => (
-                  <Link to={`/san-pham/${car._id}`} className="love__car-link">
+                  <div className="love__car-link">
                   <div key={car._id} className="love__car-child">
-                  <div className="love__car-child-top">
+                  <Link to={`/san-pham/${car._id}`} key={car} className="love__car-child-top">
                    <img src={car.imagePath} alt={car.title} />
-                    {/* <div className="absolute__heart" style={{ backgroundColor }}>
-                      <i
-                        onClick={() =>
-                          handleSimilarCarFavoriteClick(car._id)
-                        }
-                      >
+                    <button className="absolute__heart">
+                      <i>
                         <FaHeart />
                       </i>
-                    </div> */}
-                    {/* <div className="absolute__user">
-                      <img src={car.avatar} alt="" />
-                    </div> */}
-                  </div>
+                    </button>
+                  </Link>
                   <div className="love__car-child-bottom">
                     <div className="love__car-child-auto">
                       <div className="love__car-child-auto-car btn__auto">
@@ -174,14 +166,20 @@ function Myfavs() {
                         <span className="love__car-child-detail-buy-sale">
                           {car.price}đ
                         </span>
-                        {/* <p className='love__car-child-detail-buy-day'>
-                <span>Giá tổng</span> 1800k
-              </p> */}
+                        <p className='love__car-child-detail-buy-day'>
+                <span>Giá tổng</span> {car.price + 250000}
+              </p>
                       </div>
+                    </div>
+                    <div className="button-centerlovecar">
+                  <button className="button_dontlove btn__large">
+                    <p>Bỏ Thích</p>
+                  </button>
+
                     </div>
                   </div>
                 </div>
-                  </Link>
+                </div>
                 ))
               ) : (
                 <div className="empty-fav">

@@ -1159,15 +1159,6 @@ function ContentProduct() {
                     alt={similarcar.title}
                     onError={handleErrorImage}
                   />
-                  <div className="absolute__heart" style={{ backgroundColor }}>
-                    <i
-                      onClick={() =>
-                        handleSimilarCarFavoriteClick(similarcar._id)
-                      }
-                    >
-                      <FaHeart />
-                    </i>
-                  </div> */}
                 </div>
                 <div className="contentproduct__other-child-bottom">
                   <div className="contentproduct__other-child-auto">
