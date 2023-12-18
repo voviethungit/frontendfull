@@ -1159,6 +1159,10 @@ function ContentProduct() {
                     alt={similarcar.title}
                     onError={handleErrorImage}
                   />
+
+                  {/* <div className="absolute__heart" style={{ backgroundColor }}>
+                    <i>
+=========          */}
                    <div className='btn__freetax contentproduct__other-child-img-tax '>
                     <p className='contentproduct__other-child-img-tax-text'>
                       {similarcar.tax}
@@ -1175,8 +1179,7 @@ function ContentProduct() {
                         handleSimilarCarFavoriteClick(similarcar._id)
                       }
                     >
-                  <div className="absolute__heart" style={{ backgroundColor }}>
-                    <i>
+>>>>>>>>> Temporary merge branch 2
                       <FaHeart />
                     </i>
                   </div> */}

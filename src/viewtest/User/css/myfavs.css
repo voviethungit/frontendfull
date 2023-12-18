@@ -305,14 +305,16 @@
   height: 35px;
   line-height: 35px;
   text-align: center;
-  background-color: rgba(135, 135, 135, 0.5)
+  background-color: rgba(135, 135, 135, 0.5);
+   border: none;
+   cursor: pointer;
 }
 .absolute__heart i{
   font-size: 1.8rem;
-  color: var(--white-color);
+  color: red;
 }
 .love__car-child-bottom {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 /* button */
 .contentproduct__evaluate-button {
@@ -432,7 +434,22 @@ opacity: 0.8;
 }
 .love__car-child-detail-buy-sale {
   color: var(--button-color);
-  /* margin-left: 70px; */ 
+  margin-left: 50px;
+}
+.love__car-child-detail-buy-day {
+  margin-right: 5px;
+}
+.button-centerlovecar {
+  width: 100%;
+  text-align: center;
+}
+.button_dontlove {
+  /* text-align: center; */
+  background-color: var(--button-color);
+  color: var(--white-color);
+  border: none;
+  font-weight: 600;
+  margin: 10px auto;
 }
 @media(max-width: 576px) {
   .myfavs-cars-title {
