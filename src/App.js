@@ -39,6 +39,7 @@ import PayLive from './viewtest/Pay/PayLive';
 import NotFound from './viewtest/Home/NotFound.jsx';
 // Thanh toán
 import Pay from './viewtest/Pay/Pay.jsx';
+import SuccessPage from './viewtest/Pay/SuccessPage'
 // import { HelmetProvider } from 'react-helmet';
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
           <Route path='/dia-diem' element={<Mainlocation />} />
           <Route path='/nap-tien' element={<PayLive />} />
           <Route path='/thanh-toan/:id' element={<Pay />} />
+          <Route path='/success' element={<SuccessPage />} />
         </Routes>
       </Router>
     </>
