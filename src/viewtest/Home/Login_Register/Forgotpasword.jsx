@@ -1,106 +1,75 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './css/forgotpassword.css'
 import Header from '../Header';
 import Footer from '../Footer';
-import { Helmet } from 'react-helmet';
+import axios from 'axios';
 const Forgotpasword = () => {
+  const [email, setEmail] = useState("");
+  const [successMessage, setSuccessMessage] = useState(false);
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/forgot-password",
+        { email }
+      );
+      console.log(response.data);
+      setSuccessMessage(true); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div>
-       <Helmet>
-        <title>Quên mật khẩu</title>
-      </Helmet>
           <Header/>
-        <form action="" className="form-Forgotpassword">
+        <form onSubmit={handleForgotPassword} className="form-Forgotpassword">
    
         <div className="Forgotpassword-container">
-      <div className="Forgotpassword-content">
-        <div className="Forgotpassword-header">
-        <h2>Quên mật khẩu</h2>
+          <div className="Forgotpassword-content">
+            <div className="Forgotpassword-header">
+              <h2>Quên mật khẩu</h2>
+            </div>
+            <div className={successMessage ? "backdrop-show" : "backdrop-hide"}>
+          {/* Hiển thị backdrop hoặc thông báo thành công */}
+          <p>Yêu cầu đã được gửi thành công!</p>
         </div>
-        <div className="Forgotpassword-body">
-          <div className="Forgotpassword-input-body">
-            <div className="Forgotpassword-line-form">
-              <div className="custom-input-Forgotpassword">
-                <div className="wrap-info-Forgotpassword">
-                  <div className="title-status-Forgotpassword">
-                    <p>Email</p>
-                    <div className="desc"></div>
+            <div className="Forgotpassword-body">
+              <div className="Forgotpassword-input-body">
+                <div className="Forgotpassword-line-form">
+                  <div className="custom-input-Forgotpassword">
+                    <div className="wrap-info-Forgotpassword">
+                      <div className="title-status-Forgotpassword">
+                        <p>Email</p>
+                        <div className="desc"></div>
+                      </div>
+                    </div>
+                    <div className="wrap-input-Forgotpassword">
+                      <div className="wrap-text-Forgotpassword">
+                        <input
+                          type="email"
+                          name="email"
+                          placeholder="Nhập Email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        ></input>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="wrap-input-Forgotpassword">
-                  <div className="wrap-text-Forgotpassword">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Nhập Email"
-               
-            
-                    ></input>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="Forgotpassword-line-form">
-              <div className="custom-input-Forgotpassword">
-                <div className="wrap-info-Forgotpassword">
-                  <div className="title-status-Forgotpassword">
-                    <p>Mật Khẩu</p>
-                    <div className="desc"></div>
-                  </div>
-                </div>
-                <div className="wrap-input-Forgotpassword">
-                  <div className="wrap-text-Forgotpassword">
-                    <input
-                      type="password"
-                      name="password"
-             
-                      placeholder="Nhập Mật Khẩu"
-                   
-               
-                    ></input>
-                  </div>
+                <div className="wrap-btn-Forgotpassword">
+                  <button type="submit" className="">
+                    Gửi Yêu Cầu
+                  </button>
                 </div>
               </div>
             </div>
-            <div className="Forgotpassword-line-form">
-              <div className="custom-input-Forgotpassword">
-                <div className="wrap-info-Forgotpassword">
-                  <div className="title-status-Forgotpassword">
-                    <p>Xác nhận mật Khẩu</p>
-                    <div className="desc"></div>
-                  </div>
-                </div>
-                <div className="wrap-input-Forgotpassword">
-                  <div className="wrap-text-Forgotpassword">
-                    <input
-                      type="password"
-                      name="password"
-             
-                      placeholder="Xác nhận mật khẩu"
-                   
-               
-                    ></input>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="wrap-btn-Forgotpassword">
-              <button type="submit" className="">
-             Tiếp tục
-              </button>
-          
-            </div>
-            
-
-      
           </div>
         </div>
-      </div>
+      </form>
+      <Footer />
     </div>
-        </form>
-      <Footer/>
-    </div>
-  )
-}
+  );
+};
 
-export default Forgotpasword
+export default Forgotpasword;

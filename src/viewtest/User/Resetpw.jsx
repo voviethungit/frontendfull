@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./css/userinfor.css";
 import "./css/base.css";
 import "./css/mainuser.css";
 import Header from "../Home/Header";
 import Footer from "../Home/Footer";
-import { Link } from "react-router-dom";
 import Navbarmobile from "./Navbarmobile";
 import Userinfornav from "./Userinfornav";
 import {
@@ -17,13 +17,36 @@ import {
   DialogTitle,
 } from "@mui/material";
 function Resetpw() {
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const handleChangePassword = async () => {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const userId = localStorage.getItem("userId");
+      const response = await axios.put(
+        `http://localhost:5000/change-password/${userId}`,
+        {
+          password: newPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   return (
     <div className="main-color">
       <Header />
       <div className="userinfor">
         <div className="userinfor__nav" id="userinfor__nav">
           <h1 className="userinfor__nav-name">Xin chào bạn!</h1>
-          <Userinfornav/>
+          <Userinfornav />
         </div>
         {/* Drop menu mobile */}
         <Navbarmobile />
@@ -42,7 +65,11 @@ function Resetpw() {
                   <p>Mật khẩu hiện tại</p>
                 </div>
                 <div className="content-form-input">
-                  <input type="text"></input>
+                  <input
+                    type="password"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="form-content">
@@ -50,12 +77,18 @@ function Resetpw() {
                   <p>Mật khẩu mới</p>
                 </div>
                 <div className="content-form-input">
-                  <input type="text"></input>
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
                 </div>
               </div>
             </div>
             <div className="resetpw-btn">
-                <Button color="primary">Xác nhận</Button>
+              <Button color="primary" onClick={handleChangePassword}>
+                Xác nhận
+              </Button>
             </div>
           </div>
         </div>
