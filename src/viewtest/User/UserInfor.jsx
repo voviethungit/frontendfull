@@ -3,41 +3,119 @@ import "./css/userinfor.css";
 import "./css/base.css";
 import "./css/reponsive.css";
 import "./css/mainuser.css";
-import {
-  FaMedal,
-  FaCar,
-  FaXmark,
-} from "react-icons/fa6";
+import { FaMedal, FaCar, FaXmark } from "react-icons/fa6";
 import Navbarmobile from "./Navbarmobile";
 import axios from "axios";
 import Modal from "./Modal";
 import Userinfornav from "./Userinfornav";
-import { useNavigate   } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 function UserInfor() {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(true);
-  const [fullName, setFullName] = useState('');
+  const [fullName, setFullName] = useState("");
   const [avatar, setAvatar] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [Vip, setVip] = useState('');
-  const [birthDay, setBirthDay] = useState('');
-  const [linkFB, setLinkFB] = useState('');
-  const [createdAt, setCreatedAt] = useState('');
-  const [location, setLocation] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [Vip, setVip] = useState("");
+  const [birthDay, setBirthDay] = useState("");
+  const [linkFB, setLinkFB] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+  const [location, setLocation] = useState("");
+  const [soGPLX, setSoGPLX] = useState("");
+  const [hoTen, setHoTen] = useState("");
+  const [ngaySinh, setNgaySinh] = useState("");
+  const [status, setStatus] = useState("");
+  const [hinhAnhGiayPhep, setHinhAnhGiayPhep] = useState(null);
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setHinhAnhGiayPhep(selectedFile);
+  };
+  const handleSoGPLXChange = (event) => {
+    setSoGPLX(event.target.value);
+  };
+  const handlehoTen = (event) => {
+    setHoTen(event.target.value);
+  };
+  const handlengaySinh = (event) => {
+    setNgaySinh(event.target.value);
+  };
+  const handleSave = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("soGPLX", soGPLX);
+      formData.append("hoTen", hoTen);
+      formData.append("ngaySinh", ngaySinh);
+      formData.append("hinhAnhGiayPhep", hinhAnhGiayPhep);
+      const accessToken = localStorage.getItem("accessToken");
+      const userId = localStorage.getItem("userId");
+      const response = await axios.post(
+        `http://localhost:5000/create-gplx/${userId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
 
+      console.log(response.data);
+    } catch (error) {
+      console.log(soGPLX);
+      console.log(hoTen);
+      console.log(ngaySinh);
+      console.log(hinhAnhGiayPhep);
+      console.error(error);
+    }
+  };
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      setLoggedIn(false);
-    } else {
+    const accessToken = localStorage.getItem("accessToken");
+    const userId = localStorage.getItem("userId");
+    if (!accessToken || !userId) {
+      return;
+    }
 
-      axios.get('http://localhost:5000/getProfile', {
+    axios
+      .get(`http://localhost:5000/get-gplx/${userId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
+      .then((response) => {
+        if (response.data) {
+          if (response.data.hoTen) {
+            setHoTen(response.data.hoTen);
+          }
+          if (response.data.hinhAnhGiayPhep) {
+            setHinhAnhGiayPhep(response.data.hinhAnhGiayPhep);
+          }
+          if (response.data.ngaySinh) {
+            setNgaySinh(response.data.ngaySinh);
+          }
+          if (response.data.soGPLX) {
+            setSoGPLX(response.data.soGPLX);
+          }
+          if (response.data.status) {
+            setStatus(response.data.status);
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Lỗi :", error);
+      });
+  }, []);
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      setLoggedIn(false);
+    } else {
+      axios
+        .get("http://localhost:5000/getProfile", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
         .then((response) => {
           setAvatar(response.data.user.avatar);
           setLinkFB(response.data.user.linkFB);
@@ -50,8 +128,7 @@ function UserInfor() {
           setLocation(response.data.user.location);
         })
         .catch((error) => {
-          console.error('Lỗi :', error);
-
+          console.error("Lỗi :", error);
         });
     }
   }, []);
@@ -59,36 +136,19 @@ function UserInfor() {
     navigate("/dang-nhap");
   }
 
-  const [editMode, setEditMode] = useState(false);
+  if (!fullName) {
+    return (
+      <div className="spinner-container">
+        <BeatLoader color="#36d7b7" size={40} />
+      </div>
+    );
+  }
 
-  const toggleEditMode = () => {
-    setEditMode(!editMode);
-  };
-
-  const cancelEdit = () => {
-    setEditMode(false);
-  };
-  
-//them anh
-  const [file, setFile] = useState();
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
-    }
-
-    if (!fullName) {
-      return (
-        <div className="spinner-container">
-          <BeatLoader color="#36d7b7" size={40} />
-        </div>
-      );
-    }
-    
   return (
     <div className="userinfor">
       <div className="userinfor__nav" id="userinfor__nav">
         <h1 className="userinfor__nav-name">Xin chào {fullName}!</h1>
-        <Userinfornav/>
+        <Userinfornav />
       </div>
 
       {/* Drop menu mobile */}
@@ -101,7 +161,7 @@ function UserInfor() {
               Thông tin tài khoản
             </h3>
             <div>
-              <Modal/>
+              <Modal />
             </div>
           </div>
           <div className="userinfor__profile-main">
@@ -148,7 +208,7 @@ function UserInfor() {
                     Ngày sinh
                   </h3>
                   <p className="userinfor__profile-detail-form-date-text">
-                   {birthDay}
+                    {birthDay}
                   </p>
                 </div>
                 <div className="userinfor__profile-detail-form-sex">
@@ -180,7 +240,7 @@ function UserInfor() {
                     Facebook
                   </h3>
                   <h2 className="userinfor__profile-detail-list-number-text">
-                  {linkFB}
+                    {linkFB}
                   </h2>
                 </div>
                 <div className="userinfor__profile-detail-list-number">
@@ -205,15 +265,14 @@ function UserInfor() {
                 <i>
                   <FaXmark></FaXmark>
                 </i>
-                <p>Chưa xác thực</p>
+                <p>{status}</p>
               </div>
             </div>
             <div className="update-papers">
-              <button onClick={toggleEditMode} className="button-enable">
+              <button onClick={handleSave} className="button-enable">
                 <div></div>
-                {editMode ? "Lưu" : "Chỉnh sửa 🖋️"}
+                Lưu
               </button>
-              {editMode && <button className="button-enable" onClick={cancelEdit}>Hủy</button>}
             </div>
           </div>
           <div className="userinfor__papers-content">
@@ -223,50 +282,44 @@ function UserInfor() {
               </h4>
               <p className="userinfor__papers-content-left-text">Số GPLX</p>
               <input
-                className={
-                  editMode
-                    ? "userinfor__papers-content-left-input active-userinfor"
-                    : "userinfor__papers-content-left-input"
-                }
-                disabled={!editMode}
+                className="userinfor__papers-content-right-img-fill active-userinfor"
                 type="text"
-                placeholder="Nhập số GPLX đã cấp"
+                placeholder="Nhập số GPLX "
+                value={soGPLX}
+                onChange={handleSoGPLXChange}
               ></input>
               <p className="userinfor__papers-content-left-text">Họ và tên</p>
               <input
-                className={
-                  editMode
-                    ? "userinfor__papers-content-left-input active-userinfor"
-                    : "userinfor__papers-content-left-input"
-                }
-                disabled={!editMode}
+                className="userinfor__papers-content-right-img-fill active-userinfor"
                 type="text"
-                placeholder="Nhập đầy đủ họ tên"
+                placeholder="Nhập Họ và Tên "
+                value={hoTen}
+                onChange={handlehoTen}
               ></input>
               <p className="userinfor__papers-content-left-text">Ngày sinh</p>
               <input
-                className={
-                  editMode
-                    ? "userinfor__papers-content-left-input active-userinfor"
-                    : "userinfor__papers-content-left-input"
-                }
-                disabled={!editMode}
-                type="text"
-                placeholder="11-10-2003"
+                className="userinfor__papers-content-right-img-fill active-userinfor"
+                type="date"
+                placeholder="Nhập Ngày Sinh "
+                value={ngaySinh}
+                onChange={handlengaySinh}
               ></input>
             </div>
             <div className="userinfor__papers-content-right">
               <h4 className="userinfor__papers-content-right-name">Hình ảnh</h4>
               <div className="userinfor__papers-content-right-img">
-              <h2>Thêm ảnh :</h2>
-              <input type="file" onChange={handleChange}
-                className={
-                editMode
-                  ? "userinfor__papers-content-right-img-fill active-userinfor"
-                  : "userinfor__papers-content-right-img-fill"}
-              disabled={!editMode}/>
-              <img src={file} alt=""/>
+                {!hinhAnhGiayPhep && (
+                  <div>
+                    <h2>Thêm ảnh :</h2>
+                    <input
+                      type="file"
+                      onChange={handleChange}
+                      className="userinfor__papers-content-right-img-fill active-userinfor"
+                    />
+                  </div>
+                )}
               </div>
+              {hinhAnhGiayPhep && <img src={hinhAnhGiayPhep} alt={hoTen} />}
             </div>
           </div>
         </div>
