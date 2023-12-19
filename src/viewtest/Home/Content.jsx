@@ -18,7 +18,7 @@ function Content() {
   const [currentPage, setCurrentPage] = useState(1);
   const [carsPerPage, setCarsPerPage] = useState(9);
   const [hasProducts, setHasProducts] = useState(true);
-  const [filteredCarsByCategory, setFilteredCarsByCategory] = useState([]); // Danh sách đã lọc theo danh mục
+  const [filteredCarsByCategory, setFilteredCarsByCategory] = useState([]); 
 
   const handleWindowSizeChange = () => {
     const width = window.innerWidth;
@@ -53,16 +53,18 @@ function Content() {
     setFilteredCarsByCategory([]); // Reset danh sách đã lọc theo danh mục
   };
 
+  
   useEffect(() => {
     axios
       .get('http://localhost:5000/get-car')
       .then((response) => {
         const carsData = response.data.cars;
-  
+
         // Filter by selected district
         const categoryFilter =
           selectedDistrict === null ? carsData : carsData.filter((car) => car.location === selectedDistrict);
-  
+          console.log(categoryFilter);
+
         // Filter by search
         let nameFilter = [];
         if (search !== '') {
@@ -70,22 +72,20 @@ function Content() {
         } else {
           nameFilter = categoryFilter;
         }
-  
+        console.log(nameFilter);
+
+
         setFilteredCars(nameFilter);
-  
+
         // Kiểm tra có sản phẩm hay không
         setHasProducts(nameFilter.length > 0);
-  
-        // Nếu đã chọn danh mục, cập nhật danh sách đã lọc theo danh mục
-        if (selectedDistrict !== null) {
-          setFilteredCarsByCategory(nameFilter);
-        }
+
       })
       .catch((error) => {
         console.error('Lỗi:', error);
       });
-  }, [search, selectedDistrict]);
-  
+  }, [search, selectedDistrict, currentItem]);
+
   const indexOfLastCar = currentPage * carsPerPage;
   const indexOfFirstCar = indexOfLastCar - carsPerPage;
   const currentCars = filteredCars.slice(indexOfFirstCar, indexOfLastCar);
@@ -101,6 +101,15 @@ function Content() {
     <div className="content" id="content">
       <h1 className="content__text">Xe dành cho bạn</h1>
       <div className="content__search">
+        <div className="content__search-form">
+          <input
+            type="text"
+            className="content__search-form-input"
+            placeholder="Tìm Kiếm Xe"
+            value={search}
+            onChange={handleSearchChange}
+          />
+        </div>
         <div className="search-menu">
           <button className="search-button" onClick={toggleDropdown}>
             {currentItem} <i><FaAngleDown /></i>
@@ -128,22 +137,14 @@ function Content() {
             </ul>
           )}
         </div>
-        <div className="content__search-form">
-          <input
-            type="text"
-            className="content__search-form-input"
-            placeholder="Tìm Kiếm Xe"
-            value={search}
-            onChange={handleSearchChange}
-          />
-        </div>
       </div>
       <div className="content__list">
-      {!hasProducts && <div className='not__product'>
-        <img src='https://etecvn.com/default/template/img/cart-empty.png' alt='hình ảnh không có sản phẩm' className='not__product-img'>
-           </img>
-        <h3 className='not__product-text'>Hiện tại không có xe thuê cần tìm</h3>
-        </div>}
+        {!hasProducts &&
+          <div className='not__product'>
+            <img src='https://etecvn.com/default/template/img/cart-empty.png' alt='hình ảnh không có sản phẩm' className='not__product-img'>
+            </img>
+            <h3 className='not__product-text'>Hiện tại không có xe thuê cần tìm</h3>
+          </div>}
         {currentCars.map((car, index) => (
           <Link to={`/san-pham/${car._id}`} className='content__list-child' key={index}>
             <nav>
@@ -194,7 +195,6 @@ function Content() {
           </Link>
         ))}
       </div>
-
       {filteredCars.length > carsPerPage && (
         <div className="pagination">
           {Array.from({ length: Math.ceil(filteredCars.length / carsPerPage) }).map((_, index) => (

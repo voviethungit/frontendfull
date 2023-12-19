@@ -532,7 +532,7 @@ function ContentProduct() {
                       </i>
                       <span className="df-align-center-tooltip-text">
                         Phí dịch vụ giúp chúng tôi duy trì và phát triển dịch vụ
-                        trên ưng dụng Mioto
+                        trên ưng dụng Xe Tốt
                       </span>
                     </span>
                   </p>
@@ -980,7 +980,7 @@ function ContentProduct() {
                     </i>
                     <span className="df-align-center-tooltip-text">
                       Phí dịch vụ giúp chúng tôi duy trì và phát triển dịch vụ
-                      trên ưng dụng Mioto
+                      trên ưng dụng Xe Tốt 
                     </span>
                   </span>
                 </p>
