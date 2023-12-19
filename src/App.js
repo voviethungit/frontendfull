@@ -77,7 +77,7 @@ function App() {
           <Route path='/book' element={<Booking />} />
           <Route path='/paymen' element={<Paymenthowto />} />
           <Route path='/regu' element={<Regu />} />
-          <Route path='/dia-diem' element={<Mainlocation />} />
+          <Route path='/dia-diem/:id' element={<Mainlocation />} />
           <Route path='/nap-tien' element={<PayLive />} />
           <Route path='/thanh-toan/:id' element={<Pay />} />
           <Route path='/success' element={<SuccessPage />} />

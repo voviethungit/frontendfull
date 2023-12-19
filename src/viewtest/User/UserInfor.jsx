@@ -125,7 +125,7 @@ function UserInfor() {
         console.error("Lỗi :", error);
       });
   }, []);
-  useEffect(() => {
+  const getProfile = () => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       setLoggedIn(false);
@@ -150,8 +150,11 @@ function UserInfor() {
         .catch((error) => {
           console.error("Lỗi :", error);
         });
-    }
-  }, []);
+  }
+}
+useEffect(() => {
+  getProfile();
+}, []);
   if (!loggedIn) {
     navigate("/dang-nhap");
   }

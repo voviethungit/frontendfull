@@ -86,7 +86,11 @@ function Resetpw() {
               </div>
             </div>
             <div className="resetpw-btn">
-              <Button color="primary" onClick={handleChangePassword}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleChangePassword}
+              >
                 Xác nhận
               </Button>
             </div>

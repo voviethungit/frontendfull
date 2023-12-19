@@ -61,7 +61,6 @@ function Myfavs() {
           (car) => car._id !== carId
         );
         setFavoriteCars(updatedFavoriteCars);
-        console.log("Đã xóa khỏi danh sách yêu thích");
         const favoriteKey = `favorite_${carId}`;
         localStorage.setItem(favoriteKey, "false");
       } else {
@@ -186,7 +185,7 @@ function Myfavs() {
                                   <FaCarRear></FaCarRear>
                                 </i>
                                 <p className="love__car-child-detail-evaluate-usage-text">
-                                  {car.usage}
+                                  {car.usage} lượt thuê
                                 </p>
                               </div>
                             </div>

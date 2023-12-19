@@ -59,6 +59,10 @@ function ContentProduct() {
   const [copySuccess, setCopySuccess] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [licenseStatus, setLicenseStatus] = useState({
+    hasDrivingLicense: false,
+    status: "",
+  });
   const openModal = (image) => {
     setModalOpen(true);
     setOverlayOpacity(1);
@@ -70,7 +74,7 @@ function ContentProduct() {
   };
 
   useEffect(() => {
-    applyFavoriteStatus(); 
+    applyFavoriteStatus();
   }, []);
 
   const applyFavoriteStatus = () => {
@@ -119,19 +123,35 @@ function ContentProduct() {
       console.error("Lỗi khi thêm vào xe yêu thích:", error);
     }
   };
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    const accessToken = localStorage.getItem("accessToken");
+    axios
+      .get(`http://localhost:5000/check-gplx/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        setLicenseStatus(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching license status:", error);
+      });
+    }, []);
   // cuộn trang
   const { carreaload } = useLocation();
+  const getReviews = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/reviews/${id}`);
+      setReviews(response.data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
   useEffect(() => {
-    const fetchReviews = async (review) => {
-      try {
-        const response = await axios.get(`http://localhost:5000/reviews/${id}`);
-        setReviews(response.data);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-      }
-    };
-
-    fetchReviews();
+    getReviews();
   }, [id]);
 
   useEffect(() => {
@@ -174,7 +194,7 @@ function ContentProduct() {
           },
         }
       );
-      window.location.reload();
+      getReviews();
       console.log("Review submitted:", response.data);
     } catch (error) {
       console.error("Error submitting review:", error);
@@ -582,11 +602,18 @@ function ContentProduct() {
                   </p>
                 </div>
                 <Link to={`/thanh-toan/${car._id}`}>
-                  <button className="btn__large price-container-button">
+                  <button
+                    className="btn__large price-container-button"
+                    disabled={!licenseStatus.hasDrivingLicense}
+                  >
                     <i>
                       <FaCircleCheck></FaCircleCheck>
                     </i>
-                    <h3>Chọn Thuê</h3>
+                    <h3>
+                      {licenseStatus.status === "Đã Xác Nhận"
+                        ? "Chọn Thuê"
+                        : "Cung cấp Giấy phép lái xe"}
+                    </h3>
                   </button>
                 </Link>
               </div>
@@ -1030,13 +1057,20 @@ function ContentProduct() {
                 </p>
               </div>
               <Link to={`/thanh-toan/${car._id}`}>
-                <button className="btn__large price-container-button">
-                  <i>
-                    <FaCircleCheck></FaCircleCheck>
-                  </i>
-                  <h3>Chọn Thuê</h3>
-                </button>
-              </Link>
+                  <button
+                    className="btn__large price-container-button"
+                    disabled={!licenseStatus.hasDrivingLicense}
+                  >
+                    <i>
+                      <FaCircleCheck></FaCircleCheck>
+                    </i>
+                    <h3>
+                      {licenseStatus.status === "Đã Xác Nhận"
+                        ? "Chọn Thuê"
+                        : "Thiếu Giấy Phép"}
+                    </h3>
+                  </button>
+                </Link>
             </div>
             <div className="surcharge">
               <p class="title text-primary">Phụ phí có thể phát sinh</p>
@@ -1163,13 +1197,13 @@ function ContentProduct() {
                   {/* <div className="absolute__heart" style={{ backgroundColor }}>
                     <i>
 =========          */}
-                   <div className='btn__freetax contentproduct__other-child-img-tax '>
-                    <p className='contentproduct__other-child-img-tax-text'>
+                  <div className="btn__freetax contentproduct__other-child-img-tax ">
+                    <p className="contentproduct__other-child-img-tax-text">
                       {similarcar.tax}
                     </p>
                   </div>
-                  <div className='contentproduct__other-child-img-flash btn__electronic'>
-                    <p className='contentproduct__other-child-img-flash-text'>
+                  <div className="contentproduct__other-child-img-flash btn__electronic">
+                    <p className="contentproduct__other-child-img-flash-text">
                       {similarcar.tax2}
                     </p>
                   </div>
