@@ -1,6 +1,8 @@
 @media (max-width: 1199px) {
     .userinfor__papers{
         height: auto;
+        display: flex;
+        flex-direction: column;
     }
 
     .userinfor__papers-content{
@@ -8,9 +10,15 @@
         flex-direction: column;
         justify-content: space-between;
         margin-bottom: 50px;
+        padding: 0 30px;
     }
     .userinfor__papers-content-right {
       width: 100%;
+      margin-top: 30px;
+    }
+
+    .userinfor__papers-content-left{
+      width: 80%;
     }
     .userinfor__papers-content-left-input{
         width: 100%;

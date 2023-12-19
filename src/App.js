@@ -37,6 +37,7 @@ import Mainlocation from './viewtest/Home/Location/Mainlocation';
 import PayLive from './viewtest/Pay/PayLive';
 // 404 NOT FOUND
 import NotFound from './viewtest/Home/NotFound.jsx';
+import SuccessPassword from './viewtest/Home/Login_Register/SuccessPassword.jsx';
 // Thanh toán
 import Pay from './viewtest/Pay/Pay.jsx';
 import SuccessPage from './viewtest/Pay/SuccessPage'
@@ -80,6 +81,7 @@ function App() {
           <Route path='/nap-tien' element={<PayLive />} />
           <Route path='/thanh-toan/:id' element={<Pay />} />
           <Route path='/success' element={<SuccessPage />} />
+          <Route path='/reset-password/:token' element={<SuccessPassword />} />
         </Routes>
       </Router>
     </>

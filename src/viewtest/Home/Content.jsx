@@ -182,7 +182,7 @@ function Content() {
                 </div>
                 <div className='content__list-child-detail-evaluate-usage'>
                   <i><FaCarRear /></i>
-                  <p className='content__list-child-detail-evaluate-usage-text'>{car.usage}</p>
+                  <p className='content__list-child-detail-evaluate-usage-text'>{car.usage} lượt thuê</p>
                 </div>
               </div>
               <div className='content__list-child-detail-buy'>

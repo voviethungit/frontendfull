@@ -107,7 +107,7 @@
 
 .userinfor__profile-account-bonus {
     display: flex;
-    width: 120px;
+    /* width: 120px; */
     height: 40px;
     line-height: 40px;
     text-align: center;
@@ -126,6 +126,7 @@
 
 .userinfor__profile-account-bonus-name {
     font-size: 2rem;
+    padding-right: 10px;
 }
 
 /* Phần này là phần bên phải của thông tin khách hàng */
@@ -297,6 +298,7 @@
 .userinfor__papers-content-left {
     display: flex;
     flex-direction: column;
+    width: 40%;
 }
 .userinfor__papers-content-left-name{
     font-size: 2rem;
@@ -320,7 +322,10 @@
 }
 
 .active-userinfor{
-    opacity: 0.7;
+    opacity: 1.5;
+}
+.userinfor__papers-content-left .enabled{
+    opacity: 0.6;
 }
 /* Phần bên phải hình ảnh */
 .userinfor__papers-content-right {
@@ -350,13 +355,100 @@
     display: flex;
     gap: 10px;
 }
+
+
 .button-enable{
-    background-color: white;
+    background-color: var(--button-color);
+    color: #fff;
+    font-weight: 700;
     border: solid 1px;
-    padding: 11px;
+    padding: 11px 20px;
     border-radius: 20px;
+    font-size: 1.444rem;
+    cursor: pointer;
+}
+
+.button-enable:hover{
+    box-shadow: 0px 2px 4px -1px 
+            rgba(0,0,0,0.2), 0px 4px 5px 0px 
+            rgba(0,0,0,0.14), 0px 1px 10px 0px 
+            rgba(0,0,0,0.12);
+}
+
+.button-enable-cancel:hover{
+    box-shadow: 0px 2px 4px -1px 
+            rgba(0,0,0,0.2), 0px 4px 5px 0px 
+            rgba(0,0,0,0.14), 0px 1px 10px 0px 
+            rgba(0,0,0,0.12);
+}
+
+.button-enable-cancel{
+    background-color: red;
+    color: #fff;
+    font-weight: 700;
+    border: solid 1px;
+    padding: 11px 20px;
+    border-radius: 20px;
+    font-size: 1.444rem;
 }
 
 .userinfor__papers-content-right-img-fill{
     padding: 10px;
+    border-radius: 8px;
+    border: 1px solid;
+}
+
+/* giay phep lai xe */
+.add-imgage-GPLX{
+    display: flex;
+    align-items: center;
+}
+.image-GPLX{
+    max-width: 375px;
+    max-height:240px ;
+}
+
+.success-notification-GPLX {
+    color: #fff;
+    font-size: 2rem;
+    position: fixed;
+    top: -100px; /* Bắt đầu ẩn thông báo ở trên cùng */
+    right: 20px;
+    background-color: #54cd58;
+    padding: 20px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    animation: fadeInUp 1s ease-in-out; /* Thêm animation để xuất hiện mượt mà */
+    animation-fill-mode: forwards; /* Giữ lại trạng thái cuối cùng của animation */
+  }
+
+
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: var(--button-color);
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.inputfile:focus+label,
+.inputfile+label:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+label > p {
+    padding-left: 5px;
 }

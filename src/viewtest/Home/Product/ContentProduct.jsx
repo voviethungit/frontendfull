@@ -1228,7 +1228,7 @@ function ContentProduct() {
                           <FaCarRear></FaCarRear>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-usage-text">
-                          {similarcar.usage}
+                          {similarcar.usage} Lượt thuê
                         </p>
                       </div>
                     </div>

@@ -127,7 +127,68 @@
     /* border: 1px solid var(--button-color); */
   }
 
-  .css-sghohy-MuiButtonBase-root-MuiButton-root{
-    padding: 10px 20px !important;
-    font-size: 1.2rem !important;
+
+  .modal-user-main .css-sghohy-MuiButtonBase-root-MuiButton-root{
+    border-radius: 20px;
+    background-color: var(--button-color);
+    border: solid 1px;
+    padding: 11px 20px;
+    color: #fff;
+    box-shadow: none;
+    font-family: 'Manrope', sans-serif;
+    text-transform: none;
+    font-weight: 700;
+    line-height: normal;
+    font-size: 1.444rem;
+    border: 1px solid;
+  }
+
+  .modal-user-main .css-sghohy-MuiButtonBase-root-MuiButton-root:hover{
+    background-color: var(--button-color);
+  }
+
+  .css-zw3mfo-MuiModal-root-MuiDialog-root .label-top {
+    position: unset;
+    padding: 0;
+  }
+
+  .css-mhc70k-MuiGrid-root .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root{
+    font-size: 2rem;
+  }
+
+  .css-mhc70k-MuiGrid-root .css-14lo706{
+    font-size: 1.55rem;
+  }
+
+  .css-mhc70k-MuiGrid-root .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input{
+    font-size: 1.5rem;
+  }
+
+  .css-bdhsul-MuiTypography-root-MuiDialogTitle-root{
+    font-size: 2rem !important;
+  }
+
+  .avatar-input{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin: 0 125px;
+  }
+
+  .css-mhc70k-MuiGrid-root .change-avtart{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .css-1t1j96h-MuiPaper-root-MuiDialog-paper > .css-knqc4i-MuiDialogActions-root{
+    justify-content: space-between;
+    padding: 8px 15px;
+  }
+
+  .css-knqc4i-MuiDialogActions-root .css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+    font-size: 1.5rem;
+  }
+  .css-wb57ya-MuiFormControl-root-MuiTextField-root .css-1wc848c-MuiFormHelperText-root{
+    font-size: 2rem;
   }
