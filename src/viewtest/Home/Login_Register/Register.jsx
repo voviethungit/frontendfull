@@ -23,16 +23,46 @@ function Register() {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorModalContent, setErrorModalContent] = useState("");
   const [submitted, setSubmitted] = useState(false);
- 
+  const [imageSelected, setImageSelected] = useState(false);
+const [isFileInputVisible, setIsFileInputVisible] = useState(true);
+  const [fileInputLabel, setFileInputLabel] = useState({
+    text: "Chọn ảnh",
+    visible: true,
+  });
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setAvatarFile(file);
+    const fileName = file ? file.name : "Chọn ảnh";
+    setFileInputLabel({
+      text: fileName,
+      visible: false,
+    });
+    setImageSelected(true);
+  
+    // Ẩn input "Choose File" khi chọn ảnh thành công
+    setIsFileInputVisible(false);
   };
-
+  const containsNumber = (str) => {
+    const numberRegex = /\d/;
+    return numberRegex.test(str);
+  };
+  const containsSpecialCharacter = (str) => {
+    const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    return specialCharacterRegex.test(str);
+  };
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
       case "fullName":
+        if (containsSpecialCharacter(value)) {
+          // Nếu tên có chứa kí tự đặc biệt, hiển thị thông báo lỗi
+          showErrorModal("Họ và Tên không được chứa kí tự đặc biệt.");
+        }
+        if (containsNumber(value)) {
+          // Nếu tên có chứa số, hiển thị thông báo lỗi
+          showErrorModal("Họ và Tên không được chứa số.");
+        }
         setFullname(value);
         break;
       case "email":
@@ -55,6 +85,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
+    
     if (!fullName || !email || !password || !location || !phoneNumber || !avatarFile) {
       showErrorModal("Vui lòng nhập đầy đủ thông tin.");
       return;
@@ -195,18 +226,26 @@ if (phoneNumber.length < 10) {
                         </div>
                       </div>
                       <div className="wrap-input">
-                        <div className="wrap-text">
+                        <div className="wrap-text file-input-wrapper">
                           <input
                             type="file"
                             name="avatar"
-                            accept="image/*"
-                            onChange={(e) => handleImageChange(e)}
+                      accept="image/*"
+                      style={{ display: isFileInputVisible ? "block" : "none" }}    
+                      onChange={(e) => handleImageChange(e)}
                           />
-                           {avatarFile && (
-                            <div className="wrap-images">
-                              <img src={URL.createObjectURL(avatarFile)} alt="Avatar" />
-                            </div>
-                          )}
+  
+{avatarFile && (
+    <div className="wrap-images">
+      <img src={URL.createObjectURL(avatarFile)} alt="Avatar" />
+    </div>
+  )}
+  {imageSelected && (
+    <label className="file-input-label" id="file-input-label">
+      {fileInputLabel.visible ? fileInputLabel.text : ""}
+    </label>
+    )}
+                        
                         </div>
                       </div>
                     </div>
@@ -315,6 +354,8 @@ if (phoneNumber.length < 10) {
                       </div>
                     </div>
                   </div>
+                  
+     
                   <div className="wrap-test">
                     <div className="custom-checkbox-selected">
                       <input

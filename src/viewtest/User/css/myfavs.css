@@ -227,6 +227,9 @@
 /* Trong file CSS của bạn */
 .love__car-box {
   width: 100%;
+  background-color: var(--white-color);
+  padding: 10px 0 0 10px;
+  margin: 10px;
 }
 .love__car-content {
   width: 100%;
@@ -262,13 +265,20 @@
 .car-item p {
   font-size: 16px;
   color: #555;
-};
+}
+.love__car-link {
+  width: auto;
+  border: none;
+  padding: 0px;
+  background-color: var(--main-color);
+  border-radius: 20px;
+}
 .love__car-child {
   height: auto;
-  padding: 20px;
+  padding: 0px;
   margin: 5px;
-  border:solid 0.1px #4e4545;
-  background: var(--white-color);
+  /* border:solid 0.1px #4e4545; */
+  background:var(--main-color);
   border-radius: 20px;
   text-decoration: none;
   overflow: hidden;

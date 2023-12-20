@@ -50,7 +50,7 @@ function Header() {
           console.error('Lỗi :', error);
         });
     }
-  }, []);
+  }, []); 
 
   return (
     <div className='header' id='header'>

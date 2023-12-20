@@ -28,6 +28,7 @@
 
 .banner__main-textchild {
     font-size: 2rem;
+    color: var(--white-color);
 }
 
 .banner__main-textchild span {

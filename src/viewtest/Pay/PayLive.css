@@ -93,7 +93,7 @@ cursor: pointer;
 }
 .Vnpay-container {
     max-width: 70%;
-    background-color: rgb(243, 239, 239);
+    background-color: rgb(255, 254, 254);
     margin: 20px auto;
     gap: 20px;
     padding: 20px;
@@ -176,13 +176,6 @@ font-size: 18px;
     padding: 20px;
     font-weight: 600;
 }
-.flex-language {
-    margin: 5px 0;
-    display: flex;
-}
-.flex-language label{
-    position: inherit;
-}
 @media (max-width:991px) {
    .Vnpay-container{
         flex-direction: column;
@@ -195,3 +188,42 @@ font-size: 18px;
     width: 100%;
 }
 }
+ .radio-inline input {
+    margin-right: 5px;
+  }
+  
+  .radio-inline  {
+  padding: 10px;
+
+  }
+  input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+  input[type="radio"] {
+   margin: 8px;
+    cursor: pointer;
+    
+
+  }
+p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+
+  
+.radio-inline {
+    display: block;
+   
+  
+  }
+ input[type="hidden"] {
+    display: none;
+  }
+  .error-message {
+    color: rgb(61, 58, 58);
+    font-size: 12px;
+  }

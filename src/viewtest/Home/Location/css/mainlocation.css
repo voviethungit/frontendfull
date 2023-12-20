@@ -55,6 +55,8 @@
   }
   .location__list {
     display: block;
+   flex-wrap: wrap;
+   justify-content: flex-start;
   }
   
   .location__list-child {

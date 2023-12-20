@@ -180,11 +180,11 @@ function Pay() {
                 isVnPaySelected ? "selected" : ""
               }`}
               onClick={() => {
-                setVnPaySelected(!isVnPaySelected);
-                setAccountBalanceSelected(false);
+                // setVnPaySelected(!isVnPaySelected);
+                // setAccountBalanceSelected(false);
               }}
             >
-              <p>VN Pay</p>
+              <p>VN Pay (đang phát triển)</p>
             </div>
             <div
               className={`pay__information-method-ofline ${

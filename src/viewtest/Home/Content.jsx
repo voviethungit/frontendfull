@@ -35,15 +35,14 @@ function Content() {
   useEffect(() => {
     handleWindowSizeChange();
     window.addEventListener('resize', handleWindowSizeChange);
-
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, []);
 
-  const toggleDropdown = () => {
-    setIsOpenCategory(!isOpenCategory);
-  };
+    const toggleDropdown = () => {
+      setIsOpenCategory(!isOpenCategory);
+    };
 
   const handleItemClick = (item) => {
     setCurrentItem(item);
@@ -60,12 +59,10 @@ function Content() {
       .then((response) => {
         const carsData = response.data.cars;
 
-        // Filter by selected district
         const categoryFilter =
           selectedDistrict === null ? carsData : carsData.filter((car) => car.location === selectedDistrict);
           console.log(categoryFilter);
 
-        // Filter by search
         let nameFilter = [];
         if (search !== '') {
           nameFilter = categoryFilter.filter((car) => car.title.toLowerCase().includes(search.toLowerCase()));
@@ -77,7 +74,6 @@ function Content() {
 
         setFilteredCars(nameFilter);
 
-        // Kiểm tra có sản phẩm hay không
         setHasProducts(nameFilter.length > 0);
 
       })
@@ -185,10 +181,10 @@ function Content() {
             <div className='content__list-child-underlined'> </div>
             <div className='content__list-child-detail'>
               <div className='content__list-child-detail-evaluate'>
-                <div className='content__list-child-detail-evaluate-star'>
+                {/* <div className='content__list-child-detail-evaluate-star'>
                   <i><FaStar /></i>
                   <p className='content__list-child-detail-evaluate-star-text'>{car.star}</p>
-                </div>
+                </div> */}
                 <div className='content__list-child-detail-evaluate-usage'>
                   <i><FaCarRear /></i>
                   <p className='content__list-child-detail-evaluate-usage-text'>{car.usage} lượt thuê</p>

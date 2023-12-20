@@ -1,12 +1,12 @@
 .pay {
   width: 100%;
   height: auto;
-  background-color: #fff;
 }
 .pay__information {
   width: 80%;
   margin: 20px auto;
-  border: 1px solid rgb(234, 234, 234);
+  border: 2px solid rgb(203, 200, 200);
+  background-color:rgb(226, 251, 229);
   padding: 10px;
   border-radius: 10px;
 }

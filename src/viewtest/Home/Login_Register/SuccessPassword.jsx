@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 const SuccessPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [resetSuccess, setResetSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
   const { token } = useParams();
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -16,6 +17,13 @@ const SuccessPassword = () => {
         `http://localhost:5000/reset-password/${token}`,
         { newPassword }
       );
+
+      console.log(response.data);
+      setSuccessMessage(true); 
+      setTimeout(() => {
+        setSuccessMessage(false);
+        window.location.href = "http://localhost:3000/dang-nhap";
+      }, 3000);
       console.log(response.data);
       setResetSuccess(true);
     } catch (error) {
@@ -46,6 +54,12 @@ const SuccessPassword = () => {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                   ></input>
+                       <div className={successMessage ? "backdrop-show" : "backdrop-hide"}>
+          {/* Hiển thị backdrop hoặc thông báo thành công */}
+          <div className="success-message">
+                <p>Cập nhật mật khẩu thành công!</p>
+              </div>
+        </div>
                 </div>
               </div>
             </div>

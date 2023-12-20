@@ -172,14 +172,14 @@ function Myfavs() {
                           <div className="love__car-child-underlined"> </div>
                           <div className="love__car-child-detail">
                             <div className="love__car-child-detail-evaluate">
-                              <div className="love__car-child-detail-evaluate-star">
+                              {/* <div className="love__car-child-detail-evaluate-star">
                                 <i>
                                   <FaStar></FaStar>
                                 </i>
                                 <p className="love__car-child-detail-evaluate-star-text">
                                   {car.star}
                                 </p>
-                              </div>
+                              </div> */}
                               <div className="love__car-child-detail-evaluate-usage">
                                 <i>
                                   <FaCarRear></FaCarRear>
