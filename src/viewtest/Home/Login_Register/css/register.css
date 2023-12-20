@@ -49,15 +49,15 @@
 
 .modal-header h2 {
   font-size: 2.4rem;
-  font-weight: 300;
-  padding: 20px 0;
+  font-weight: 600;
+  padding-top: 10px;
 }
 
 .modal-input-body {
   display: flex;
   flex-direction: column;
   grid-gap: 10px;
-  gap: 10px;
+  gap: 5px;
 }
 
 .custom-input {
@@ -73,19 +73,24 @@
   align-items: center;
   justify-content: space-between;
   grid-gap: 10px;
-  gap: 10px;
+  gap: 8px;
   border-radius: 10px;
 }
 .wrap-images {
-  width: 20%;
-  height: 80px;
+  width: 30%;
+  height: 90px;
+  margin: auto;
 }
 .wrap-images img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+
   object-fit: cover;
+  
+
 }
+
 
 .custom-input .wrap-info .title-status p {
   font-size: 1.2rem;
@@ -153,11 +158,11 @@ label {
     color: #070101 ;
 }
 .text2.new-text{
-color: white;
+color: white ;
 }
 .background.new-background {
   background-color: #079c2a;
- 
+  color: white
 }
 .wrap-btn-icon{
     display: flex;

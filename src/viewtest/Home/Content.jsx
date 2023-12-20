@@ -65,7 +65,6 @@ function Content() {
           selectedDistrict === null ? carsData : carsData.filter((car) => car.location === selectedDistrict);
           console.log(categoryFilter);
 
-        // Filter by search
         let nameFilter = [];
         if (search !== '') {
           nameFilter = categoryFilter.filter((car) => car.title.toLowerCase().includes(search.toLowerCase()));
@@ -77,7 +76,6 @@ function Content() {
 
         setFilteredCars(nameFilter);
 
-        // Kiểm tra có sản phẩm hay không
         setHasProducts(nameFilter.length > 0);
 
       })

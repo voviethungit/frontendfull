@@ -21,10 +21,8 @@ function Sale() {
 
   useEffect(() => {
     if (modalOpen) {
-      // Khi modal mở, thêm class 'modal-open' vào phần tử body để chặn scroll bên ngoài modal
       document.body.classList.add("modal-open");
     } else {
-      // Khi modal đóng, loại bỏ class 'modal-open' khỏi phần tử body
       document.body.classList.remove("modal-open");
     }
   }, [modalOpen]);

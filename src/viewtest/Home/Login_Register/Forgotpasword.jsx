@@ -3,7 +3,10 @@ import './css/forgotpassword.css'
 import Header from '../Header';
 import Footer from '../Footer';
 import axios from 'axios';
+
 const Forgotpasword = () => {
+
+
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
   const handleForgotPassword = async (e) => {
@@ -16,6 +19,9 @@ const Forgotpasword = () => {
       );
       console.log(response.data);
       setSuccessMessage(true); 
+      setTimeout(() => {
+        setSuccessMessage(false);
+      }, 3000);
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +38,9 @@ const Forgotpasword = () => {
             </div>
             <div className={successMessage ? "backdrop-show" : "backdrop-hide"}>
           {/* Hiển thị backdrop hoặc thông báo thành công */}
-          <p>Yêu cầu đã được gửi thành công!</p>
+          <div className="success-message">
+                <p>Yêu cầu đã được gửi thành công!</p>
+              </div>
         </div>
             <div className="Forgotpassword-body">
               <div className="Forgotpassword-input-body">
