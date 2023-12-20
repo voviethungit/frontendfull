@@ -125,14 +125,17 @@ function Content() {
               <li onClick={() => handleItemClick("Quận Thanh Khê")}>
                 Quận Thanh Khê
               </li>
-              <li onClick={() => handleItemClick("Quận Hòa Khánh")}>
-                Quận Hòa Khánh
+              <li onClick={() => handleItemClick("Quận Ngũ Hành Sơn")}>
+                Quận Ngũ Hành Sơn
               </li>
               <li onClick={() => handleItemClick("Quận Sơn Trà")}>
                 Quận Sơn Trà
               </li>
               <li onClick={() => handleItemClick("Quận Hải Châu")}>
                 Quận Hải Châu
+              </li>
+              <li onClick={() => handleItemClick("Quận Cẩm Lệ")}>
+                Quận Cẩm Lệ
               </li>
             </ul>
           )}
