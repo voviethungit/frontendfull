@@ -15,8 +15,9 @@ function UserInfor() {
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [errorModalContent, setErrorModalContent] = useState("");
-
   const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState('');
+  const [hasGPLXInfo, setHasGPLXInfo] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
   const [fullName, setFullName] = useState("");
   const [avatar, setAvatar] = useState(null);
@@ -33,6 +34,13 @@ function UserInfor() {
   const [status, setStatus] = useState("");
   const [hinhAnhGiayPhep, setHinhAnhGiayPhep] = useState(null);
   const [newlyAddedImage, setNewlyAddedImage] = useState(null);
+  const [initialSoGPLX, setInitialSoGPLX] = useState("");
+  const [initialHoTen, setInitialHoTen] = useState("");
+  const [initialNgaySinh, setInitialNgaySinh] = useState("");
+  const [initialHinhAnhGiayPhep, setInitialHinhAnhGiayPhep] = useState(null);
+  const [soGPLXError, setSoGPLXError] = useState("");
+  const [hoTenError, setHoTenError] = useState("");
+  const [ngaySinhError, setNgaySinhError] = useState("");
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
     setHinhAnhGiayPhep(selectedFile);
@@ -41,20 +49,52 @@ function UserInfor() {
   };
   const handleSoGPLXChange = (event) => {
     setSoGPLX(event.target.value);
+    const value = event.target.value.trim();
+    if (!value) {
+      setSoGPLXError("Vui lòng nhập số GPLX");
+      return;
+    }
+    setSoGPLX(value);
+    setSoGPLXError("");
   };
   const handlehoTen = (event) => {
     setHoTen(event.target.value);
+    const value = event.target.value.trim();
+    if (!value) {
+      setHoTenError("Vui lòng nhập Họ và Tên");
+      return;
+    }
+    setHoTen(value);
+    setHoTenError("");
   };
   const handlengaySinh = (event) => {
     setNgaySinh(event.target.value);
+    const value = event.target.value.trim();
+    if (!value) {
+      setNgaySinhError("Vui lòng nhập Ngày Sinh");
+      return;
+    }
+    const currentDate = new Date().toISOString().split('T')[0];
+    if (value > currentDate) {
+      setNgaySinhError("Ngày Sinh không hợp lệ");
+      return;
+    }
+
+    setNgaySinh(value);
+    setNgaySinhError("");
   };
 
   const startEditMode = () => {
     setEditMode(true);
+    setInitialSoGPLX(soGPLX);
+    setInitialHoTen(hoTen);
+    setInitialNgaySinh(ngaySinh);
+    setInitialHinhAnhGiayPhep(hinhAnhGiayPhep);
   };
   const cancelEditMode = () => {
     setEditMode(false);
   };
+
 
   const handleSave = async () => {
     try {
@@ -120,12 +160,15 @@ function UserInfor() {
             setStatus(response.data.status);
           }
         }
+        const hasInfo = response.data && response.data.soGPLX && response.data.hoTen && response.data.ngaySinh;
+        setHasGPLXInfo(hasInfo);
       })
       .catch((error) => {
         console.error("Lỗi :", error);
       });
   }, []);
-  const getProfile = () => {
+  
+  useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       setLoggedIn(false);
@@ -150,11 +193,8 @@ function UserInfor() {
         .catch((error) => {
           console.error("Lỗi :", error);
         });
-  }
-}
-useEffect(() => {
-  getProfile();
-}, []);
+    }
+  }, []);
   if (!loggedIn) {
     navigate("/dang-nhap");
   }
@@ -181,16 +221,33 @@ useEffect(() => {
     setErrorModalContent("");
   };
   const handleOverlayClick = (e) => {
-    console.log("Overlay clicked");
     if (e.target.classList.contains("background-modal-opacity")) {
       hideErrorModal();
     }
   };
+
+
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
+  // Lấy ngày hiện tại
+  const currentDate = new Date().toISOString().split('T')[0];
+  const resetForm = () => {
+    // Reset giá trị các trường với giá trị ban đầu
+    setSoGPLX(initialSoGPLX);
+    setHoTen(initialHoTen);
+    setNgaySinh(initialNgaySinh);
+    setHinhAnhGiayPhep(initialHinhAnhGiayPhep);
+    // Tắt chế độ chỉnh sửa
+    setEditMode(false);
+  };
   
+
   return (
     <div className="userinfor">
       <div className="userinfor__nav" id="userinfor__nav">
-        <h1 className="userinfor__nav-name">Xin chào {fullName}!</h1>
+        <h1 className="userinfor__nav-name">Xin chào bạn!</h1>
         <Userinfornav />
       </div>
 
@@ -333,19 +390,19 @@ useEffect(() => {
               </div>
             </div>
             <div className="update-papers">
-              {!editMode && (
-                <button onClick={startEditMode} className="button-enable">
-                  <div></div>
-                  Chỉnh sửa
-                </button>
-              )}
+            {!editMode && !hasGPLXInfo &&(
+              <button onClick={startEditMode} className="button-enable">
+                <div></div>
+                Chỉnh sửa
+              </button>
+            )}
               {editMode && (
                 <div className="enable-btn">
                   <button onClick={handleSave} className="button-enable">
                     <div></div>
                     Lưu
                   </button>
-                  <button onClick={cancelEditMode} className="button-enable-cancel">
+                  <button onClick={resetForm} className="button-enable-cancel">
                     <div></div>
                     Hủy
                   </button>
@@ -369,6 +426,9 @@ useEffect(() => {
                 onChange={handleSoGPLXChange}
                 disabled={!editMode}
               ></input>
+              {soGPLXError && (
+                <p className="error-message">{soGPLXError}</p>
+              )}
               <p className="userinfor__papers-content-left-text">Họ và tên</p>
               <input
                   className={`userinfor__papers-content-right-img-fill active-userinfor ${
@@ -380,6 +440,9 @@ useEffect(() => {
                 onChange={handlehoTen}
                 disabled={!editMode}
               ></input>
+              {hoTenError && (
+                <p className="error-message">{hoTenError}</p>
+              )}
               <p className="userinfor__papers-content-left-text">Ngày sinh</p>
               <input
                 className={`userinfor__papers-content-right-img-fill active-userinfor ${
@@ -389,7 +452,11 @@ useEffect(() => {
                 value={ngaySinh}
                 onChange={handlengaySinh}
                 disabled={!editMode}
+                max={currentDate}
               ></input>
+              {ngaySinhError && (
+                <p className="error-message">{ngaySinhError}</p>
+              )}
             </div>
             <div className="userinfor__papers-content-right">
               <h4 className="userinfor__papers-content-right-name">Hình ảnh</h4>

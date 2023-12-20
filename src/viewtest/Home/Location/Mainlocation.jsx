@@ -37,7 +37,7 @@ function Mainlocation({ match }) {
   }, [id]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/get-car")
+      .get(`http://localhost:5000/get-car-by-category/${id}`)
       .then((response) => {
         const carsData = response.data.cars;
         setCars(carsData);
@@ -46,7 +46,7 @@ function Mainlocation({ match }) {
       .catch((error) => {
         console.error("Lỗi:", error);
       });
-  }, []);
+  }, [id]);
   const contact__pc_tablet = {
     dots: true,
     infinite: false,
@@ -234,7 +234,7 @@ function Mainlocation({ match }) {
                           <FaCarRear></FaCarRear>
                         </i>
                         <p className="location__list-child-detail-evaluate-usage-text">
-                          {car.usage}
+                          {car.usage} Lượt Thuê
                         </p>
                       </div>
                     </div>

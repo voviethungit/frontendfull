@@ -452,3 +452,24 @@
 label > p {
     padding-left: 5px;
 }
+.error-message{
+    font-size: 1.244rem;
+    color: red;
+    padding-bottom: 15px;
+}
+
+.userinfor__papers-header-first .userinfor__papers-header-first-button{
+    width: unset;
+    padding-right: 5px;
+    margin-bottom: 0;
+}
+
+.userinfor__papers-header-first .userinfor__papers-header-first-button > p{
+    font-size: 1.522rem;
+}
+
+@media (max-width: 767px){
+    .userinfor__papers-content-left{
+        width: 100%;
+    }
+}

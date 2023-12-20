@@ -7,20 +7,21 @@ import Header from "../Home/Header";
 import Footer from "../Home/Footer";
 import Navbarmobile from "./Navbarmobile";
 import Userinfornav from "./Userinfornav";
-import {
-  Grid,
-  Dialog,
-  TextField,
-  DialogActions,
-  Button,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
 function Resetpw() {
-  const [currentPassword, setCurrentPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [error, setError] = useState("");
+  const [passwordError, setPasswordError] =useState("")
   const handleChangePassword = async () => {
     try {
+      if(password.length < 6){
+        setPasswordError("Mật khẩu phải có ít nhất 6 kí tự")
+      }
+      if (newPassword.length < 6) {
+        setError("Mật khẩu mới phải có ít nhất 6 ký tự.");
+        return;
+      }
+
       const accessToken = localStorage.getItem("accessToken");
       const userId = localStorage.getItem("userId");
       const response = await axios.put(
@@ -34,12 +35,13 @@ function Resetpw() {
           },
         }
       );
-
       console.log(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+
   return (
     <div className="main-color">
       <Header />
@@ -55,7 +57,7 @@ function Resetpw() {
             <h1>Đổi mật khẩu</h1>
             <p>Vui lòng nhập mật khẩu hiện tại của bạn để thay đổi mật khẩu</p>
           </div>
-          <div className="content-box myaddress-form">
+          <div className="content-box myaddress-form changefw-form">
             <div className="myfavs-cars-title">
               <h3>Nhập mật khẩu</h3>
             </div>
@@ -67,9 +69,10 @@ function Resetpw() {
                 <div className="content-form-input">
                   <input
                     type="password"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
+                  {passwordError && <p className="error-message">{passwordError}</p>}
                 </div>
               </div>
               <div className="form-content">
@@ -82,17 +85,14 @@ function Resetpw() {
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                   />
+                  {error && <p className="error-message">{error}</p>}
                 </div>
               </div>
             </div>
             <div className="resetpw-btn">
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleChangePassword}
-              >
+              <button className="resetpw-btn-submit" onClick={handleChangePassword}>
                 Xác nhận
-              </Button>
+              </button>
             </div>
           </div>
         </div>

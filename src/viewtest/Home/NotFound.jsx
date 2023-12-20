@@ -30,7 +30,14 @@ const NotFound = () => {
   return (
     <div style={containerStyle}>
       <h1 style={titleStyle}>404 - Page Not Found</h1>
-      <p style={textStyle}>Trang này không tồn tại đâu hehe!</p>
+      <p style={textStyle}>Trang Không Tồn Tại!</p>
+      <br />
+      <br />
+      <a href="/"> <p style={textStyle}>Quay Lại Trang Chủ</p></a>
+      <br />
+      <br />
+      <br />
+      <br />
       <p style={developerStyle}>DEVELOPER © 5AESIEUNHAN</p>
     </div>
   );

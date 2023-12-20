@@ -62,28 +62,6 @@ function Myfavs() {
                   <h2>{accountBalance}đ</h2>
                   <span>Số dư hiện tại</span>
                 </div>
-                <div className="summary-change">
-                  <p>Tổng thay đổi - Chuyến đi hoàn thành</p>
-                  <p>0đ</p>
-                </div>
-                <div className="summary-change">
-                <p>Tổng thay đổi - Giao dịch rút/nộp tiền</p>
-                <p>0đ</p>
-              </div>
-              <div className="summary-change">
-              <p>Tổng thay đổi - Giao dịch hủy chuyến</p>
-              <p>0đ</p>
-              </div>
-              <div className="summary-change-group">
-                <div className="summary-change">
-                    <p>TỔNG CỘNG SỐ TIỀN DÃ NỘP</p>
-                    <p>Ođ</p>
-                </div>
-                <div className="summary-change">
-                  <p>TỔNG SỐ TIỀN ĐÃ THUÊ XE</p>
-                  <p>0đ</p>
-                </div>
-              </div>
               </div>
             </div>
           </div>

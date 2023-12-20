@@ -25,12 +25,11 @@ function Myaddress() {
     <div className='box-title'><h1>Địa chỉ của tôi</h1></div>
         <div className='content-box myaddress-form'>
             <div className='myfavs-cars-title'>
-                <h3>Địa chỉ đã lưu</h3>
-                <div className='myaddress-add'><Link to="/" className='userinfor-nav-link'>Thêm địa chỉ mới</Link></div>
+                <h3>Đang Phát Triển ...</h3>
             </div>
             <div className='myfavs-cars'>
                 <img src="https://www.mioto.vn/static/media/empty-address.6de0bd2f.svg" alt=''></img>
-                <p>Chưa có địa chỉ</p>
+                <p>Đang Phát Triển ...</p>
             </div>        
         </div>
     </div>

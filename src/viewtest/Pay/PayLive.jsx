@@ -24,71 +24,7 @@
           <title>Nạp tiền</title>
         </Helmet>
         <Header/>
-        <div className="Paylive-container">
-          <div className="Paylive-content">
-            <div className="Paylive-content-title">
-              <h5>Nạp Tiền ATM</h5>
-            </div>
-            <div className="Paylive-content-atm">
-              <h6>
-                MOMO : <span className="text-color-green">0824970304</span>
-              </h6>
-              <h6>
-                MB Bank : <span className="text-color-green">9666629102003</span>
-              </h6>
-              <h6>
-                CAKE : <span className="text-color-green">0824970304</span>
-              </h6>
-              <h6>
-                MB BANK : <span className="text-color-green">0824970304</span>
-              </h6>
-              <h6>
-                Chủ tài khoản :{" "}
-                <span className="text-color-green">VÕ VIỆT HÙNG</span>
-              </h6>
-              <div className="Pay-form-atm">
-                <p>Nội dung chuyển tiền </p>
-                <input type="text" required /> <br />
-                <button className="">Vui lòng ghi nội dung</button>
-              </div>
-              <p className="">Bạn sẽ nhận tiền nạp lập tức khi nạp tiền.</p>
-            </div>
-          </div>
-          <div className="Paylive-text">
-            <div className="Paylive-text-title">
-              <h5>Lưu ý nạp ATM , MOMO</h5>
-            </div>
-            <div className="Paylive-text-content">
-              <p>
-                - Nạp tiền bằng MOMO, MB BANK sẽ được duyệt tự động, nếu bạn
-                chuyển đúng nội dung nạp tiền
-                <br />
-                -Trường hợp néu bạn ghi sai nội dung. Vui lòng liên hệ admin:{" "}
-                <a href="https://www.facebook.com/VoVietHung.IT">
-                  Võ Việt Hùng
-                </a>{" "}
-                để được giải quyết. Nội dung có Phân Biệt Chữ Hoa, Chữ Thường
-                <br />
-                <br />
-                <br />- Trường hợp nạp tiền quá lâu mà chưa thấy cộng, vui lòng
-                liên hệ admin:{" "}
-                <a href="https://www.facebook.com/VoVietHung.IT">Võ Việt Hùng</a>
-                <br />- Mẹo: Liên hệ ZALO{" "}
-                <a href="zalo.me/0824970304">Võ Việt Hùng</a>, chúng tôi rep nhanh
-                hơn bạn tưởng đấy !!
-                <br />
-                <br />
-                <br />
-                <span className="Paylive-text-content-color">
-                  {" "}
-                  - Trường hợp bank tiền mà chúng tôi chưa nhận. Thì bạn sẽ không
-                  được cộng tiền. Có thể ngân hàng bảo trì hoặc chưa xử lý giao
-                  dịch đó
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
+     
         <div className="Vnpay-container">
           <div className="Vnpay-content">
             <div className="Vnpay-content-title">
@@ -122,7 +58,7 @@
                         type="radio"
                         name="bankCode"
                         value="VNBANK"
-                        
+                        checked="true"
                       />
                   Thanh toán qua ATM-Tài khoản ngân hàng nội địa <br />
                       <input
@@ -179,8 +115,18 @@
               </h6>
             </div>
             <p>
-              - Tỉ giá 1.000 vnđ = 1.000 vnđ
-              <br />- Nạp tiền sẽ đuợc cộng ngay lập tức
+              - Số tiền nạp nhận được sẽ đúng với số tiền bạn nhập | VD : Nạp 100.000 vnđ sẽ nhận được 100.000 vnđ vào tài khoản Xe Tốt.
+              <br />
+              - Lưu ý : VNPay giới hạn mức nạp tối thiểu là 5.000 vnđ và tối đa là 1 tỷ.
+              <br />
+              - Nạp tiền sẽ đuợc cộng ngay lập tức.
+              <br />
+              - Nếu sau 5 phút kể từ lúc nạp mà bạn vẫn chưa nhận được tiền. Liên Hệ Ngay Cho Admin !
+              <br />
+              <a href="https://www.facebook.com/VoVietHung.IT">Facebook Admin</a>
+              <a href="zalo.me/0824970304">Zalo Admin</a>
+              <br />
+              - Mẹo : Liên hệ qua zalo sẽ được phản hồi nhanh hơn bạn tưởng đấy 
             </p>
           </div>
         </div>
