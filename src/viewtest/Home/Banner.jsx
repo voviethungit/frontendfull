@@ -16,7 +16,7 @@ function Banner() {
       <div className='banner__list'>
         <div className='banner__list-text'>
           <p>
-            Hiện tại bạn đã thuê thành công 2 xe của chúng tôi
+            Chào mừng bạn đến với website của chúng tôi
           </p>
         </div>
         <div className='banner__list-usage'>
@@ -24,7 +24,7 @@ function Banner() {
         <div className='banner__list-point'>
           <i><FaMedal></FaMedal></i>
           <p className='banner__list-point-text'>
-            20 Điểm</p>
+            Xe Tốt</p>
         </div>
         <ScrollLink to='content' smooth={true} duration={800}>
           <button className='banner__list-search'>

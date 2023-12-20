@@ -1207,10 +1207,6 @@ const requiredPapersClass = `required-papers ${
                     alt={similarcar.title}
                     onError={handleErrorImage}
                   />
-
-                  {/* <div className="absolute__heart" style={{ backgroundColor }}>
-                    <i>
-=========          */}
                   <div className="btn__freetax contentproduct__other-child-img-tax ">
                     <p className="contentproduct__other-child-img-tax-text">
                       {similarcar.tax}
@@ -1263,14 +1259,14 @@ const requiredPapersClass = `required-papers ${
                   </div>
                   <div className="contentproduct__other-child-detail">
                     <div className="contentproduct__other-child-detail-evaluate">
-                      <div className="contentproduct__other-child-detail-evaluate-star">
+                      {/* <div className="contentproduct__other-child-detail-evaluate-star">
                         <i>
                           <FaStar></FaStar>
                         </i>
                         <p className="contentproduct__other-child-detail-evaluate-star-text">
-                          {totalRatings}
+                          {similarCars.totalRatings}
                         </p>
-                      </div>
+                      </div> */}
                       <div className="contentproduct__other-child-detail-evaluate-usage">
                         <i>
                           <FaCarRear></FaCarRear>
