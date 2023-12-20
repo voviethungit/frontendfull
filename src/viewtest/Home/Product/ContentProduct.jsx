@@ -379,7 +379,14 @@ function ContentProduct() {
   };
   // tính tổng giá tiền
   const tongTien = car.price + 125000 + 125000;
-
+//  đổi màu tương thích với trạng thái nút
+const buttonClass = `btn__large price-container-button ${
+  !licenseStatus.hasDrivingLicense ? 'disabled' : ''
+}`;
+//đổi màu nền trong hình thức giấy phép lái xe
+const requiredPapersClass = `required-papers ${
+  licenseStatus.hasDrivingLicense ? 'has-license' : ''
+}`;
   return (
     <div className="contentproduct">
       <Helmet>
@@ -552,7 +559,7 @@ function ContentProduct() {
                       </i>
                       <span className="df-align-center-tooltip-text">
                         Phí dịch vụ giúp chúng tôi duy trì và phát triển dịch vụ
-                        trên ưng dụng Mioto
+                        trên ưng dụng Xe Tốt
                       </span>
                     </span>
                   </p>
@@ -603,16 +610,17 @@ function ContentProduct() {
                 </div>
                 <Link to={`/thanh-toan/${car._id}`}>
                   <button
-                    className="btn__large price-container-button"
+                    className={buttonClass}
                     disabled={!licenseStatus.hasDrivingLicense}
                   >
                     <i>
                       <FaCircleCheck></FaCircleCheck>
                     </i>
                     <h3>
-                      {licenseStatus.status === "Đã Xác Nhận"
+                      {licenseStatus.hasDrivingLicense
+                      // status === "Đã Xác Nhận"
                         ? "Chọn Thuê"
-                        : "Cung cấp Giấy phép lái xe"}
+                        : "Thiếu Giấy Phép"}
                     </h3>
                   </button>
                 </Link>
@@ -788,25 +796,30 @@ function ContentProduct() {
             <div className="line-page"></div>
             <div className="contentproduct__detail-container-content-papers">
               <h6>Giấy tờ thuê xe</h6>
-              <div className="required-papers">
-                <div className="required-papers-item">
-                  <i></i> <span>Chọn 1 trong 2 hình thức</span>
-                </div>
-                <div className="required-papers-item">
-                  <i>
-                    <FaIdCard></FaIdCard>
-                  </i>{" "}
-                  <span>GPLX & CCCD gắn chíp (đối chiếu)</span>
-                </div>
-                <div className="required-papers-item">
-                  <i>
-                    <FaIdCardClip></FaIdCardClip>
-                  </i>{" "}
-                  <span>GPLX (đối chiếu) & Passport(giữ lại)</span>
-                </div>
-              </div>
+              <div className={requiredPapersClass}>
+    <div className="required-papers-item">
+      <i></i>
+      <h3>
+        {licenseStatus.hasDrivingLicense
+          ? "Bạn đã cung cấp đầy đủ giấy phép"
+          : "Chọn 1 trong 2 hình thức"}
+      </h3>
+    </div>
+    <div className="required-papers-item">
+      <i>
+        <FaIdCard></FaIdCard>
+      </i>{" "}
+      <span>GPLX & CCCD gắn chíp (đối chiếu)</span>
+    </div>
+    <div className="required-papers-item">
+      <i>
+        <FaIdCardClip></FaIdCardClip>
+      </i>{" "}
+      <span>GPLX (đối chiếu) & Passport(giữ lại)</span>
+    </div>
+  </div>
             </div>
-            <div className="contentproduct__detail-container-content-mortgage">
+            {/* <div className="contentproduct__detail-container-content-mortgage">
               <h6>Tài sản thế chấp</h6>
               <div className="required-papers">
                 <p>
@@ -814,7 +827,7 @@ function ContentProduct() {
                   Xe máy (kèm cà vẹt gốc) giá trị 15 triệu
                 </p>
               </div>
-            </div>
+            </div> */}
             <div className="contentproduct__detail-container-content-rules">
               <h6>Điều khoản</h6>
               <p className={isHidden ? "hide" : ""}>
@@ -1007,7 +1020,7 @@ function ContentProduct() {
                     </i>
                     <span className="df-align-center-tooltip-text">
                       Phí dịch vụ giúp chúng tôi duy trì và phát triển dịch vụ
-                      trên ưng dụng Mioto
+                      trên ưng dụng Xe Tốt 
                     </span>
                   </span>
                 </p>
@@ -1057,19 +1070,20 @@ function ContentProduct() {
                 </p>
               </div>
               <Link to={`/thanh-toan/${car._id}`}>
-                  <button
-                    className="btn__large price-container-button"
-                    disabled={!licenseStatus.hasDrivingLicense}
-                  >
-                    <i>
-                      <FaCircleCheck></FaCircleCheck>
-                    </i>
-                    <h3>
-                      {licenseStatus.status === "Đã Xác Nhận"
-                        ? "Chọn Thuê"
-                        : "Thiếu Giấy Phép"}
-                    </h3>
-                  </button>
+                    <button
+                      className={buttonClass}
+                      disabled={!licenseStatus.hasDrivingLicense}
+                    >
+                      <i>
+                        <FaCircleCheck></FaCircleCheck>
+                      </i>
+                      <h3>
+                        {licenseStatus.hasDrivingLicense
+                        // status === "Đã Xác Nhận"
+                          ? "Chọn Thuê"
+                          : "Thiếu Giấy Phép"}
+                      </h3>
+                    </button>
                 </Link>
             </div>
             <div className="surcharge">

@@ -145,7 +145,7 @@ function Pay() {
                   <img src={imagePath} alt={title} />
                 </div>
                 <div className="pay__information-product-name">
-                  <h3>Giá tiền: </h3> <p>{price} </p>
+                  <h3>Giá tiền: </h3> <p>{price + 250000} </p>
                 </div>
               </div>
             </div>

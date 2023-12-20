@@ -141,7 +141,7 @@
           Thanh toán qua thẻ quốc tế
                     </p>
                   </div>
-                  <div className="form-group">
+                  <div className="form-group flex-language">
                 <label>Ngôn ngữ</label>
                 <div className="controls">
                   <label className="radio-inline">

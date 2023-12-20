@@ -176,6 +176,13 @@ font-size: 18px;
     padding: 20px;
     font-weight: 600;
 }
+.flex-language {
+    margin: 5px 0;
+    display: flex;
+}
+.flex-language label{
+    position: inherit;
+}
 @media (max-width:991px) {
    .Vnpay-container{
         flex-direction: column;

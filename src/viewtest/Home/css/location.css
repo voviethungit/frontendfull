@@ -37,9 +37,11 @@
     right: 0;
 }
 .location__slider-container-bottom {
-  position: absolute;
-  bottom: 10px;  
-  left: 30%;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 .location__slider-container-bottom-name {
     font-size: 2.5rem;
