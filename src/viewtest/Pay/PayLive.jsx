@@ -8,7 +8,6 @@
   const PayLive = () => {
     const [language, setLanguage] = useState("vn");
     const [userId, setUserId] = useState('');
-
     useEffect(() => {
       const storedUserId = localStorage.getItem('userId');
       if (storedUserId) {
@@ -18,7 +17,6 @@
     const handleLanguageChange = (e) => {
       setLanguage(e.target.value);
     };
-  console.log(userId);
     return (
 
       <div className="">

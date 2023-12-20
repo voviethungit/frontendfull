@@ -16,6 +16,7 @@ const SuccessNotification = () => {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [loginError, setLoginError] = useState(null); 
   const [showSuccessNotification, setShowSuccessNotification] = useState(false);
 const [errorModalVisible, setErrorModalVisible] = useState(false);
@@ -48,11 +49,12 @@ const [ submitted,setSubmitted] = useState(false);
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data.status);
         if (data.accessToken) {
           console.log(data, "userLogin");
-  
+          
           window.localStorage.setItem("accessToken", data.accessToken);
-          if (data.banned) {
+          if (data.status === 'banned') {
             showErrorModal("Tài khoản của bạn đã bị khóa bởi quản trị viên.");
           } else if (data.userId) {
             window.localStorage.setItem("userId", data.userId);
@@ -70,6 +72,7 @@ const [ submitted,setSubmitted] = useState(false);
         }
       })
       .catch((error) => {
+       
         console.error("Có lỗi xảy ra khi Register:", error);
         showErrorModal(" Tài khoản của bạn không hợp lệ , xin vui lòng thử lại.");
       });

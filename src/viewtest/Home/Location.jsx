@@ -76,8 +76,8 @@ function Location() {
       <h2>Địa điểm nổi bật</h2>
      <div className='location__slider'>
                 <Slider {...location}>
-                    {categories.map((item) => (
-                        <Link to='/dia-diem' className="location__slider-container">
+                    {categories.map((item, index) => (
+                        <Link to={`/dia-diem/${item._id}`} className="location__slider-container" key={index}>
                             <div className="location__slider-container-top">
                                 <img
                                     src={

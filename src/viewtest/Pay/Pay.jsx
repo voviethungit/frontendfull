@@ -3,8 +3,8 @@ import Header from "../Home/Header";
 import Footer from "../Home/Footer";
 import "./Pay.css";
 import "../Home/css/base.css";
-import { FaCar, FaClipboardUser,FaArrowRight,FaCheck} from "react-icons/fa6";
-import { Link, useParams   } from "react-router-dom";
+import { FaCar, FaClipboardUser, FaArrowRight, FaCheck } from "react-icons/fa6";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Pay() {
@@ -20,7 +20,7 @@ function Pay() {
   const [isAccountBalanceSelected, setAccountBalanceSelected] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [accountBalance, setAccountBalance] = useState(0);
-
+  
   const handleRentCar = () => {
     if (isVnPaySelected || isAccountBalanceSelected) {
       setShowConfirmation(true);
@@ -36,14 +36,14 @@ function Pay() {
   const [modalTimeout, setModalTimeout] = useState(null);
 
   const handleConfirmRent = () => {
-    const userId = localStorage.getItem('userId');
-    const accessToken = localStorage.getItem('accessToken');
+    const userId = localStorage.getItem("userId");
+    const accessToken = localStorage.getItem("accessToken");
     let shouldShowRechargeModal = false;
-  
+
     if (isAccountBalanceSelected && accountBalance < price) {
       shouldShowRechargeModal = true;
     }
-  
+
     if (userId && accessToken) {
       axios
         .post(`http://localhost:5000/rent-car/${userId}/${id}`, null, {
@@ -52,20 +52,19 @@ function Pay() {
           },
         })
         .then((response) => {
-          console.log('Thuê xe thành công:', response.data);
+          console.log("Thuê xe thành công:", response.data);
           setShowSuccessModal(true);
-  
-          // Đặt hẹn giờ đóng modal và chuyển hướng sau 5 giây
+
           const timeoutId = setTimeout(() => {
             setShowSuccessModal(false);
             setTimeout(() => {
               window.location.href = "http://localhost:3000";
-            }, 1500)
+            }, 1500);
           }, 1500);
           setModalTimeout(timeoutId);
         })
         .catch((error) => {
-          console.error('Lỗi khi thuê xe:', error);
+          console.error("Lỗi khi thuê xe:", error);
         })
         .finally(() => {
           setShowConfirmation(false);
@@ -81,6 +80,7 @@ function Pay() {
   const handleCancelRent = () => {
     setShowConfirmation(false);
   };
+  
   useEffect(() => {
     return () => {
       // Làm sạch hẹn giờ khi component bị hủy
@@ -128,8 +128,7 @@ function Pay() {
       <Header />
       <div className="pay">
         <form className="pay__information">
-          <h3 className="pay__information-name">
-            Chọn thuê</h3>
+          <h3 className="pay__information-name">Chọn thuê</h3>
           <div className="pay__information__flex">
             <div className="pay__information-product">
               <span>
@@ -140,13 +139,13 @@ function Pay() {
               </span>
               <div className="pay__information-product-all">
                 <div className="pay__information-product-name">
-                  <h3>Tên xe : </h3>  <p>{title} </p>
+                  <h3>Tên xe : </h3> <p>{title} </p>
                 </div>
                 <div className="pay__information-product-image">
                   <img src={imagePath} alt={title} />
                 </div>
                 <div className="pay__information-product-name">
-                  <h3>Giá tiền: </h3>  <p>{price} </p>
+                  <h3>Giá tiền: </h3> <p>{price} </p>
                 </div>
               </div>
             </div>
@@ -168,8 +167,8 @@ function Pay() {
                   <p>Địa chỉ: {location}</p>
                 </div>
                 <div className="pay__information-user-location">
-                <p>Số dư tài khoản: {accountBalance}</p>
-              </div>
+                  <p>Số dư tài khoản: {accountBalance}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -177,8 +176,9 @@ function Pay() {
           <div className="pay__information-method">
             <span> Chọn phương thức thanh toán :</span>
             <div
-              className={`pay__information-method-online ${isVnPaySelected ? "selected" : ""
-                }`}
+              className={`pay__information-method-online ${
+                isVnPaySelected ? "selected" : ""
+              }`}
               onClick={() => {
                 setVnPaySelected(!isVnPaySelected);
                 setAccountBalanceSelected(false);
@@ -187,8 +187,9 @@ function Pay() {
               <p>VN Pay</p>
             </div>
             <div
-              className={`pay__information-method-ofline ${isAccountBalanceSelected ? "selected" : ""
-                }`}
+              className={`pay__information-method-ofline ${
+                isAccountBalanceSelected ? "selected" : ""
+              }`}
               onClick={() => {
                 setAccountBalanceSelected(!isAccountBalanceSelected);
                 setVnPaySelected(false);
@@ -199,18 +200,18 @@ function Pay() {
           </div>
           <div className="pay__information-pay">
             <button
-              className={`btn__large pay__information-pay-button ${!(isVnPaySelected || isAccountBalanceSelected) ? "disabled" : ""
-                }`}
+              className={`btn__large pay__information-pay-button ${
+                !(isVnPaySelected || isAccountBalanceSelected) ? "disabled" : ""
+              }`}
               onClick={(e) => {
                 e.preventDefault();
                 handleRentCar();
               }}
               disabled={!(isVnPaySelected || isAccountBalanceSelected)}
-              // onClick={handleConfirmRent} type="submit" 
+              // onClick={handleConfirmRent} type="submit"
             >
               Chọn thuê
             </button>
-
           </div>
         </form>
       </div>
@@ -223,7 +224,12 @@ function Pay() {
               <button className="confirm-button" onClick={handleConfirmRent}>
                 Xác nhận
               </button>
-              <button className="cancel-button" onClick={() => setShowConfirmation(false)}>Hủy bỏ</button>
+              <button
+                className="cancel-button"
+                onClick={() => setShowConfirmation(false)}
+              >
+                Hủy bỏ
+              </button>
             </div>
           </div>
         </div>
@@ -238,12 +244,22 @@ function Pay() {
           <div className="recharge-modal-content">
             <div className="recharge-modal-text">
               <p className="warning-text">Tài khoản không đủ tiền !.</p>
-              <img src="https://img7.thuthuatphanmem.vn/uploads/2023/08/29/hinh-het-tien-meme-doc-dao_085859180.jpg" className="img-hettien" alt="" />
-              <p className="warning-text">Vui lòng nạp thêm tiền vào tài khoản để thỏa sức thuê xe!!!.</p>
+              <img
+                src="https://img7.thuthuatphanmem.vn/uploads/2023/08/29/hinh-het-tien-meme-doc-dao_085859180.jpg"
+                className="img-hettien"
+                alt=""
+              />
+              <p className="warning-text">
+                Vui lòng nạp thêm tiền vào tài khoản để thỏa sức thuê xe!!!.
+              </p>
             </div>
             <div className="recharge-modal-btn">
-                <Link to="/nap-tien" className="confirm-button">Nạp tiền ngay</Link>
-                <button className="cancel-button" onClick={handleCancelRecharge}>Đóng</button>
+              <Link to="/nap-tien" className="confirm-button">
+                Nạp tiền ngay
+              </Link>
+              <button className="cancel-button" onClick={handleCancelRecharge}>
+                Đóng
+              </button>
             </div>
           </div>
         </div>
@@ -251,9 +267,15 @@ function Pay() {
       {showSuccessModal && (
         <div className="success-modal">
           <div className="success-modal-content">
-            <p>Thuê xe thành công<FaCheck/>!</p>
+            <p>
+              Thuê xe thành công
+              <FaCheck />!
+            </p>
             <p>Bây giờ bạn có thể liên hệ chủ xe để nhận xe đúng nơi nhất </p>
-            <button className="confirm-button" onClick={() => setShowSuccessModal(false)}>
+            <button
+              className="confirm-button"
+              onClick={() => setShowSuccessModal(false)}
+            >
               Đóng
             </button>
           </div>

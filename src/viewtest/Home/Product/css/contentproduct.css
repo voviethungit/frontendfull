@@ -1447,4 +1447,7 @@ cursor: pointer;
         max-width: 990px;
     }
 }
-
+.black-button {
+    background-color: black;
+    color: white;
+  }

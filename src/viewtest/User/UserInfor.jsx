@@ -3,7 +3,7 @@ import "./css/userinfor.css";
 import "./css/base.css";
 import "./css/reponsive.css";
 import "./css/mainuser.css";
-import { FaMedal, FaCar, FaXmark } from "react-icons/fa6";
+import { FaMedal, FaCar, FaXmark,FaUpload} from "react-icons/fa6";
 import Navbarmobile from "./Navbarmobile";
 import axios from "axios";
 import Modal from "./Modal";
@@ -11,6 +11,11 @@ import Userinfornav from "./Userinfornav";
 import { useNavigate } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
 function UserInfor() {
+  const [editMode, setEditMode] = useState(false);
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+  const [errorModalVisible, setErrorModalVisible] = useState(false);
+  const [errorModalContent, setErrorModalContent] = useState("");
+
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(true);
   const [fullName, setFullName] = useState("");
@@ -27,9 +32,12 @@ function UserInfor() {
   const [ngaySinh, setNgaySinh] = useState("");
   const [status, setStatus] = useState("");
   const [hinhAnhGiayPhep, setHinhAnhGiayPhep] = useState(null);
+  const [newlyAddedImage, setNewlyAddedImage] = useState(null);
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
     setHinhAnhGiayPhep(selectedFile);
+    const imageURL = URL.createObjectURL(selectedFile);
+    setNewlyAddedImage(imageURL);
   };
   const handleSoGPLXChange = (event) => {
     setSoGPLX(event.target.value);
@@ -40,6 +48,14 @@ function UserInfor() {
   const handlengaySinh = (event) => {
     setNgaySinh(event.target.value);
   };
+
+  const startEditMode = () => {
+    setEditMode(true);
+  };
+  const cancelEditMode = () => {
+    setEditMode(false);
+  };
+
   const handleSave = async () => {
     try {
       const formData = new FormData();
@@ -59,7 +75,11 @@ function UserInfor() {
           },
         }
       );
-
+      setShowSuccessNotification(true);
+      setTimeout(() => {
+        setShowSuccessNotification(false);
+      }, 3000);
+      cancelEditMode();
       console.log(response.data);
     } catch (error) {
       console.log(soGPLX);
@@ -105,7 +125,7 @@ function UserInfor() {
         console.error("Lỗi :", error);
       });
   }, []);
-  useEffect(() => {
+  const getProfile = () => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       setLoggedIn(false);
@@ -130,8 +150,11 @@ function UserInfor() {
         .catch((error) => {
           console.error("Lỗi :", error);
         });
-    }
-  }, []);
+  }
+}
+useEffect(() => {
+  getProfile();
+}, []);
   if (!loggedIn) {
     navigate("/dang-nhap");
   }
@@ -144,6 +167,26 @@ function UserInfor() {
     );
   }
 
+  const buttonText = editMode ? "Lưu" : "Chỉnh sửa";
+  const SuccessNotification = () => {
+    return (
+      <div className="success-notification-GPLX">
+     
+        <p>Lưu thành công!</p>
+      </div>
+    );
+  };
+  const hideErrorModal = () => {
+    setErrorModalVisible(false);
+    setErrorModalContent("");
+  };
+  const handleOverlayClick = (e) => {
+    console.log("Overlay clicked");
+    if (e.target.classList.contains("background-modal-opacity")) {
+      hideErrorModal();
+    }
+  };
+  
   return (
     <div className="userinfor">
       <div className="userinfor__nav" id="userinfor__nav">
@@ -255,6 +298,27 @@ function UserInfor() {
             </div>
           </div>
         </div>
+        {showSuccessNotification && (
+          <SuccessNotification
+            onClose={() => setShowSuccessNotification(false)}
+          />
+        )}
+        {errorModalVisible && (
+          <div
+            className="background-modal-opacity"
+            onClick={handleOverlayClick}
+          >
+            <div className="modal-error ">
+              <img
+                src="https://th.bing.com/th/id/R.fe2dd5ae5f292611169640ea4175cff2?rik=4aPcCLbsDWo5Wg&pid=ImgRaw&r=0"
+                alt=""
+              />
+              <button onClick={hideErrorModal}>X</button>
+              <p>{errorModalContent}</p>
+            </div>
+          </div>
+        )}
+
         <div className="userinfor__papers">
           <div className="userinfor__papers-header">
             <div className="userinfor__papers-header-first">
@@ -269,10 +333,24 @@ function UserInfor() {
               </div>
             </div>
             <div className="update-papers">
-              <button onClick={handleSave} className="button-enable">
-                <div></div>
-                Lưu
-              </button>
+              {!editMode && (
+                <button onClick={startEditMode} className="button-enable">
+                  <div></div>
+                  Chỉnh sửa
+                </button>
+              )}
+              {editMode && (
+                <div className="enable-btn">
+                  <button onClick={handleSave} className="button-enable">
+                    <div></div>
+                    Lưu
+                  </button>
+                  <button onClick={cancelEditMode} className="button-enable-cancel">
+                    <div></div>
+                    Hủy
+                  </button>
+                </div>
+              )}
             </div>
           </div>
           <div className="userinfor__papers-content">
@@ -282,44 +360,69 @@ function UserInfor() {
               </h4>
               <p className="userinfor__papers-content-left-text">Số GPLX</p>
               <input
-                className="userinfor__papers-content-right-img-fill active-userinfor"
-                type="text"
+                className={`userinfor__papers-content-right-img-fill active-userinfor ${
+                  editMode ? "enabled" : ""
+                }`}
+                type="number"
                 placeholder="Nhập số GPLX "
                 value={soGPLX}
                 onChange={handleSoGPLXChange}
+                disabled={!editMode}
               ></input>
               <p className="userinfor__papers-content-left-text">Họ và tên</p>
               <input
-                className="userinfor__papers-content-right-img-fill active-userinfor"
+                  className={`userinfor__papers-content-right-img-fill active-userinfor ${
+                  editMode ? "enabled" : ""
+                }`}
                 type="text"
                 placeholder="Nhập Họ và Tên "
                 value={hoTen}
                 onChange={handlehoTen}
+                disabled={!editMode}
               ></input>
               <p className="userinfor__papers-content-left-text">Ngày sinh</p>
               <input
-                className="userinfor__papers-content-right-img-fill active-userinfor"
+                className={`userinfor__papers-content-right-img-fill active-userinfor ${
+                editMode ? "enabled" : ""}`}
                 type="date"
                 placeholder="Nhập Ngày Sinh "
                 value={ngaySinh}
                 onChange={handlengaySinh}
+                disabled={!editMode}
               ></input>
             </div>
             <div className="userinfor__papers-content-right">
               <h4 className="userinfor__papers-content-right-name">Hình ảnh</h4>
               <div className="userinfor__papers-content-right-img">
                 {!hinhAnhGiayPhep && (
-                  <div>
-                    <h2>Thêm ảnh :</h2>
-                    <input
-                      type="file"
-                      onChange={handleChange}
-                      className="userinfor__papers-content-right-img-fill active-userinfor"
-                    />
+                  <div className="add-imgage-GPLX">
+                    <div>
+                      <input type="file" 
+                      onChange={handleChange} 
+                      name="file" 
+                      id="file" 
+                      className="inputfile" 
+                      disabled={!editMode}
+                />
+                      <label for="file" ><p> Chọn ảnh </p><i><FaUpload/></i></label>
+                    </div>
                   </div>
                 )}
+                {newlyAddedImage && (
+                  <img
+                    src={newlyAddedImage}
+                    alt={hoTen}
+                    className="image-GPLX"
+                  />
+                )}
+                {hinhAnhGiayPhep && (
+                  <img
+                    src={hinhAnhGiayPhep}
+                    alt={hoTen}
+                    className="image-GPLX"
+                  />
+                )}
               </div>
-              {hinhAnhGiayPhep && <img src={hinhAnhGiayPhep} alt={hoTen} />}
             </div>
           </div>
         </div>
