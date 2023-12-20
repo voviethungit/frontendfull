@@ -7,7 +7,7 @@ import { BsShieldCheck } from 'react-icons/bs';
 import { FaLocationDot, FaStar, FaCarRear, FaAngleDown } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-
+import BeatLoader from "react-spinners/BeatLoader";
 function Content() {
   const [cars, setCars] = useState([]);
   const [search, setSearch] = useState('');
@@ -93,6 +93,11 @@ function Content() {
     setSelectedDistrict(null);
     setCurrentPage(1);
   };
+  if (!cars) {
+    return <div className="spinner-container">
+    <BeatLoader color="#36d7b7" size={40} />
+  </div>;
+  }
   return (
     <div className="content" id="content">
       <h1 className="content__text">Xe dành cho bạn</h1>

@@ -179,21 +179,7 @@ const [ submitted,setSubmitted] = useState(false);
             <div className="register-now">
               <p>Bạn chưa là thành viên?  <Link to= "/dang-ky"> <span >Đăng kí ngay</span></Link> </p>
             </div>
-            <div className="login-wrap-btn-icon">
-              <div className="login-wrap-btn-icon__facebook">
-                <span className="login-icon__face">
-                  <FaFacebook />
-                </span>
-                <span>FaceBook</span>
-              </div>
-
-              <div className="login-wrap-btn-google">
-                <span className="login-icon-Google">
-                  <FaGoogle />
-                </span>
-                <span>Google</span>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>

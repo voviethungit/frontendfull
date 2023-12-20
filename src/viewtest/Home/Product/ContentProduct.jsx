@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 import { Link, useParams, useLocation } from "react-router-dom";
 import "./css/contentproduct.css";
 import "./css/base.css";
@@ -213,7 +214,9 @@ function ContentProduct() {
   }, [id]);
 
   if (!car) {
-    return <div>Dang tai...</div>;
+    return <div className="spinner-container">
+    <BeatLoader color="#36d7b7" size={40} />
+  </div>;
   }
   const contactproduct__tablet = {
     dots: true,

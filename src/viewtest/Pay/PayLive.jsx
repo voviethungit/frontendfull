@@ -65,6 +65,66 @@ console.log(userId);
              {errors.amount && <p className="error-message">{errors.amount.message}</p>}
               <div className="form-group">
                 <p ><b>Chọn Phương thức thanh toán</b></p>
+      <div className="">
+        <Helmet>
+          <title>Nạp tiền</title>
+        </Helmet>
+        <Header/>
+     
+        <div className="Vnpay-container">
+          <div className="Vnpay-content">
+            <div className="Vnpay-content-title">
+              <h6>
+                Nạp tiền <span className="VNPAY-colorred">VN</span>
+                <span className="VNPAY-colorblue">PAY</span>
+              </h6>
+            </div>
+            <div className="Vnpay-content-atm">
+              <form className="form-Vnpay-content-atm" method="post" action="http://localhost:8888/order/create_payment_url">
+                <input
+                  className="form-control"
+                  id="amount"
+                  name="amount"
+                  placeholder="Số tiền"
+                  
+                />
+                <p> Nhập số tiền muốn nạp, sau đó mới bấm</p> <br />
+                <div className="form-group">
+                  <p >Chọn Phương thức thanh toán</p>
+                  <div className="controls">
+                    <p className="radio-inline">
+                      <input
+                        type="radio"
+                        name="bankCode"
+                        value=""
+                        id="defaultPaymentMethod"
+                      />
+                                  Cổng thanh toán VNPAYQR <br />
+                      <input
+                        type="radio"
+                        name="bankCode"
+                        value="VNBANK"
+                        checked="true"
+                      />
+                  Thanh toán qua ATM-Tài khoản ngân hàng nội địa <br />
+                      <input
+                        type="radio"
+                        name="bankCode"
+                        value="VNPAYQR"
+                        
+                      />
+                      Thanh toán qua ứng dụng hỗ trợ VNPAYQR <br />
+                      <input
+                        type="radio"
+                        name="bankCode"
+                        value="INTCARD"
+                        
+                      />
+          Thanh toán qua thẻ quốc tế
+                    </p>
+                  </div>
+                  <div className="form-group flex-language">
+                <label>Ngôn ngữ</label>
                 <div className="controls">
                   <p className="radio-inline">
                     <input
@@ -134,6 +194,28 @@ console.log(userId);
               Lưu ý nạp <span className="VNPAY-colorred">VN</span>
               <span className="VNPAY-colorblue">PAY</span>
             </h6>
+          <div className="Vnpay-text">
+            <div className="Vnpay-text-title">
+              <h6>
+                {" "}
+                Lưu ý nạp <span className="VNPAY-colorred">VN</span>
+                <span className="VNPAY-colorblue">PAY</span>
+              </h6>
+            </div>
+            <p>
+              - Số tiền nạp nhận được sẽ đúng với số tiền bạn nhập | VD : Nạp 100.000 vnđ sẽ nhận được 100.000 vnđ vào tài khoản Xe Tốt.
+              <br />
+              - Lưu ý : VNPay giới hạn mức nạp tối thiểu là 5.000 vnđ và tối đa là 1 tỷ.
+              <br />
+              - Nạp tiền sẽ đuợc cộng ngay lập tức.
+              <br />
+              - Nếu sau 5 phút kể từ lúc nạp mà bạn vẫn chưa nhận được tiền. Liên Hệ Ngay Cho Admin !
+              <br />
+              <a href="https://www.facebook.com/VoVietHung.IT">Facebook Admin</a>
+              <a href="zalo.me/0824970304">Zalo Admin</a>
+              <br />
+              - Mẹo : Liên hệ qua zalo sẽ được phản hồi nhanh hơn bạn tưởng đấy 
+            </p>
           </div>
           <p>
             - Tỉ giá 1.000 vnđ = 1.000 vnđ

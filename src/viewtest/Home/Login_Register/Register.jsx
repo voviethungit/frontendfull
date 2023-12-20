@@ -392,21 +392,6 @@ if (phoneNumber.length < 10) {
                       </Link>
                     </p>
                   </div>
-                  <div className="wrap-btn-icon">
-                    <div className="wrap-btn-icon__facebook">
-                      <span className="icon__face">
-                        <FaFacebook />
-                      </span>
-                      <span>FaceBook</span>
-                    </div>
-
-                    <div className="wrap-btn-google">
-                      <span className="icon-Google">
-                        <FaGoogle />
-                      </span>
-                      <span>Google</span>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
